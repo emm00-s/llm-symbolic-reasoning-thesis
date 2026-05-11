@@ -1,0 +1,185 @@
+[
+  {
+    "template_id": "P01",
+    "category": "Transitive",
+    "logical_structure": "Three-step implication chain plus a negated terminal observation; modus tollens propagates back to negate the head.",
+    "abstract_variables": {
+      "X1": "head antecedent, asked about by the query",
+      "X2": "first intermediate consequent",
+      "X3": "second intermediate consequent",
+      "X4": "terminal consequent, observed false"
+    },
+    "axioms": [
+      "X1 -> X2",
+      "X2 -> X3",
+      "X3 -> X4",
+      "¬X4"
+    ],
+    "query": "X1",
+    "query_type": "entailment",
+    "z3_code": "from z3 import Bool, Implies, Not, Solver, sat, unsat\n\nX1, X2, X3, X4 = Bool('X1'), Bool('X2'), Bool('X3'), Bool('X4')\nQ = X1\ns = Solver()\ns.add(Implies(X1, X2), Implies(X2, X3), Implies(X3, X4), Not(X4))\nif s.check() == unsat:\n    result = 'Paradox'\nelse:\n    s.push(); s.add(Not(Q)); entails_Q = (s.check() == unsat); s.pop()\n    s.push(); s.add(Q); entails_not_Q = (s.check() == unsat); s.pop()\n    if entails_Q:\n        result = 'True'\n    elif entails_not_Q:\n        result = 'False'\n    else:\n        result = 'Unknown'\n",
+    "ground_truth": "False",
+    "notes": "Clean classical-reasoning case. The observation ¬X4 propagates back through the implication chain to ¬X1 by repeated modus tollens."
+  },
+  {
+    "template_id": "P02",
+    "category": "Transitive",
+    "logical_structure": "Single antecedent with two consequents; one consequent is observed true, while the other is observed false and refutes the antecedent by modus tollens.",
+    "abstract_variables": {
+      "X1": "common antecedent, asked about by the query",
+      "X2": "first consequent, observed true",
+      "X3": "second consequent, observed false"
+    },
+    "axioms": [
+      "X1 -> X2",
+      "X1 -> X3",
+      "X2",
+      "¬X3"
+    ],
+    "query": "X1",
+    "query_type": "entailment",
+    "z3_code": "from z3 import Bool, Implies, Not, Solver, sat, unsat\n\nX1, X2, X3 = Bool('X1'), Bool('X2'), Bool('X3')\nQ = X1\ns = Solver()\ns.add(Implies(X1, X2), Implies(X1, X3), X2, Not(X3))\nif s.check() == unsat:\n    result = 'Paradox'\nelse:\n    s.push(); s.add(Not(Q)); entails_Q = (s.check() == unsat); s.pop()\n    s.push(); s.add(Q); entails_not_Q = (s.check() == unsat); s.pop()\n    if entails_Q:\n        result = 'True'\n    elif entails_not_Q:\n        result = 'False'\n    else:\n        result = 'Unknown'\n",
+    "ground_truth": "False",
+    "notes": "The observation X2 is compatible with X1 but does not entail it. The observation ¬X3 refutes X1 by modus tollens."
+  },
+  {
+    "template_id": "P03",
+    "category": "Sets",
+    "logical_structure": "Exactly-one disjunction over three candidates with distinct conditional signatures, plus an observation that uniquely selects one candidate.",
+    "abstract_variables": {
+      "X1": "first candidate, entailed by the observation",
+      "X2": "second candidate, excluded by the observation",
+      "X3": "third candidate, excluded by the observation",
+      "X4": "observable signature"
+    },
+    "axioms": [
+      "ExactlyOne(X1, X2, X3)",
+      "X1 -> X4",
+      "X2 -> ¬X4",
+      "X3 -> ¬X4",
+      "X4"
+    ],
+    "query": "X1",
+    "query_type": "entailment",
+    "z3_code": "from z3 import Bool, Implies, Not, PbEq, Solver, sat, unsat\n\nX1, X2, X3, X4 = Bool('X1'), Bool('X2'), Bool('X3'), Bool('X4')\nQ = X1\ns = Solver()\ns.add(PbEq([(X1, 1), (X2, 1), (X3, 1)], 1))\ns.add(Implies(X1, X4), Implies(X2, Not(X4)), Implies(X3, Not(X4)), X4)\nif s.check() == unsat:\n    result = 'Paradox'\nelse:\n    s.push(); s.add(Not(Q)); entails_Q = (s.check() == unsat); s.pop()\n    s.push(); s.add(Q); entails_not_Q = (s.check() == unsat); s.pop()\n    if entails_Q:\n        result = 'True'\n    elif entails_not_Q:\n        result = 'False'\n    else:\n        result = 'Unknown'\n",
+    "ground_truth": "True",
+    "notes": "X4 excludes X2 and X3 by contraposition. The exactly-one constraint then forces X1. This template tests the interaction between cardinality constraints and conditional reasoning."
+  },
+  {
+    "template_id": "P04",
+    "category": "Sets",
+    "logical_structure": "Exactly-two-of-three cardinality constraint plus an observation negating one variable; the conjunction of the remaining two variables is queried.",
+    "abstract_variables": {
+      "X1": "first candidate, observed false",
+      "X2": "second candidate",
+      "X3": "third candidate"
+    },
+    "axioms": [
+      "ExactlyTwo(X1, X2, X3)",
+      "¬X1"
+    ],
+    "query": "X2 ∧ X3",
+    "query_type": "entailment",
+    "z3_code": "from z3 import And, Bool, Not, PbEq, Solver, sat, unsat\n\nX1, X2, X3 = Bool('X1'), Bool('X2'), Bool('X3')\nQ = And(X2, X3)\ns = Solver()\ns.add(PbEq([(X1, 1), (X2, 1), (X3, 1)], 2))\ns.add(Not(X1))\nif s.check() == unsat:\n    result = 'Paradox'\nelse:\n    s.push(); s.add(Not(Q)); entails_Q = (s.check() == unsat); s.pop()\n    s.push(); s.add(Q); entails_not_Q = (s.check() == unsat); s.pop()\n    if entails_Q:\n        result = 'True'\n    elif entails_not_Q:\n        result = 'False'\n    else:\n        result = 'Unknown'\n",
+    "ground_truth": "True",
+    "notes": "The only satisfying assignment is X1 = False, X2 = True, X3 = True. Therefore the conjunction X2 ∧ X3 is entailed."
+  },
+  {
+    "template_id": "P05",
+    "category": "Meta-Logic",
+    "logical_structure": "Implication chain whose closure forces the head antecedent to be false; the question asks whether the axiom set itself is satisfiable.",
+    "abstract_variables": {
+      "X1": "head antecedent, forced false by the closure",
+      "X2": "first intermediate proposition",
+      "X3": "second intermediate proposition",
+      "X4": "terminal proposition"
+    },
+    "axioms": [
+      "X1 -> X2",
+      "X2 -> X3",
+      "X3 -> ¬X4",
+      "¬X4 -> ¬X1"
+    ],
+    "query": "SAT(axioms)",
+    "query_type": "satisfiability",
+    "z3_code": "from z3 import Bool, Implies, Not, Solver, sat, unsat\n\nX1, X2, X3, X4 = Bool('X1'), Bool('X2'), Bool('X3'), Bool('X4')\ns = Solver()\ns.add(Implies(X1, X2), Implies(X2, X3), Implies(X3, Not(X4)), Implies(Not(X4), Not(X1)))\ncheck = s.check()\nif check == sat:\n    result = 'True'\nelif check == unsat:\n    result = 'False'\nelse:\n    result = 'Unknown'\n",
+    "ground_truth": "True",
+    "notes": "This case may look paradoxical, but the axiom set is satisfiable. The chain entails X1 -> ¬X1, which forces X1 to be false, but it does not make the whole knowledge base inconsistent. Since the query asks whether all axioms can be true at once, the correct label is True."
+  },
+  {
+    "template_id": "P06",
+    "category": "Default/Exception",
+    "logical_structure": "Default rule represented as a guarded implication, with an observed exception that blocks the rule and leaves the consequent undetermined.",
+    "abstract_variables": {
+      "X1": "general class membership, observed true",
+      "X2": "exception class membership, observed true",
+      "X3": "default consequent, left undetermined when the exception holds"
+    },
+    "axioms": [
+      "(X1 ∧ ¬X2) -> X3",
+      "X1",
+      "X2"
+    ],
+    "query": "X3",
+    "query_type": "entailment",
+    "z3_code": "from z3 import And, Bool, Implies, Not, Solver, sat, unsat\n\nX1, X2, X3 = Bool('X1'), Bool('X2'), Bool('X3')\nQ = X3\ns = Solver()\ns.add(Implies(And(X1, Not(X2)), X3), X1, X2)\nif s.check() == unsat:\n    result = 'Paradox'\nelse:\n    s.push(); s.add(Not(Q)); entails_Q = (s.check() == unsat); s.pop()\n    s.push(); s.add(Q); entails_not_Q = (s.check() == unsat); s.pop()\n    if entails_Q:\n        result = 'True'\n    elif entails_not_Q:\n        result = 'False'\n    else:\n        result = 'Unknown'\n",
+    "ground_truth": "Unknown",
+    "notes": "With X2 = True, the antecedent X1 ∧ ¬X2 is false, so the guarded implication does not constrain X3. Both X3 and ¬X3 are compatible with the knowledge base. The formal answer is therefore Unknown."
+  },
+  {
+    "template_id": "P07",
+    "category": "Fallacy",
+    "logical_structure": "Two disjoint implication clusters sharing no variables; an observation in one cluster leaves variables in the other cluster unconstrained.",
+    "abstract_variables": {
+      "X1": "antecedent in cluster A",
+      "X2": "consequent in cluster A, queried and unconstrained",
+      "X3": "antecedent in cluster B, observed true",
+      "X4": "consequent in cluster B"
+    },
+    "axioms": [
+      "X1 -> X2",
+      "X3 -> X4",
+      "X3"
+    ],
+    "query": "X2",
+    "query_type": "entailment",
+    "z3_code": "from z3 import Bool, Implies, Not, Solver, sat, unsat\n\nX1, X2, X3, X4 = Bool('X1'), Bool('X2'), Bool('X3'), Bool('X4')\nQ = X2\ns = Solver()\ns.add(Implies(X1, X2), Implies(X3, X4), X3)\nif s.check() == unsat:\n    result = 'Paradox'\nelse:\n    s.push(); s.add(Not(Q)); entails_Q = (s.check() == unsat); s.pop()\n    s.push(); s.add(Q); entails_not_Q = (s.check() == unsat); s.pop()\n    if entails_Q:\n        result = 'True'\n    elif entails_not_Q:\n        result = 'False'\n    else:\n        result = 'Unknown'\n",
+    "ground_truth": "Unknown",
+    "notes": "The observation X3 activates only cluster B. Since cluster A shares no variables with cluster B, X2 remains unconstrained. Both X2 and ¬X2 are satisfiable, so the correct label is Unknown."
+  },
+  {
+    "template_id": "P08",
+    "category": "Propositional",
+    "logical_structure": "Tautological case analysis: the consequent holds in both branches of a binary partition.",
+    "abstract_variables": {
+      "X1": "case-discriminating antecedent",
+      "X2": "consequent, entailed in both branches"
+    },
+    "axioms": [
+      "X1 -> X2",
+      "¬X1 -> X2"
+    ],
+    "query": "X2",
+    "query_type": "entailment",
+    "z3_code": "from z3 import Bool, Implies, Not, Solver, sat, unsat\n\nX1, X2 = Bool('X1'), Bool('X2')\nQ = X2\ns = Solver()\ns.add(Implies(X1, X2), Implies(Not(X1), X2))\nif s.check() == unsat:\n    result = 'Paradox'\nelse:\n    s.push(); s.add(Not(Q)); entails_Q = (s.check() == unsat); s.pop()\n    s.push(); s.add(Q); entails_not_Q = (s.check() == unsat); s.pop()\n    if entails_Q:\n        result = 'True'\n    elif entails_not_Q:\n        result = 'False'\n    else:\n        result = 'Unknown'\n",
+    "ground_truth": "True",
+    "notes": "The conjunction (X1 -> X2) ∧ (¬X1 -> X2) entails X2. This template tests whether the model recognizes that the same consequent follows in both exhaustive cases."
+  },
+  {
+    "template_id": "P09",
+    "category": "Paradox",
+    "logical_structure": "Direct propositional inconsistency: a proposition and its negation are both asserted.",
+    "abstract_variables": {
+      "X1": "the contradicted proposition"
+    },
+    "axioms": [
+      "X1",
+      "¬X1"
+    ],
+    "query": "X1",
+    "query_type": "entailment",
+    "z3_code": "from z3 import Bool, Not, Solver, sat, unsat\n\nX1 = Bool('X1')\nQ = X1\ns = Solver()\ns.add(X1, Not(X1))\nif s.check() == unsat:\n    result = 'Paradox'\nelse:\n    s.push(); s.add(Not(Q)); entails_Q = (s.check() == unsat); s.pop()\n    s.push(); s.add(Q); entails_not_Q = (s.check() == unsat); s.pop()\n    if entails_Q:\n        result = 'True'\n    elif entails_not_Q:\n        result = 'False'\n    else:\n        result = 'Unknown'\n",
+    "ground_truth": "Paradox",
+    "notes": "The knowledge base is unsatisfiable because it contains both X1 and ¬X1. Under the four-label regime used here, an inconsistent knowledge base receives the label Paradox."
+  }
+]

@@ -1,0 +1,290 @@
+[
+  {
+    "id": "P01_familiar",
+    "template_id": "P01",
+    "variant_type": "familiar",
+    "domain_label": "Robot factory",
+    "narrative": "In a robot factory, the following rules hold. (1) If the Red Button is pressed, the Main Gear is turning. (2) If the Main Gear is turning, the Whistle is blowing. (3) If the Whistle is blowing, the Packing Box is closed. Observation: the Packing Box is not closed.",
+    "question": "Is it the case that the Red Button is pressed?"
+  },
+  {
+    "id": "P01_belief_violating",
+    "template_id": "P01",
+    "variant_type": "belief_violating",
+    "domain_label": "Counterfactual chain",
+    "narrative": "Consider the following rules. (1) If water molecules contain oxygen atoms, adult dogs speak fluent English. (2) If adult dogs speak fluent English, ordinary stones are made of bread. (3) If ordinary stones are made of bread, the Moon is made of cheese. Observation: the Moon is not made of cheese.",
+    "question": "Is it the case that water molecules contain oxygen atoms?"
+  },
+  {
+    "id": "P01_artificial",
+    "template_id": "P01",
+    "variant_type": "artificial",
+    "domain_label": "Vorbian station",
+    "narrative": "At a Vorbian station, the following rules hold. (1) If the Krell rod is engaged, the Mern coil is humming. (2) If the Mern coil is humming, the Plith dial is glowing. (3) If the Plith dial is glowing, the Sorvex chamber is sealed. Observation: the Sorvex chamber is not sealed.",
+    "question": "Is it the case that the Krell rod is engaged?"
+  },
+  {
+    "id": "P01_abstract",
+    "template_id": "P01",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "Consider the following statements. (1) If X1, then X2. (2) If X2, then X3. (3) If X3, then X4. Observation: not X4.",
+    "question": "Is it the case that X1?"
+  },
+  {
+    "id": "P02_familiar",
+    "template_id": "P02",
+    "variant_type": "familiar",
+    "domain_label": "Alchemist's potion",
+    "narrative": "An alchemist's potion has two effects. (1) If Alice drinks the potion, Alice is invisible. (2) If Alice drinks the potion, Alice is strong. Observation: Alice is invisible. Alice is not strong.",
+    "question": "Is it the case that Alice drinks the potion?"
+  },
+  {
+    "id": "P02_belief_violating",
+    "template_id": "P02",
+    "variant_type": "belief_violating",
+    "domain_label": "Counterfactual two-effect",
+    "narrative": "Consider the following rules. (1) If the Earth orbits the Sun, adult humans need oxygen to live. (2) If the Earth orbits the Sun, ordinary cats are made of stone. Observation: adult humans need oxygen to live. Ordinary cats are not made of stone.",
+    "question": "Is it the case that the Earth orbits the Sun?"
+  },
+  {
+    "id": "P02_artificial",
+    "template_id": "P02",
+    "variant_type": "artificial",
+    "domain_label": "Plimble feeding",
+    "narrative": "A Plimble has two reactions when fed a snork. (1) If the Plimble is fed a snork, the Plimble glows. (2) If the Plimble is fed a snork, the Plimble vibrates. Observation: the Plimble glows. The Plimble does not vibrate.",
+    "question": "Is it the case that the Plimble is fed a snork?"
+  },
+  {
+    "id": "P02_abstract",
+    "template_id": "P02",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "Consider the following statements. (1) If X1, then X2. (2) If X1, then X3. Observation: X2. Not X3.",
+    "question": "Is it the case that X1?"
+  },
+  {
+    "id": "P03_familiar",
+    "template_id": "P03",
+    "variant_type": "familiar",
+    "domain_label": "Diamond theft",
+    "narrative": "A diamond has been stolen. Exactly one of the Butler, the Gardener, or the Chef is guilty. (1) If the Butler is guilty, there are muddy footprints at the scene. (2) If the Gardener is guilty, there are no muddy footprints at the scene. (3) If the Chef is guilty, there are no muddy footprints at the scene. Observation: there are muddy footprints at the scene.",
+    "question": "Is it the case that the Butler is guilty?"
+  },
+  {
+    "id": "P03_belief_violating",
+    "template_id": "P03",
+    "variant_type": "belief_violating",
+    "domain_label": "Counterfactual disjuncts",
+    "narrative": "Exactly one of the following three statements is true: ordinary stones are made of bread, adult humans need oxygen to live, or ordinary cats are mammals. (1) If ordinary stones are made of bread, a red mark is visible on the card. (2) If adult humans need oxygen to live, no red mark is visible on the card. (3) If ordinary cats are mammals, no red mark is visible on the card. Observation: a red mark is visible on the card.",
+    "question": "Is it the case that ordinary stones are made of bread?"
+  },
+  {
+    "id": "P03_artificial",
+    "template_id": "P03",
+    "variant_type": "artificial",
+    "domain_label": "Zorbian relics",
+    "narrative": "Exactly one of the three relics, the Krill, the Vael, or the Snorx, is the source of the glow. (1) If the Krill is the source of the glow, a violet halo is visible. (2) If the Vael is the source of the glow, no violet halo is visible. (3) If the Snorx is the source of the glow, no violet halo is visible. Observation: a violet halo is visible.",
+    "question": "Is it the case that the Krill is the source of the glow?"
+  },
+  {
+    "id": "P03_abstract",
+    "template_id": "P03",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "Exactly one of X1, X2, X3 is true. (1) If X1, then X4. (2) If X2, then not X4. (3) If X3, then not X4. Observation: X4.",
+    "question": "Is it the case that X1?"
+  },
+  {
+    "id": "P04_familiar",
+    "template_id": "P04",
+    "variant_type": "familiar",
+    "domain_label": "Power plant generators",
+    "narrative": "A power plant has three generators: G1, G2, and G3. Exactly two of the three generators are active. Observation: G1 is not active.",
+    "question": "Is it the case that both G2 and G3 are active?"
+  },
+  {
+    "id": "P04_belief_violating",
+    "template_id": "P04",
+    "variant_type": "belief_violating",
+    "domain_label": "Counterfactual cardinality",
+    "narrative": "Exactly two of the following three statements are true: water molecules contain hydrogen atoms, ordinary stones can breathe, and the Moon is made of cheese. Observation: water molecules do not contain hydrogen atoms.",
+    "question": "Is it the case that both ordinary stones can breathe and the Moon is made of cheese?"
+  },
+  {
+    "id": "P04_artificial",
+    "template_id": "P04",
+    "variant_type": "artificial",
+    "domain_label": "Vorm moons",
+    "narrative": "The planet Vorm has three moons: K1, K2, and K3. Exactly two of the three moons are illuminated. Observation: K1 is not illuminated.",
+    "question": "Is it the case that both K2 and K3 are illuminated?"
+  },
+  {
+    "id": "P04_abstract",
+    "template_id": "P04",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "Exactly two of X1, X2, X3 are true. Observation: not X1.",
+    "question": "Is it the case that both X2 and X3 are true?"
+  },
+  {
+    "id": "P05_familiar",
+    "template_id": "P05",
+    "variant_type": "familiar",
+    "domain_label": "Grandfather paradox (time travel)",
+    "narrative": "Consider the following time-travel rules. (1) If I travel back in time, I meet my grandfather. (2) If I meet my grandfather, I distract him. (3) If I distract him, I am not born. (4) If I am not born, I do not travel back in time.",
+    "question": "Can all of these statements be true at once?"
+  },
+  {
+    "id": "P05_belief_violating",
+    "template_id": "P05",
+    "variant_type": "belief_violating",
+    "domain_label": "Counterfactual loop",
+    "narrative": "Consider the following four statements. (1) If water molecules contain oxygen atoms, adult dogs speak fluent English. (2) If adult dogs speak fluent English, ordinary stones are made of bread. (3) If ordinary stones are made of bread, the Earth is not approximately spherical. (4) If the Earth is not approximately spherical, water molecules do not contain oxygen atoms.",
+    "question": "Can all of these statements be true at once?"
+  },
+  {
+    "id": "P05_artificial",
+    "template_id": "P05",
+    "variant_type": "artificial",
+    "domain_label": "Vorbian feedback loop",
+    "narrative": "Consider the following four statements. (1) If the Vor sends a Plith signal, the Glent receiver activates. (2) If the Glent receiver activates, the Krell relay melts. (3) If the Krell relay melts, the Vor's circuit is not intact. (4) If the Vor's circuit is not intact, the Vor does not send a Plith signal.",
+    "question": "Can all of these statements be true at once?"
+  },
+  {
+    "id": "P05_abstract",
+    "template_id": "P05",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "Consider the following four statements. (1) If X1, then X2. (2) If X2, then X3. (3) If X3, then not X4. (4) If not X4, then not X1.",
+    "question": "Can all of these statements be true at once?"
+  },
+  {
+    "id": "P06_familiar",
+    "template_id": "P06",
+    "variant_type": "familiar",
+    "domain_label": "Tweety the penguin",
+    "narrative": "There is a default rule about birds: normally, if an animal is a bird, it can fly. However, this rule does not apply to penguins. Observation: Tweety is a bird. Tweety is a penguin.",
+    "question": "Is it the case that Tweety can fly?"
+  },
+  {
+    "id": "P06_belief_violating",
+    "template_id": "P06",
+    "variant_type": "belief_violating",
+    "domain_label": "Iron object with red exception",
+    "narrative": "There is a default rule about objects: normally, if an object is made of iron, the object sinks in water. However, this rule does not apply to red objects. Observation: Object H is made of iron. Object H is red.",
+    "question": "Is it the case that Object H sinks in water?"
+  },
+  {
+    "id": "P06_artificial",
+    "template_id": "P06",
+    "variant_type": "artificial",
+    "domain_label": "Glorps and Snorgles",
+    "narrative": "There is a default rule about Glorps: normally, if a creature is a Glorp, it glimmers. However, this rule does not apply to Snorgles. Observation: Pim is a Glorp. Pim is a Snorgle.",
+    "question": "Is it the case that Pim glimmers?"
+  },
+  {
+    "id": "P06_abstract",
+    "template_id": "P06",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "There is a default rule: normally, if X1 and not X2, then X3. Observation: X1. X2.",
+    "question": "Is it the case that X3?"
+  },
+  {
+    "id": "P07_familiar",
+    "template_id": "P07",
+    "variant_type": "familiar",
+    "domain_label": "Two rooms",
+    "narrative": "There are two rooms, A and B, each with its own switch and appliance. (1) In Room A, if Switch A is flipped, the Fan is on. (2) In Room B, if Switch B is flipped, the Light is on. Observation: in Room B, Switch B is flipped.",
+    "question": "Is it the case that the Fan in Room A is on?"
+  },
+  {
+    "id": "P07_belief_violating",
+    "template_id": "P07",
+    "variant_type": "belief_violating",
+    "domain_label": "Counterfactual independence",
+    "narrative": "Consider two separate groups of rules. (1) In Group A, if the Moon is made of cheese, water molecules contain oxygen atoms. (2) In Group B, if the Earth rotates, shadows move during the day. Observation: the Earth rotates.",
+    "question": "Is it the case that water molecules contain oxygen atoms?"
+  },
+  {
+    "id": "P07_artificial",
+    "template_id": "P07",
+    "variant_type": "artificial",
+    "domain_label": "Two Zorbian villages",
+    "narrative": "Two Zorbian villages, Mern and Vell, observe their own omens. (1) In Mern, if the Krell stone hums, the harvest is doubled. (2) In Vell, if the Plith star rises, the river runs gold. Observation: in Vell, the Plith star rises.",
+    "question": "Is it the case that the harvest in Mern is doubled?"
+  },
+  {
+    "id": "P07_abstract",
+    "template_id": "P07",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "Consider two groups of rules. Group A: If X1, then X2. Group B: If X3, then X4. Observation: X3.",
+    "question": "Is it the case that X2?"
+  },
+  {
+    "id": "P08_familiar",
+    "template_id": "P08",
+    "variant_type": "familiar",
+    "domain_label": "Stock market trader",
+    "narrative": "Consider the following two rules. (1) If the market goes up, the trader makes a profit. (2) If the market does not go up, the trader still makes a profit.",
+    "question": "Is it the case that the trader makes a profit?"
+  },
+  {
+    "id": "P08_belief_violating",
+    "template_id": "P08",
+    "variant_type": "belief_violating",
+    "domain_label": "Counterfactual tautology",
+    "narrative": "Consider the following two rules. (1) If the Earth orbits the Sun, ordinary stones can breathe. (2) If the Earth does not orbit the Sun, ordinary stones can breathe.",
+    "question": "Is it the case that ordinary stones can breathe?"
+  },
+  {
+    "id": "P08_artificial",
+    "template_id": "P08",
+    "variant_type": "artificial",
+    "domain_label": "Plort and Snorg",
+    "narrative": "Consider the following two rules. (1) If the Plort opens, the Snorg arrives. (2) If the Plort does not open, the Snorg still arrives.",
+    "question": "Is it the case that the Snorg arrives?"
+  },
+  {
+    "id": "P08_abstract",
+    "template_id": "P08",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "Consider the following two rules. (1) If X1, then X2. (2) If not X1, then X2.",
+    "question": "Is it the case that X2?"
+  },
+  {
+    "id": "P09_familiar",
+    "template_id": "P09",
+    "variant_type": "familiar",
+    "domain_label": "Lamp report",
+    "narrative": "A report contains two statements about a lamp. (1) The lamp is on. (2) The lamp is not on.",
+    "question": "Is it the case that the lamp is on?"
+  },
+  {
+    "id": "P09_belief_violating",
+    "template_id": "P09",
+    "variant_type": "belief_violating",
+    "domain_label": "Counterfactual contradiction",
+    "narrative": "A report contains two statements about water molecules. (1) Water molecules contain oxygen atoms. (2) Water molecules do not contain oxygen atoms.",
+    "question": "Is it the case that water molecules contain oxygen atoms?"
+  },
+  {
+    "id": "P09_artificial",
+    "template_id": "P09",
+    "variant_type": "artificial",
+    "domain_label": "Vorbian Plort ledger",
+    "narrative": "A Vorbian ledger contains two statements about a Plort. (1) The Plort is active. (2) The Plort is not active.",
+    "question": "Is it the case that the Plort is active?"
+  },
+  {
+    "id": "P09_abstract",
+    "template_id": "P09",
+    "variant_type": "abstract",
+    "domain_label": "Symbolic",
+    "narrative": "Consider the following two statements. (1) X1. (2) Not X1.",
+    "question": "Is it the case that X1?"
+  }
+]

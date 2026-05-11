@@ -1,0 +1,210 @@
+"""Run the 36-puzzle benchmark with repeated sampled answer selection.
+
+For each puzzle and each seed, the model samples one answer among A/B/C/D and
+the script saves:
+
+  - raw_output: canonical generated answer letter
+  - sampled_label: label actually sampled from the model distribution
+  - argmax_label: most probable label according to first-token logprobs
+  - parsed_label: label recovered from raw_output by the parser
+  - is_invalid: sanity check flag for parser/wrapper mismatch
+  - correct_sampled: sampled_label == gold_label
+  - correct_argmax: argmax_label == gold_label
+  - first-token logprobs over the 4 labels
+  - normalized probabilities, max_prob, and entropy
+
+CSV has one row per (puzzle, seed). Aggregate with analyze.py.
+"""
+
+import argparse
+import csv
+import math
+from datetime import datetime
+from pathlib import Path
+
+from dataset import load_puzzles
+from prompt import build_prompt, parse_letter, LABELS
+
+OUTPUT_DIR = Path(__file__).resolve().parent.parent / "results"
+
+
+def entropy_nats(probs: dict[str, float]) -> float:
+    """Shannon entropy in nats over a probability distribution."""
+    return -sum(p * math.log(p) for p in probs.values() if p > 0)
+
+
+def run_one(puzzle: dict, seed: int, temperature: float, top_p: float) -> dict:
+    """Run one sampled answer selection for one puzzle and return a CSV row."""
+    from model import call_llm
+
+    prompt = build_prompt(puzzle)
+
+    out = call_llm(
+        prompt=prompt,
+        seed=seed,
+        temperature=temperature,
+        top_p=top_p,
+    )
+
+    sampled_label = out["sampled_label"]
+    argmax_label = out["argmax_label"]
+    parsed_label = parse_letter(out["raw_text"])
+
+    # Sanity check: under constrained answer selection, this should always be False.
+    # If True, there is a mismatch between model output, tokenizer mapping, or parser.
+    is_invalid = parsed_label is None or parsed_label != sampled_label
+
+    logprobs = out["first_token_logprobs"]
+    probs = out["first_token_probs"]
+
+    correct_sampled = sampled_label == puzzle["gold_label"] and not is_invalid
+    correct_argmax = argmax_label == puzzle["gold_label"]
+
+    row = {
+        "puzzle_id": puzzle["id"],
+        "template_id": puzzle["template_id"],
+        "variant_type": puzzle["variant_type"],
+        "category": puzzle["category"],
+        "domain_label": puzzle["domain_label"],
+        "gold_label": puzzle["gold_label"],
+        "seed": seed,
+        "temperature": temperature,
+        "top_p": top_p,
+        "raw_output": out["raw_text"],
+        "sampled_label": sampled_label,
+        "argmax_label": argmax_label,
+        "parsed_label": parsed_label if parsed_label else "",
+        "is_invalid": is_invalid,
+        "correct_sampled": correct_sampled,
+        "correct_argmax": correct_argmax,
+        "max_prob": max(probs.values()),
+        "entropy_nats": entropy_nats(probs),
+    }
+
+    for label in LABELS:
+        row[f"logprob_{label}"] = logprobs[label]
+        row[f"prob_{label}"] = probs[label]
+
+    return row
+
+
+def save_csv(rows: list[dict], path: Path) -> None:
+    """Save result rows to CSV."""
+    if not rows:
+        raise ValueError("No rows to save.")
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(rows)
+
+    print(f"\nsaved {len(rows)} rows to {path}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Benchmark runner with repeated sampled answer selection"
+    )
+
+    parser.add_argument(
+        "--seeds",
+        type=int,
+        default=10,
+        help="number of seeds per puzzle",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=0.7,
+        help="sampling temperature",
+    )
+    parser.add_argument(
+        "--top-p",
+        type=float,
+        default=0.9,
+        dest="top_p",
+        help="top-p value applied over the four-label distribution",
+    )
+    parser.add_argument(
+        "--tag",
+        default="qwen3b",
+        help="filename tag for output CSV",
+    )
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="suppress per-run output",
+    )
+
+    args = parser.parse_args()
+
+    if args.seeds <= 0:
+        raise ValueError("--seeds must be greater than 0.")
+
+    if args.temperature < 0:
+        raise ValueError("--temperature must be greater than or equal to 0.")
+
+    if not 0 < args.top_p <= 1:
+        raise ValueError("--top-p must be in (0, 1].")
+
+    puzzles = load_puzzles()
+    total = len(puzzles) * args.seeds
+
+    print(f"Loaded {len(puzzles)} puzzles × {args.seeds} seeds = {total} calls.")
+    print(f"Temperature: {args.temperature}, top_p: {args.top_p}\n")
+
+    rows = []
+    counter = 0
+
+    for puzzle in puzzles:
+        for seed in range(args.seeds):
+            counter += 1
+
+            row = run_one(
+                puzzle=puzzle,
+                seed=seed,
+                temperature=args.temperature,
+                top_p=args.top_p,
+            )
+
+            rows.append(row)
+
+            if not args.quiet:
+                if row["is_invalid"]:
+                    mark = "INV"
+                elif row["correct_sampled"]:
+                    mark = "OK"
+                else:
+                    mark = "FAIL"
+
+                argmax_mark = "OK" if row["correct_argmax"] else "FAIL"
+                preview = row["raw_output"][:20].replace("\n", "\\n")
+
+                print(
+                    f"  [{counter:4d}/{total}] "
+                    f"[sample={mark:4s}] "
+                    f"[argmax={argmax_mark:4s}] "
+                    f"{row['puzzle_id']:24s} "
+                    f"seed={seed:2d} "
+                    f"gold={row['gold_label']:8s} "
+                    f"sampled={row['sampled_label']:8s} "
+                    f"argmax={row['argmax_label']:8s} "
+                    f"conf={row['max_prob']:.2f} "
+                    f"H={row['entropy_nats']:.2f} "
+                    f"raw={preview!r}"
+                )
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    out_path = (
+        OUTPUT_DIR
+        / f"results_{args.tag}_T{args.temperature}_topP{args.top_p}_n{args.seeds}_{timestamp}.csv"
+    )
+
+    save_csv(rows, out_path)
+
+
+if __name__ == "__main__":
+    main()
