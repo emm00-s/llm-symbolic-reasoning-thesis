@@ -22,8 +22,8 @@ import math
 from datetime import datetime
 from pathlib import Path
 
-from dataset import load_puzzles
-from prompt import build_prompt, parse_letter, LABELS
+from .dataset import load_puzzles
+from .prompt import build_prompt, parse_letter, LABELS
 
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "results"
 
@@ -35,7 +35,7 @@ def entropy_nats(probs: dict[str, float]) -> float:
 
 def run_one(puzzle: dict, seed: int, temperature: float, top_p: float) -> dict:
     """Run one sampled answer selection for one puzzle and return a CSV row."""
-    from model import call_llm
+    from .model import call_llm
 
     prompt = build_prompt(puzzle)
 

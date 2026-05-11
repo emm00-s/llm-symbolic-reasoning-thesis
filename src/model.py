@@ -20,7 +20,7 @@ Auto-detects CUDA / MPS / CPU. Model is loaded once with lru_cache.
 import math
 from functools import lru_cache
 
-from prompt import LABELS, LABEL_LETTER, LETTER_LABEL
+from .prompt import LABELS, LABEL_LETTER, LETTER_LABEL
 
 MODEL_NAME = "Qwen/Qwen2.5-3B-Instruct"
 
