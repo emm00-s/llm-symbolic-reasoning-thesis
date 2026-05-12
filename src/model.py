@@ -1,12 +1,16 @@
 """Local model wrapper around Qwen-2.5-3B-Instruct.
 
-call_llm(prompt, seed, temperature, top_p) performs one constrained sampled
-answer selection over the admissible labels A/B/C/D.
+call_llm(prompt, seed, temperature, top_p, option_order) performs one
+constrained sampled answer selection over the admissible option letters
+A/B/C/D, where the mapping letter -> label is given by `option_order`
+(a permutation of LABELS used for systematic counterbalancing).
 
 It returns:
   - raw_text: canonical generated answer letter, e.g. "A"
-  - sampled_label: the label actually sampled from the model distribution
-  - argmax_label: the most probable label according to the answer-option logprobs
+  - sampled_letter: the letter actually sampled (A/B/C/D)
+  - sampled_label: the label `sampled_letter` maps to under `option_order`
+  - argmax_letter: the most probable letter according to the answer-letter logprobs
+  - argmax_label: the label `argmax_letter` maps to under `option_order`
   - first_token_logprobs: dict {label: log_prob} over the 4 answer labels
   - first_token_probs: dict {label: normalized probability} over the 4 labels
 
@@ -20,7 +24,12 @@ Auto-detects CUDA / MPS / CPU. Model is loaded once with lru_cache.
 import math
 from functools import lru_cache
 
-from .prompt import LABELS, LABEL_LETTER, LETTER_LABEL
+from .prompt import (
+    LABELS,
+    LETTER_OPTIONS,
+    label_to_letter_map,
+    letter_to_label_map,
+)
 
 MODEL_NAME = "Qwen/Qwen2.5-3B-Instruct"
 
@@ -84,6 +93,9 @@ def _load():
 
     Returns:
         tokenizer, model, device, letter_token_ids
+
+    letter_token_ids is keyed by option letter (A/B/C/D), not by label. The
+    letter -> label mapping is supplied per call by `option_order`.
     """
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -111,12 +123,12 @@ def _load():
     model = model.to(device)
     model.eval()
 
-    # Collect single-token IDs for each answer letter.
+    # Collect single-token IDs for each option letter.
     # Leading-space and newline-prefixed variants are included because chat
     # models may naturally start answers with whitespace or a newline.
     letter_token_ids: dict[str, list[int]] = {}
 
-    for letter, label in LETTER_LABEL.items():
+    for letter in LETTER_OPTIONS:
         token_ids = set()
 
         for variant in (letter, f" {letter}", f"\n{letter}", letter.lower(), f" {letter.lower()}", f"\n{letter.lower()}"):
@@ -125,13 +137,13 @@ def _load():
             if len(encoded) == 1:
                 token_ids.add(encoded[0])
 
-        letter_token_ids[label] = sorted(token_ids)
+        letter_token_ids[letter] = sorted(token_ids)
 
-    missing = [label for label, token_ids in letter_token_ids.items() if not token_ids]
+    missing = [letter for letter, token_ids in letter_token_ids.items() if not token_ids]
 
     if missing:
         raise RuntimeError(
-            f"No valid single-token answer IDs found for labels: {missing}"
+            f"No valid single-token answer IDs found for letters: {missing}"
         )
 
     print(f"  letter_token_ids: {letter_token_ids}")
@@ -145,20 +157,32 @@ def call_llm(
     seed: int = 0,
     temperature: float = 0.7,
     top_p: float = 0.9,
+    option_order: tuple[str, ...] | None = None,
 ) -> dict:
     """Sample one answer label and return the sampled label plus logprobs.
 
     The model distribution is computed at the answer step. Logprobs are first
     aggregated over tokenization variants of A/B/C/D with logsumexp, then
-    renormalized over the four admissible labels.
+    mapped to labels via `option_order` and renormalized over the four
+    admissible labels.
 
     The sampled label is drawn from this four-label distribution. The returned
-    raw_text is the canonical option letter corresponding to the sampled label.
+    raw_text is the option letter corresponding to the sampled label under
+    `option_order`.
+
+    If `option_order` is None, the canonical mapping is used:
+    A=True, B=False, C=Unknown, D=Paradox.
     """
     import torch
 
     if temperature < 0:
         raise ValueError(f"temperature must be >= 0, got {temperature}")
+
+    if option_order is None:
+        option_order = LABELS
+
+    letter_to_label = letter_to_label_map(option_order)
+    label_to_letter = label_to_letter_map(option_order)
 
     tokenizer, model, device, letter_token_ids = _load()
 
@@ -186,7 +210,10 @@ def call_llm(
 
         first_token_logprobs = {
             label: _logsumexp(
-                [log_probs[token_id].item() for token_id in letter_token_ids[label]]
+                [
+                    log_probs[token_id].item()
+                    for token_id in letter_token_ids[label_to_letter[label]]
+                ]
             )
             for label in LABELS
         }
@@ -208,11 +235,14 @@ def call_llm(
         sampled_index = torch.multinomial(probs_tensor, num_samples=1).item()
         sampled_label = labels[sampled_index]
 
-    raw_text = LABEL_LETTER[sampled_label]
+    sampled_letter = label_to_letter[sampled_label]
+    argmax_letter = label_to_letter[argmax_label]
 
     return {
-        "raw_text": raw_text,
+        "raw_text": sampled_letter,
+        "sampled_letter": sampled_letter,
         "sampled_label": sampled_label,
+        "argmax_letter": argmax_letter,
         "argmax_label": argmax_label,
         "first_token_logprobs": first_token_logprobs,
         "first_token_probs": first_token_probs,
@@ -237,8 +267,10 @@ if __name__ == "__main__":
         out = call_llm(test_prompt, seed=seed, temperature=0.7, top_p=0.9)
 
         print(f"seed={seed}")
-        print(f"  raw_text      = {out['raw_text']!r}")
-        print(f"  sampled_label = {out['sampled_label']}")
-        print(f"  argmax_label  = {out['argmax_label']}")
-        print(f"  probs         = {out['first_token_probs']}")
+        print(f"  raw_text       = {out['raw_text']!r}")
+        print(f"  sampled_letter = {out['sampled_letter']}")
+        print(f"  sampled_label  = {out['sampled_label']}")
+        print(f"  argmax_letter  = {out['argmax_letter']}")
+        print(f"  argmax_label   = {out['argmax_label']}")
+        print(f"  probs          = {out['first_token_probs']}")
         print()

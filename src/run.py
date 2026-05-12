@@ -3,9 +3,14 @@
 For each puzzle and each seed, the model samples one answer among A/B/C/D and
 the script saves:
 
+  - option_order: per-trial permutation of (True, False, Unknown, Paradox)
+    assigned to (A, B, C, D), drawn from a systematic counterbalancing
+    schedule across all 24 permutations
   - raw_output: canonical generated answer letter
-  - sampled_label: label actually sampled from the model distribution
-  - argmax_label: most probable label according to first-token logprobs
+  - sampled_letter: option letter actually sampled (A/B/C/D)
+  - sampled_label: label that `sampled_letter` maps to under `option_order`
+  - argmax_letter: most probable option letter according to first-token logprobs
+  - argmax_label: label that `argmax_letter` maps to under `option_order`
   - parsed_label: label recovered from raw_output by the parser
   - is_invalid: sanity check flag for parser/wrapper mismatch
   - correct_sampled: sampled_label == gold_label
@@ -23,7 +28,7 @@ from datetime import datetime
 from pathlib import Path
 
 from .dataset import load_puzzles
-from .prompt import build_prompt, parse_letter, LABELS
+from .prompt import LABELS, build_prompt, option_order_for, parse_letter
 
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "results"
 
@@ -33,22 +38,29 @@ def entropy_nats(probs: dict[str, float]) -> float:
     return -sum(p * math.log(p) for p in probs.values() if p > 0)
 
 
-def run_one(puzzle: dict, seed: int, temperature: float, top_p: float) -> dict:
+def run_one(
+    puzzle: dict,
+    seed: int,
+    temperature: float,
+    top_p: float,
+    option_order: tuple[str, ...],
+) -> dict:
     """Run one sampled answer selection for one puzzle and return a CSV row."""
     from .model import call_llm
 
-    prompt = build_prompt(puzzle)
+    prompt = build_prompt(puzzle, option_order=option_order)
 
     out = call_llm(
         prompt=prompt,
         seed=seed,
         temperature=temperature,
         top_p=top_p,
+        option_order=option_order,
     )
 
     sampled_label = out["sampled_label"]
     argmax_label = out["argmax_label"]
-    parsed_label = parse_letter(out["raw_text"])
+    parsed_label = parse_letter(out["raw_text"], option_order=option_order)
 
     # Sanity check: under constrained answer selection, this should always be False.
     # If True, there is a mismatch between model output, tokenizer mapping, or parser.
@@ -70,8 +82,11 @@ def run_one(puzzle: dict, seed: int, temperature: float, top_p: float) -> dict:
         "seed": seed,
         "temperature": temperature,
         "top_p": top_p,
+        "option_order": "|".join(option_order),
         "raw_output": out["raw_text"],
+        "sampled_letter": out["sampled_letter"],
         "sampled_label": sampled_label,
+        "argmax_letter": out["argmax_letter"],
         "argmax_label": argmax_label,
         "parsed_label": parsed_label if parsed_label else "",
         "is_invalid": is_invalid,
@@ -150,6 +165,9 @@ def main() -> None:
         raise ValueError("--top-p must be in (0, 1].")
 
     puzzles = load_puzzles()
+    # Stable puzzle index for systematic counterbalancing: sort by puzzle id so
+    # the index is independent of JSON-file ordering.
+    puzzles = sorted(puzzles, key=lambda p: p["id"])
     total = len(puzzles) * args.seeds
 
     print(f"Loaded {len(puzzles)} puzzles × {args.seeds} seeds = {total} calls.")
@@ -158,15 +176,22 @@ def main() -> None:
     rows = []
     counter = 0
 
-    for puzzle in puzzles:
+    for puzzle_idx, puzzle in enumerate(puzzles):
         for seed in range(args.seeds):
             counter += 1
+
+            option_order = option_order_for(
+                puzzle_idx=puzzle_idx,
+                seed=seed,
+                n_seeds=args.seeds,
+            )
 
             row = run_one(
                 puzzle=puzzle,
                 seed=seed,
                 temperature=args.temperature,
                 top_p=args.top_p,
+                option_order=option_order,
             )
 
             rows.append(row)
@@ -189,8 +214,8 @@ def main() -> None:
                     f"{row['puzzle_id']:24s} "
                     f"seed={seed:2d} "
                     f"gold={row['gold_label']:8s} "
-                    f"sampled={row['sampled_label']:8s} "
-                    f"argmax={row['argmax_label']:8s} "
+                    f"sampled={row['sampled_label']:8s}({row['sampled_letter']}) "
+                    f"argmax={row['argmax_label']:8s}({row['argmax_letter']}) "
                     f"conf={row['max_prob']:.2f} "
                     f"H={row['entropy_nats']:.2f} "
                     f"raw={preview!r}"
