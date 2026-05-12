@@ -15,8 +15,10 @@ the script saves:
   - is_invalid: sanity check flag for parser/wrapper mismatch
   - correct_sampled: sampled_label == gold_label
   - correct_argmax: argmax_label == gold_label
-  - first-token logprobs over the 4 labels
-  - normalized probabilities, max_prob, and entropy
+  - first-token logprobs and normalized probabilities over the 4 labels
+  - first-token logprobs and normalized probabilities over the 4 letters
+    A/B/C/D (positional-bias diagnostic, independent of option_order)
+  - max_prob (over labels) and entropy
 
 CSV has one row per (puzzle, seed). Aggregate with analyze.py.
 """
@@ -28,7 +30,13 @@ from datetime import datetime
 from pathlib import Path
 
 from .dataset import load_puzzles
-from .prompt import LABELS, build_prompt, option_order_for, parse_letter
+from .prompt import (
+    LABELS,
+    LETTER_OPTIONS,
+    build_prompt,
+    option_order_for,
+    parse_letter,
+)
 
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "results"
 
@@ -99,6 +107,13 @@ def run_one(
     for label in LABELS:
         row[f"logprob_{label}"] = logprobs[label]
         row[f"prob_{label}"] = probs[label]
+
+    letter_logprobs = out["first_token_letter_logprobs"]
+    letter_probs = out["first_token_letter_probs"]
+
+    for letter in LETTER_OPTIONS:
+        row[f"logprob_{letter}"] = letter_logprobs[letter]
+        row[f"prob_{letter}"] = letter_probs[letter]
 
     return row
 

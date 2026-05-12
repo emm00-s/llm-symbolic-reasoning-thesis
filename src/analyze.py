@@ -71,6 +71,11 @@ def load_csv(path: Path) -> list[dict[str, Any]]:
             row[f"prob_{label}"] = float(row[f"prob_{label}"])
             row[f"logprob_{label}"] = float(row[f"logprob_{label}"])
 
+        for letter in LETTER_OPTIONS:
+            if f"prob_{letter}" in row:
+                row[f"prob_{letter}"] = float(row[f"prob_{letter}"])
+                row[f"logprob_{letter}"] = float(row[f"logprob_{letter}"])
+
     return rows
 
 
@@ -464,12 +469,22 @@ def main() -> None:
     if has_sampled_letter:
         print("=== Positional diagnostics ===")
 
-        print("Chosen-letter distribution (should be ~25% each under counterbalancing"
-              " with no positional bias):")
+        print("Chosen-letter distribution (diagnostic for residual positional bias):")
         chosen_counts = Counter(row["sampled_letter"] for row in rows)
         for letter in LETTER_OPTIONS:
             count = chosen_counts.get(letter, 0)
             print(f"  {letter}: {count}/{n_rows} = {count / n_rows:.1%}")
+
+        has_letter_probs = all(f"prob_{LETTER_OPTIONS[0]}" in row for row in rows)
+
+        if has_letter_probs:
+            print()
+            print("Mean letter-level probability (positional preference, "
+                  "independent of label assignment):")
+            for letter in LETTER_OPTIONS:
+                m = mean([row[f"prob_{letter}"] for row in rows])
+                if m is not None:
+                    print(f"  prob_{letter}: {m:.3f}")
 
         print()
         print("Sampled accuracy by chosen letter:")

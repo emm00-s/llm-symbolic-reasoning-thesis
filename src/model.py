@@ -13,6 +13,8 @@ It returns:
   - argmax_label: the label `argmax_letter` maps to under `option_order`
   - first_token_logprobs: dict {label: log_prob} over the 4 answer labels
   - first_token_probs: dict {label: normalized probability} over the 4 labels
+  - first_token_letter_logprobs: dict {letter: log_prob} over A/B/C/D
+  - first_token_letter_probs: dict {letter: normalized probability} over A/B/C/D
 
 The model is sampled multiple times with different seeds to measure response
 variability across repeated runs. The logprobs are computed at the answer step
@@ -43,22 +45,29 @@ def _logsumexp(values: list[float]) -> float:
     return m + math.log(sum(math.exp(v - m) for v in values))
 
 
-def _renormalize(logprobs: dict[str, float]) -> dict[str, float]:
-    """Renormalize logprobs over the four answer labels."""
-    missing = [label for label in LABELS if label not in logprobs]
+def _renormalize_over(
+    logprobs: dict[str, float], keys: tuple[str, ...]
+) -> dict[str, float]:
+    """Renormalize logprobs into a probability distribution over `keys`."""
+    missing = [key for key in keys if key not in logprobs]
 
     if missing:
-        raise ValueError(f"Missing logprobs for labels: {missing}")
+        raise ValueError(f"Missing logprobs for keys: {missing}")
 
-    m = max(logprobs[label] for label in LABELS)
+    m = max(logprobs[key] for key in keys)
 
     if m == float("-inf"):
-        raise ValueError("All label logprobs are -inf. Check answer token IDs.")
+        raise ValueError("All logprobs are -inf. Check answer token IDs.")
 
-    exps = {label: math.exp(logprobs[label] - m) for label in LABELS}
+    exps = {key: math.exp(logprobs[key] - m) for key in keys}
     total = sum(exps.values())
 
-    return {label: exps[label] / total for label in LABELS}
+    return {key: exps[key] / total for key in keys}
+
+
+def _renormalize(logprobs: dict[str, float]) -> dict[str, float]:
+    """Renormalize logprobs over the four answer labels."""
+    return _renormalize_over(logprobs, LABELS)
 
 
 def _apply_top_p(probs: dict[str, float], top_p: float) -> dict[str, float]:
@@ -208,17 +217,23 @@ def call_llm(
 
         log_probs = torch.log_softmax(logits, dim=-1)
 
-        first_token_logprobs = {
-            label: _logsumexp(
-                [
-                    log_probs[token_id].item()
-                    for token_id in letter_token_ids[label_to_letter[label]]
-                ]
+        # Letter-level logprobs, computed once and independent of option_order.
+        # Useful as a positional-bias diagnostic.
+        letter_logprobs = {
+            letter: _logsumexp(
+                [log_probs[token_id].item() for token_id in letter_token_ids[letter]]
             )
-            for label in LABELS
+            for letter in LETTER_OPTIONS
+        }
+
+        # Label-level logprobs: look up the letter that this trial's option_order
+        # places this label behind.
+        first_token_logprobs = {
+            label: letter_logprobs[label_to_letter[label]] for label in LABELS
         }
 
     first_token_probs = _renormalize(first_token_logprobs)
+    letter_probs = _renormalize_over(letter_logprobs, LETTER_OPTIONS)
     argmax_label = max(LABELS, key=lambda label: first_token_probs[label])
 
     if temperature == 0:
@@ -246,6 +261,8 @@ def call_llm(
         "argmax_label": argmax_label,
         "first_token_logprobs": first_token_logprobs,
         "first_token_probs": first_token_probs,
+        "first_token_letter_logprobs": letter_logprobs,
+        "first_token_letter_probs": letter_probs,
     }
 
 
