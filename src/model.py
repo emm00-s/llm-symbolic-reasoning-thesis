@@ -165,7 +165,7 @@ def call_llm(
     prompt: str,
     seed: int = 0,
     temperature: float = 0.7,
-    top_p: float = 0.9,
+    top_p: float = 1.0,
     option_order: tuple[str, ...] | None = None,
 ) -> dict:
     """Sample one answer label and return the sampled label plus logprobs.
@@ -281,7 +281,7 @@ if __name__ == "__main__":
     )
 
     for seed in range(5):
-        out = call_llm(test_prompt, seed=seed, temperature=0.7, top_p=0.9)
+        out = call_llm(test_prompt, seed=seed, temperature=0.7, top_p=1.0)
 
         print(f"seed={seed}")
         print(f"  raw_text       = {out['raw_text']!r}")

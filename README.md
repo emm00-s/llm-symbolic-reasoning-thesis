@@ -43,7 +43,7 @@ All scripts should be run from the repository root using module mode:
 ```bash
 python -m src.dataset
 python -m src.solvers
-python -m src.run --seeds 10 --temperature 0.7 --top-p 0.9 --tag qwen3b
+python -m src.run --seeds 10 --temperature 0.7 --top-p 1.0 --tag qwen3b
 python -m src.analyze results/<RESULT_FILE>.csv
 ```
 
@@ -88,13 +88,13 @@ Expected checks:
 A small smoke test:
 
 ```bash
-python -m src.run --seeds 2 --temperature 0.7 --top-p 0.9 --tag smoke
+python -m src.run --seeds 2 --temperature 0.7 --top-p 1.0 --tag smoke
 ```
 
 Full run:
 
 ```bash
-python -m src.run --seeds 10 --temperature 0.7 --top-p 0.9 --tag qwen3b
+python -m src.run --seeds 10 --temperature 0.7 --top-p 1.0 --tag qwen3b
 ```
 
 Results are saved in:
@@ -141,3 +141,5 @@ For each (puzzle, seed) trial, the pipeline records:
 - letter-level probabilities (`prob_A`, `prob_B`, `prob_C`, `prob_D`) for positional-bias analysis
 
 `max_prob` and `entropy_nats` are computed over the four-label distribution and are used only as forced-choice option-level diagnostics, not as model-level uncertainty measures.
+
+Decoding defaults are `temperature=0.7` and `top_p=1.0`. Top-p is set to 1.0 (no truncation) because the four-label answer space is not a long-tailed vocabulary: a lower-probability option such as `Unknown` or `Paradox` typically carries meaningful signal rather than vocabulary noise, and `sampled_label` should be drawn from the same posterior that the reported `prob_*` columns describe.
