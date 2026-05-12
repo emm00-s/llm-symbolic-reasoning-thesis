@@ -153,9 +153,14 @@ def main() -> None:
     parser.add_argument(
         "--top-p",
         type=float,
-        default=0.9,
+        default=1.0,
         dest="top_p",
-        help="top-p value applied over the four-label distribution",
+        help=(
+            "top-p value applied over the four-label distribution. "
+            "Default 1.0 (no truncation): with K=4 labels there is no vocabulary "
+            "tail, and lower-probability options (Unknown / Paradox) often carry "
+            "meaningful signal."
+        ),
     )
     parser.add_argument(
         "--tag",
