@@ -207,10 +207,15 @@ def call_llm(
         tokenize=True,
         add_generation_prompt=True,
         return_tensors="pt",
-    ).to(device)
+    )
+
+    if hasattr(inputs, "items"):
+        inputs = {key: value.to(device) for key, value in inputs.items()}
+    else:
+        inputs = {"input_ids": inputs.to(device)}
 
     with torch.inference_mode():
-        logits = model(inputs).logits[0, -1, :]
+        logits = model(**inputs).logits[0, -1, :]
 
         if temperature > 0:
             logits = logits / temperature
