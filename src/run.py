@@ -3,6 +3,7 @@
 For each puzzle and each seed, the model samples one answer among A/B/C/D and
 the script saves:
 
+  - model_name: Hugging Face repo id of the model evaluated
   - option_order: per-trial permutation of (True, False, Unknown, Paradox)
     assigned to (A, B, C, D), drawn from a systematic counterbalancing
     schedule across all 24 permutations
@@ -30,6 +31,7 @@ from datetime import datetime
 from pathlib import Path
 
 from .dataset import load_puzzles
+from .model import DEFAULT_MODEL_NAME
 from .prompt import (
     LABELS,
     LETTER_OPTIONS,
@@ -52,6 +54,7 @@ def run_one(
     temperature: float,
     top_p: float,
     option_order: tuple[str, ...],
+    model_name: str,
 ) -> dict:
     """Run one sampled answer selection for one puzzle and return a CSV row."""
     from .model import call_llm
@@ -64,6 +67,7 @@ def run_one(
         temperature=temperature,
         top_p=top_p,
         option_order=option_order,
+        model_name=model_name,
     )
 
     sampled_label = out["sampled_label"]
@@ -87,6 +91,7 @@ def run_one(
         "category": puzzle["category"],
         "domain_label": puzzle["domain_label"],
         "gold_label": puzzle["gold_label"],
+        "model_name": model_name,
         "seed": seed,
         "temperature": temperature,
         "top_p": top_p,
@@ -163,6 +168,15 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--model-name",
+        default=DEFAULT_MODEL_NAME,
+        dest="model_name",
+        help=(
+            "Hugging Face causal-LM repo id to evaluate "
+            f"(default: {DEFAULT_MODEL_NAME})"
+        ),
+    )
+    parser.add_argument(
         "--tag",
         default="qwen3b",
         help="filename tag for output CSV",
@@ -191,6 +205,7 @@ def main() -> None:
     total = len(puzzles) * args.seeds
 
     print(f"Loaded {len(puzzles)} puzzles × {args.seeds} seeds = {total} calls.")
+    print(f"Model: {args.model_name}")
     print(f"Temperature: {args.temperature}, top_p: {args.top_p}\n")
 
     rows = []
@@ -212,6 +227,7 @@ def main() -> None:
                 temperature=args.temperature,
                 top_p=args.top_p,
                 option_order=option_order,
+                model_name=args.model_name,
             )
 
             rows.append(row)
