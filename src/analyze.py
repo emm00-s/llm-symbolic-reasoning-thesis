@@ -397,7 +397,17 @@ def main() -> None:
 
     print(f"Loaded {n_rows} rows from {args.csv.name}")
     print(f"  {n_puzzles} puzzles × {n_seeds} seeds")
-    print(f"  {n_templates} templates\n")
+    print(f"  {n_templates} templates")
+
+    model_names = sorted({row["model_name"] for row in rows if row.get("model_name")})
+    if len(model_names) == 1:
+        print(f"  Model: {model_names[0]}")
+    elif len(model_names) > 1:
+        print(f"  Models ({len(model_names)} distinct):")
+        for name in model_names:
+            print(f"    - {name}")
+
+    print()
 
     if n_puzzles != 36:
         print(f"Warning: expected 36 puzzles, found {n_puzzles}")

@@ -91,11 +91,19 @@ A small smoke test:
 python -m src.run --seeds 2 --temperature 0.7 --top-p 1.0 --tag smoke
 ```
 
-Full run:
+Full run on Qwen-2.5-3B-Instruct (default model):
 
 ```bash
-python -m src.run --seeds 10 --temperature 0.7 --top-p 1.0 --tag qwen3b
+python -m src.run --model-name Qwen/Qwen2.5-3B-Instruct --seeds 10 --temperature 0.7 --top-p 1.0 --tag qwen3b
 ```
+
+Full run on Llama-3.2-3B-Instruct:
+
+```bash
+python -m src.run --model-name meta-llama/Llama-3.2-3B-Instruct --seeds 10 --temperature 0.7 --top-p 1.0 --tag llama32_3b
+```
+
+`--model-name` accepts any Hugging Face causal-LM repo id. Gated models (notably the `meta-llama/*` family) require accepting the license on the model's Hugging Face page and authenticating with an HF token (`huggingface-cli login` or `HF_TOKEN` env var) before they can be downloaded.
 
 Results are saved in:
 

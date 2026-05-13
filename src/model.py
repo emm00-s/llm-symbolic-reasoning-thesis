@@ -1,9 +1,13 @@
-"""Local model wrapper around Qwen-2.5-3B-Instruct.
+"""Local model wrapper around a configurable Hugging Face causal LM.
 
-call_llm(prompt, seed, temperature, top_p, option_order) performs one
-constrained sampled answer selection over the admissible option letters
+call_llm(prompt, seed, temperature, top_p, option_order, model_name) performs
+one constrained sampled answer selection over the admissible option letters
 A/B/C/D, where the mapping letter -> label is given by `option_order`
 (a permutation of LABELS used for systematic counterbalancing).
+
+`model_name` defaults to DEFAULT_MODEL_NAME ("Qwen/Qwen2.5-3B-Instruct") and
+can be set to any Hugging Face causal-LM repo id (e.g.
+"meta-llama/Llama-3.2-3B-Instruct").
 
 It returns:
   - raw_text: canonical generated answer letter, e.g. "A"
@@ -33,7 +37,7 @@ from .prompt import (
     letter_to_label_map,
 )
 
-MODEL_NAME = "Qwen/Qwen2.5-3B-Instruct"
+DEFAULT_MODEL_NAME = "Qwen/Qwen2.5-3B-Instruct"
 
 
 def _logsumexp(values: list[float]) -> float:
@@ -96,9 +100,9 @@ def _apply_top_p(probs: dict[str, float], top_p: float) -> dict[str, float]:
     return {label: prob / total for label, prob in kept}
 
 
-@lru_cache(maxsize=1)
-def _load():
-    """Load model and tokenizer once.
+@lru_cache(maxsize=2)
+def _load(model_name: str):
+    """Load model and tokenizer once per distinct model_name.
 
     Returns:
         tokenizer, model, device, letter_token_ids
@@ -119,12 +123,12 @@ def _load():
         device = "cpu"
         dtype = torch.float32
 
-    print(f"loading {MODEL_NAME} on {device} ({dtype})...")
+    print(f"loading {model_name} on {device} ({dtype})...")
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL_NAME,
+        model_name,
         torch_dtype=dtype,
         low_cpu_mem_usage=True,
     )
@@ -167,6 +171,7 @@ def call_llm(
     temperature: float = 0.7,
     top_p: float = 1.0,
     option_order: tuple[str, ...] | None = None,
+    model_name: str = DEFAULT_MODEL_NAME,
 ) -> dict:
     """Sample one answer label and return the sampled label plus logprobs.
 
@@ -193,7 +198,7 @@ def call_llm(
     letter_to_label = letter_to_label_map(option_order)
     label_to_letter = label_to_letter_map(option_order)
 
-    tokenizer, model, device, letter_token_ids = _load()
+    tokenizer, model, device, letter_token_ids = _load(model_name)
 
     torch.manual_seed(seed)
 
