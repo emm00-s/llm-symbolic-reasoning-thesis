@@ -1,0 +1,930 @@
+{
+  "metadata": {
+    "model_key": "qwen",
+    "model_name": "Qwen/Qwen2.5-3B-Instruct",
+    "puzzle_id": "P04_artificial",
+    "template_id": "P04",
+    "variant_type": "artificial",
+    "seed": 0,
+    "option_order": "False|Paradox|True|Unknown",
+    "gold_label": "True",
+    "gold_letter": "C",
+    "argmax_label": "Unknown",
+    "argmax_letter": "D",
+    "target_letter": "D",
+    "correct_argmax": "False",
+    "last_n_layers": 4
+  },
+  "diagnostics": {
+    "n_layers": 36,
+    "last_n_layers": 4,
+    "used_layers": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "n_prompt_tokens": 128,
+    "n_full_tokens": 129,
+    "answer_token_index": 128,
+    "answer_token": "D",
+    "target_letter": "D",
+    "attention_sum_to_prompt": 0.8776264190673828
+  },
+  "raw_prompt": "The planet Vorm has three moons: K1, K2, and K3. Exactly two of the three moons are illuminated. Observation: K1 is not illuminated.\n\nIs it the case that both K2 and K3 are illuminated?\n\nChoose exactly one of the following options:\nA. False\nB. Paradox\nC. True\nD. Unknown\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:",
+  "chat_prompt": "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n<|im_start|>user\nThe planet Vorm has three moons: K1, K2, and K3. Exactly two of the three moons are illuminated. Observation: K1 is not illuminated.\n\nIs it the case that both K2 and K3 are illuminated?\n\nChoose exactly one of the following options:\nA. False\nB. Paradox\nC. True\nD. Unknown\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:<|im_end|>\n<|im_start|>assistant\n",
+  "resolved": {
+    "resolved_spans": [
+      {
+        "span_id": "P04_art_exactly_two",
+        "text": "Exactly two",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Cardinality operator.",
+        "start_char": 164,
+        "end_char": 175,
+        "token_indices": [
+          42,
+          43
+        ],
+        "tokens": [
+          "ĠExactly",
+          "Ġtwo"
+        ]
+      },
+      {
+        "span_id": "P04_art_obs_negation",
+        "anchor": "Observation: K1 is not illuminated",
+        "text": "not",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker excluding K1.",
+        "start_char": 231,
+        "end_char": 234,
+        "token_indices": [
+          56
+        ],
+        "tokens": [
+          "Ġnot"
+        ]
+      },
+      {
+        "span_id": "P04_art_both",
+        "text": "both",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Conjunction operator in the question target.",
+        "start_char": 269,
+        "end_char": 273,
+        "token_indices": [
+          64
+        ],
+        "tokens": [
+          "Ġboth"
+        ]
+      }
+    ],
+    "errors": [],
+    "by_region": {
+      "NARRATIVE": [
+        42,
+        43,
+        56
+      ],
+      "QUESTION": [
+        64
+      ]
+    },
+    "by_role": {
+      "PREMISE": [
+        42,
+        43
+      ],
+      "OBSERVATION": [
+        56
+      ],
+      "QUESTION_TARGET": [
+        64
+      ]
+    },
+    "by_tag": {
+      "LOGICAL_OP": [
+        42,
+        43,
+        64
+      ],
+      "NEGATION": [
+        56
+      ]
+    },
+    "by_critical": {
+      "True": [
+        42,
+        43,
+        56,
+        64
+      ]
+    },
+    "by_span": {
+      "P04_art_exactly_two": [
+        42,
+        43
+      ],
+      "P04_art_obs_negation": [
+        56
+      ],
+      "P04_art_both": [
+        64
+      ]
+    }
+  },
+  "token_attention": [
+    {
+      "token_index": 0,
+      "token": "<|im_start|>",
+      "attention": 0.050140380859375
+    },
+    {
+      "token_index": 1,
+      "token": "system",
+      "attention": 0.0017366409301757812
+    },
+    {
+      "token_index": 2,
+      "token": "Ċ",
+      "attention": 0.1451416015625
+    },
+    {
+      "token_index": 3,
+      "token": "You",
+      "attention": 0.0014495849609375
+    },
+    {
+      "token_index": 4,
+      "token": "Ġare",
+      "attention": 0.0018138885498046875
+    },
+    {
+      "token_index": 5,
+      "token": "ĠQ",
+      "attention": 0.0006146430969238281
+    },
+    {
+      "token_index": 6,
+      "token": "wen",
+      "attention": 0.0013513565063476562
+    },
+    {
+      "token_index": 7,
+      "token": ",",
+      "attention": 0.0046234130859375
+    },
+    {
+      "token_index": 8,
+      "token": "Ġcreated",
+      "attention": 0.000476837158203125
+    },
+    {
+      "token_index": 9,
+      "token": "Ġby",
+      "attention": 0.0006837844848632812
+    },
+    {
+      "token_index": 10,
+      "token": "ĠAlibaba",
+      "attention": 0.0005207061767578125
+    },
+    {
+      "token_index": 11,
+      "token": "ĠCloud",
+      "attention": 0.0011072158813476562
+    },
+    {
+      "token_index": 12,
+      "token": ".",
+      "attention": 0.007053375244140625
+    },
+    {
+      "token_index": 13,
+      "token": "ĠYou",
+      "attention": 0.00102996826171875
+    },
+    {
+      "token_index": 14,
+      "token": "Ġare",
+      "attention": 0.00047278404235839844
+    },
+    {
+      "token_index": 15,
+      "token": "Ġa",
+      "attention": 0.0015306472778320312
+    },
+    {
+      "token_index": 16,
+      "token": "Ġhelpful",
+      "attention": 0.00010192394256591797
+    },
+    {
+      "token_index": 17,
+      "token": "Ġassistant",
+      "attention": 0.00014448165893554688
+    },
+    {
+      "token_index": 18,
+      "token": ".",
+      "attention": 0.0024852752685546875
+    },
+    {
+      "token_index": 19,
+      "token": "<|im_end|>",
+      "attention": 0.056610107421875
+    },
+    {
+      "token_index": 20,
+      "token": "Ċ",
+      "attention": 0.0191497802734375
+    },
+    {
+      "token_index": 21,
+      "token": "<|im_start|>",
+      "attention": 0.0043792724609375
+    },
+    {
+      "token_index": 22,
+      "token": "user",
+      "attention": 0.01030731201171875
+    },
+    {
+      "token_index": 23,
+      "token": "Ċ",
+      "attention": 0.0182342529296875
+    },
+    {
+      "token_index": 24,
+      "token": "The",
+      "attention": 0.01177215576171875
+    },
+    {
+      "token_index": 25,
+      "token": "Ġplanet",
+      "attention": 0.0005421638488769531
+    },
+    {
+      "token_index": 26,
+      "token": "ĠV",
+      "attention": 0.0001919269561767578
+    },
+    {
+      "token_index": 27,
+      "token": "orm",
+      "attention": 7.390975952148438e-05
+    },
+    {
+      "token_index": 28,
+      "token": "Ġhas",
+      "attention": 0.000682830810546875
+    },
+    {
+      "token_index": 29,
+      "token": "Ġthree",
+      "attention": 0.0003478527069091797
+    },
+    {
+      "token_index": 30,
+      "token": "Ġmoons",
+      "attention": 0.0008511543273925781
+    },
+    {
+      "token_index": 31,
+      "token": ":",
+      "attention": 0.0013790130615234375
+    },
+    {
+      "token_index": 32,
+      "token": "ĠK",
+      "attention": 0.0006127357482910156
+    },
+    {
+      "token_index": 33,
+      "token": "1",
+      "attention": 0.0006127357482910156
+    },
+    {
+      "token_index": 34,
+      "token": ",",
+      "attention": 0.0012578964233398438
+    },
+    {
+      "token_index": 35,
+      "token": "ĠK",
+      "attention": 0.0004513263702392578
+    },
+    {
+      "token_index": 36,
+      "token": "2",
+      "attention": 0.0006456375122070312
+    },
+    {
+      "token_index": 37,
+      "token": ",",
+      "attention": 0.0010137557983398438
+    },
+    {
+      "token_index": 38,
+      "token": "Ġand",
+      "attention": 0.0013561248779296875
+    },
+    {
+      "token_index": 39,
+      "token": "ĠK",
+      "attention": 0.0005331039428710938
+    },
+    {
+      "token_index": 40,
+      "token": "3",
+      "attention": 0.0013408660888671875
+    },
+    {
+      "token_index": 41,
+      "token": ".",
+      "attention": 0.003192901611328125
+    },
+    {
+      "token_index": 42,
+      "token": "ĠExactly",
+      "attention": 0.0004329681396484375
+    },
+    {
+      "token_index": 43,
+      "token": "Ġtwo",
+      "attention": 0.000614166259765625
+    },
+    {
+      "token_index": 44,
+      "token": "Ġof",
+      "attention": 0.0005931854248046875
+    },
+    {
+      "token_index": 45,
+      "token": "Ġthe",
+      "attention": 0.000946044921875
+    },
+    {
+      "token_index": 46,
+      "token": "Ġthree",
+      "attention": 0.00034356117248535156
+    },
+    {
+      "token_index": 47,
+      "token": "Ġmoons",
+      "attention": 0.00012683868408203125
+    },
+    {
+      "token_index": 48,
+      "token": "Ġare",
+      "attention": 0.0002467632293701172
+    },
+    {
+      "token_index": 49,
+      "token": "Ġilluminated",
+      "attention": 0.0005550384521484375
+    },
+    {
+      "token_index": 50,
+      "token": ".",
+      "attention": 0.0015134811401367188
+    },
+    {
+      "token_index": 51,
+      "token": "ĠObservation",
+      "attention": 0.0005440711975097656
+    },
+    {
+      "token_index": 52,
+      "token": ":",
+      "attention": 0.001163482666015625
+    },
+    {
+      "token_index": 53,
+      "token": "ĠK",
+      "attention": 0.0005998611450195312
+    },
+    {
+      "token_index": 54,
+      "token": "1",
+      "attention": 0.0006117820739746094
+    },
+    {
+      "token_index": 55,
+      "token": "Ġis",
+      "attention": 0.0002415180206298828
+    },
+    {
+      "token_index": 56,
+      "token": "Ġnot",
+      "attention": 0.00019311904907226562
+    },
+    {
+      "token_index": 57,
+      "token": "Ġilluminated",
+      "attention": 0.000720977783203125
+    },
+    {
+      "token_index": 58,
+      "token": ".ĊĊ",
+      "attention": 0.0022945404052734375
+    },
+    {
+      "token_index": 59,
+      "token": "Is",
+      "attention": 0.0013132095336914062
+    },
+    {
+      "token_index": 60,
+      "token": "Ġit",
+      "attention": 0.0003771781921386719
+    },
+    {
+      "token_index": 61,
+      "token": "Ġthe",
+      "attention": 0.0005402565002441406
+    },
+    {
+      "token_index": 62,
+      "token": "Ġcase",
+      "attention": 0.0003628730773925781
+    },
+    {
+      "token_index": 63,
+      "token": "Ġthat",
+      "attention": 0.0005421638488769531
+    },
+    {
+      "token_index": 64,
+      "token": "Ġboth",
+      "attention": 0.0003495216369628906
+    },
+    {
+      "token_index": 65,
+      "token": "ĠK",
+      "attention": 0.0002474784851074219
+    },
+    {
+      "token_index": 66,
+      "token": "2",
+      "attention": 0.0003304481506347656
+    },
+    {
+      "token_index": 67,
+      "token": "Ġand",
+      "attention": 0.0005249977111816406
+    },
+    {
+      "token_index": 68,
+      "token": "ĠK",
+      "attention": 0.00015234947204589844
+    },
+    {
+      "token_index": 69,
+      "token": "3",
+      "attention": 0.00024962425231933594
+    },
+    {
+      "token_index": 70,
+      "token": "Ġare",
+      "attention": 0.00017189979553222656
+    },
+    {
+      "token_index": 71,
+      "token": "Ġilluminated",
+      "attention": 0.0008287429809570312
+    },
+    {
+      "token_index": 72,
+      "token": "?ĊĊ",
+      "attention": 0.006072998046875
+    },
+    {
+      "token_index": 73,
+      "token": "Choose",
+      "attention": 0.0004394054412841797
+    },
+    {
+      "token_index": 74,
+      "token": "Ġexactly",
+      "attention": 0.00014984607696533203
+    },
+    {
+      "token_index": 75,
+      "token": "Ġone",
+      "attention": 0.00019025802612304688
+    },
+    {
+      "token_index": 76,
+      "token": "Ġof",
+      "attention": 0.0007266998291015625
+    },
+    {
+      "token_index": 77,
+      "token": "Ġthe",
+      "attention": 0.002758026123046875
+    },
+    {
+      "token_index": 78,
+      "token": "Ġfollowing",
+      "attention": 0.0003180503845214844
+    },
+    {
+      "token_index": 79,
+      "token": "Ġoptions",
+      "attention": 0.0011692047119140625
+    },
+    {
+      "token_index": 80,
+      "token": ":Ċ",
+      "attention": 0.0016965866088867188
+    },
+    {
+      "token_index": 81,
+      "token": "A",
+      "attention": 0.0020275115966796875
+    },
+    {
+      "token_index": 82,
+      "token": ".",
+      "attention": 0.006359100341796875
+    },
+    {
+      "token_index": 83,
+      "token": "ĠFalse",
+      "attention": 0.0035858154296875
+    },
+    {
+      "token_index": 84,
+      "token": "Ċ",
+      "attention": 0.007610321044921875
+    },
+    {
+      "token_index": 85,
+      "token": "B",
+      "attention": 0.0023708343505859375
+    },
+    {
+      "token_index": 86,
+      "token": ".",
+      "attention": 0.006328582763671875
+    },
+    {
+      "token_index": 87,
+      "token": "ĠPar",
+      "attention": 0.0009746551513671875
+    },
+    {
+      "token_index": 88,
+      "token": "adox",
+      "attention": 0.0014963150024414062
+    },
+    {
+      "token_index": 89,
+      "token": "Ċ",
+      "attention": 0.0044097900390625
+    },
+    {
+      "token_index": 90,
+      "token": "C",
+      "attention": 0.0018453598022460938
+    },
+    {
+      "token_index": 91,
+      "token": ".",
+      "attention": 0.0032596588134765625
+    },
+    {
+      "token_index": 92,
+      "token": "ĠTrue",
+      "attention": 0.004535675048828125
+    },
+    {
+      "token_index": 93,
+      "token": "Ċ",
+      "attention": 0.007808685302734375
+    },
+    {
+      "token_index": 94,
+      "token": "D",
+      "attention": 0.003162384033203125
+    },
+    {
+      "token_index": 95,
+      "token": ".",
+      "attention": 0.012664794921875
+    },
+    {
+      "token_index": 96,
+      "token": "ĠUnknown",
+      "attention": 0.00511932373046875
+    },
+    {
+      "token_index": 97,
+      "token": "ĊĊ",
+      "attention": 0.028778076171875
+    },
+    {
+      "token_index": 98,
+      "token": "Your",
+      "attention": 0.0016765594482421875
+    },
+    {
+      "token_index": 99,
+      "token": "Ġanswer",
+      "attention": 0.0007219314575195312
+    },
+    {
+      "token_index": 100,
+      "token": "Ġmust",
+      "attention": 0.0005340576171875
+    },
+    {
+      "token_index": 101,
+      "token": "Ġbe",
+      "attention": 0.0005474090576171875
+    },
+    {
+      "token_index": 102,
+      "token": "Ġexactly",
+      "attention": 0.0005221366882324219
+    },
+    {
+      "token_index": 103,
+      "token": "Ġone",
+      "attention": 0.00022339820861816406
+    },
+    {
+      "token_index": 104,
+      "token": "Ġletter",
+      "attention": 0.0009002685546875
+    },
+    {
+      "token_index": 105,
+      "token": ":",
+      "attention": 0.0018815994262695312
+    },
+    {
+      "token_index": 106,
+      "token": "ĠA",
+      "attention": 0.0090179443359375
+    },
+    {
+      "token_index": 107,
+      "token": ",",
+      "attention": 0.006927490234375
+    },
+    {
+      "token_index": 108,
+      "token": "ĠB",
+      "attention": 0.0018901824951171875
+    },
+    {
+      "token_index": 109,
+      "token": ",",
+      "attention": 0.0017290115356445312
+    },
+    {
+      "token_index": 110,
+      "token": "ĠC",
+      "attention": 0.0033931732177734375
+    },
+    {
+      "token_index": 111,
+      "token": ",",
+      "attention": 0.00377655029296875
+    },
+    {
+      "token_index": 112,
+      "token": "Ġor",
+      "attention": 0.0061187744140625
+    },
+    {
+      "token_index": 113,
+      "token": "ĠD",
+      "attention": 0.00687408447265625
+    },
+    {
+      "token_index": 114,
+      "token": ".Ċ",
+      "attention": 0.01390838623046875
+    },
+    {
+      "token_index": 115,
+      "token": "Do",
+      "attention": 0.0017499923706054688
+    },
+    {
+      "token_index": 116,
+      "token": "Ġnot",
+      "attention": 0.0012769699096679688
+    },
+    {
+      "token_index": 117,
+      "token": "Ġwrite",
+      "attention": 0.0010433197021484375
+    },
+    {
+      "token_index": 118,
+      "token": "Ġanything",
+      "attention": 0.0003905296325683594
+    },
+    {
+      "token_index": 119,
+      "token": "Ġelse",
+      "attention": 0.00115203857421875
+    },
+    {
+      "token_index": 120,
+      "token": ".Ċ",
+      "attention": 0.0121002197265625
+    },
+    {
+      "token_index": 121,
+      "token": "Answer",
+      "attention": 0.0078277587890625
+    },
+    {
+      "token_index": 122,
+      "token": ":",
+      "attention": 0.0082244873046875
+    },
+    {
+      "token_index": 123,
+      "token": "<|im_end|>",
+      "attention": 0.104736328125
+    },
+    {
+      "token_index": 124,
+      "token": "Ċ",
+      "attention": 0.0297393798828125
+    },
+    {
+      "token_index": 125,
+      "token": "<|im_start|>",
+      "attention": 0.011993408203125
+    },
+    {
+      "token_index": 126,
+      "token": "assistant",
+      "attention": 0.10546875
+    },
+    {
+      "token_index": 127,
+      "token": "Ċ",
+      "attention": 0.0396728515625
+    }
+  ],
+  "aggregation": {
+    "by_region": {
+      "NARRATIVE": {
+        "n_tokens": 3,
+        "n_scored_tokens": 3,
+        "attention_sum": 0.0012402534484863281,
+        "attention_mean_per_token": 0.0004134178161621094,
+        "attention_mass_share": 0.0014131906487093837,
+        "token_share": 0.0234375,
+        "attention_enrichment": 0.0602961343449337
+      },
+      "QUESTION": {
+        "n_tokens": 1,
+        "n_scored_tokens": 1,
+        "attention_sum": 0.0003495216369628906,
+        "attention_mean_per_token": 0.0003495216369628906,
+        "attention_mass_share": 0.00039825787985543184,
+        "token_share": 0.0078125,
+        "attention_enrichment": 0.050977008621495276
+      }
+    },
+    "by_role": {
+      "PREMISE": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.0010471343994140625,
+        "attention_mean_per_token": 0.0005235671997070312,
+        "attention_mass_share": 0.0011931436618861232,
+        "token_share": 0.015625,
+        "attention_enrichment": 0.07636119436071188
+      },
+      "OBSERVATION": {
+        "n_tokens": 1,
+        "n_scored_tokens": 1,
+        "attention_sum": 0.00019311904907226562,
+        "attention_mean_per_token": 0.00019311904907226562,
+        "attention_mass_share": 0.00022004698682326042,
+        "token_share": 0.0078125,
+        "attention_enrichment": 0.028166014313377334
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 1,
+        "n_scored_tokens": 1,
+        "attention_sum": 0.0003495216369628906,
+        "attention_mean_per_token": 0.0003495216369628906,
+        "attention_mass_share": 0.00039825787985543184,
+        "token_share": 0.0078125,
+        "attention_enrichment": 0.050977008621495276
+      }
+    },
+    "by_tag": {
+      "LOGICAL_OP": {
+        "n_tokens": 3,
+        "n_scored_tokens": 3,
+        "attention_sum": 0.0013966560363769531,
+        "attention_mean_per_token": 0.00046555201212565106,
+        "attention_mass_share": 0.0015914015417415551,
+        "token_share": 0.0234375,
+        "attention_enrichment": 0.06789979911430635
+      },
+      "NEGATION": {
+        "n_tokens": 1,
+        "n_scored_tokens": 1,
+        "attention_sum": 0.00019311904907226562,
+        "attention_mean_per_token": 0.00019311904907226562,
+        "attention_mass_share": 0.00022004698682326042,
+        "token_share": 0.0078125,
+        "attention_enrichment": 0.028166014313377334
+      }
+    },
+    "by_critical": {
+      "True": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0015897750854492188,
+        "attention_mean_per_token": 0.0003974437713623047,
+        "attention_mass_share": 0.0018114485285648156,
+        "token_share": 0.03125,
+        "attention_enrichment": 0.0579663529140741
+      }
+    },
+    "by_span": {
+      "P04_art_exactly_two": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.0010471343994140625,
+        "attention_mean_per_token": 0.0005235671997070312,
+        "attention_mass_share": 0.0011931436618861232,
+        "token_share": 0.015625,
+        "attention_enrichment": 0.07636119436071188,
+        "text": "Exactly two",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Cardinality operator."
+      },
+      "P04_art_obs_negation": {
+        "n_tokens": 1,
+        "n_scored_tokens": 1,
+        "attention_sum": 0.00019311904907226562,
+        "attention_mean_per_token": 0.00019311904907226562,
+        "attention_mass_share": 0.00022004698682326042,
+        "token_share": 0.0078125,
+        "attention_enrichment": 0.028166014313377334,
+        "text": "not",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker excluding K1."
+      },
+      "P04_art_both": {
+        "n_tokens": 1,
+        "n_scored_tokens": 1,
+        "attention_sum": 0.0003495216369628906,
+        "attention_mean_per_token": 0.0003495216369628906,
+        "attention_mass_share": 0.00039825787985543184,
+        "token_share": 0.0078125,
+        "attention_enrichment": 0.050977008621495276,
+        "text": "both",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Conjunction operator in the question target."
+      }
+    }
+  }
+}

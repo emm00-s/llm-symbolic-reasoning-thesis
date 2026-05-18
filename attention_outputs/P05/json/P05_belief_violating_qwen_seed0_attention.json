@@ -1,0 +1,1633 @@
+{
+  "metadata": {
+    "model_key": "qwen",
+    "model_name": "Qwen/Qwen2.5-3B-Instruct",
+    "puzzle_id": "P05_belief_violating",
+    "template_id": "P05",
+    "variant_type": "belief_violating",
+    "seed": 0,
+    "option_order": "Unknown|True|False|Paradox",
+    "gold_label": "True",
+    "gold_letter": "B",
+    "argmax_label": "Paradox",
+    "argmax_letter": "D",
+    "target_letter": "D",
+    "correct_argmax": "False",
+    "last_n_layers": 4
+  },
+  "diagnostics": {
+    "n_layers": 36,
+    "last_n_layers": 4,
+    "used_layers": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "n_prompt_tokens": 165,
+    "n_full_tokens": 166,
+    "answer_token_index": 165,
+    "answer_token": "D",
+    "target_letter": "D",
+    "attention_sum_to_prompt": 0.8884381055831909
+  },
+  "raw_prompt": "Consider the following four statements. (1) If water molecules contain oxygen atoms, adult dogs speak fluent English. (2) If adult dogs speak fluent English, ordinary stones are made of bread. (3) If ordinary stones are made of bread, the Earth is not approximately spherical. (4) If the Earth is not approximately spherical, water molecules do not contain oxygen atoms.\n\nCan all of these statements be true at once?\n\nChoose exactly one of the following options:\nA. Unknown\nB. True\nC. False\nD. Paradox\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:",
+  "chat_prompt": "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n<|im_start|>user\nConsider the following four statements. (1) If water molecules contain oxygen atoms, adult dogs speak fluent English. (2) If adult dogs speak fluent English, ordinary stones are made of bread. (3) If ordinary stones are made of bread, the Earth is not approximately spherical. (4) If the Earth is not approximately spherical, water molecules do not contain oxygen atoms.\n\nCan all of these statements be true at once?\n\nChoose exactly one of the following options:\nA. Unknown\nB. True\nC. False\nD. Paradox\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:<|im_end|>\n<|im_start|>assistant\n",
+  "resolved": {
+    "resolved_spans": [
+      {
+        "span_id": "P05_bv_forward_chain",
+        "text": "(1) If water molecules contain oxygen atoms, adult dogs speak fluent English. (2) If adult dogs speak fluent English, ordinary stones are made of bread",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "FORWARD_CHAIN"
+        ],
+        "critical": true,
+        "notes": "Initial implication chain with belief-laden content.",
+        "start_char": 155,
+        "end_char": 306,
+        "token_indices": [
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61
+        ],
+        "tokens": [
+          "Ġ(",
+          "1",
+          ")",
+          "ĠIf",
+          "Ġwater",
+          "Ġmolecules",
+          "Ġcontain",
+          "Ġoxygen",
+          "Ġatoms",
+          ",",
+          "Ġadult",
+          "Ġdogs",
+          "Ġspeak",
+          "Ġfluent",
+          "ĠEnglish",
+          ".",
+          "Ġ(",
+          "2",
+          ")",
+          "ĠIf",
+          "Ġadult",
+          "Ġdogs",
+          "Ġspeak",
+          "Ġfluent",
+          "ĠEnglish",
+          ",",
+          "Ġordinary",
+          "Ġstones",
+          "Ġare",
+          "Ġmade",
+          "Ġof",
+          "Ġbread"
+        ]
+      },
+      {
+        "span_id": "P05_bv_negative_link",
+        "text": "(3) If ordinary stones are made of bread, the Earth is not approximately spherical",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_LINK"
+        ],
+        "critical": true,
+        "notes": "Rule introducing a belief-violating negated consequent.",
+        "start_char": 308,
+        "end_char": 390,
+        "token_indices": [
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79
+        ],
+        "tokens": [
+          "Ġ(",
+          "3",
+          ")",
+          "ĠIf",
+          "Ġordinary",
+          "Ġstones",
+          "Ġare",
+          "Ġmade",
+          "Ġof",
+          "Ġbread",
+          ",",
+          "Ġthe",
+          "ĠEarth",
+          "Ġis",
+          "Ġnot",
+          "Ġapproximately",
+          "Ġspherical"
+        ]
+      },
+      {
+        "span_id": "P05_bv_closure_link",
+        "text": "(4) If the Earth is not approximately spherical, water molecules do not contain oxygen atoms",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CLOSURE_LINK"
+        ],
+        "critical": true,
+        "notes": "Rule closing the chain back to the negation of the initial antecedent; contains belief-laden content and negation.",
+        "start_char": 392,
+        "end_char": 484,
+        "token_indices": [
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98
+        ],
+        "tokens": [
+          "Ġ(",
+          "4",
+          ")",
+          "ĠIf",
+          "Ġthe",
+          "ĠEarth",
+          "Ġis",
+          "Ġnot",
+          "Ġapproximately",
+          "Ġspherical",
+          ",",
+          "Ġwater",
+          "Ġmolecules",
+          "Ġdo",
+          "Ġnot",
+          "Ġcontain",
+          "Ġoxygen",
+          "Ġatoms"
+        ]
+      },
+      {
+        "span_id": "P05_bv_question",
+        "text": "Can all of these statements be true at once?",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "SAT_QUESTION"
+        ],
+        "critical": true,
+        "notes": "Satisfiability question.",
+        "start_char": 487,
+        "end_char": 531,
+        "token_indices": [
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109
+        ],
+        "tokens": [
+          "Can",
+          "Ġall",
+          "Ġof",
+          "Ġthese",
+          "Ġstatements",
+          "Ġbe",
+          "Ġtrue",
+          "Ġat",
+          "Ġonce",
+          "?ĊĊ"
+        ]
+      }
+    ],
+    "errors": [],
+    "by_region": {
+      "NARRATIVE": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "QUESTION": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109
+      ]
+    },
+    "by_role": {
+      "PREMISE": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "QUESTION_TARGET": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109
+      ]
+    },
+    "by_tag": {
+      "FORWARD_CHAIN": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "NEGATIVE_LINK": [
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "CLOSURE_LINK": [
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "SAT_QUESTION": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109
+      ]
+    },
+    "by_critical": {
+      "True": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109
+      ]
+    },
+    "by_span": {
+      "P05_bv_forward_chain": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "P05_bv_negative_link": [
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "P05_bv_closure_link": [
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "P05_bv_question": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109
+      ]
+    }
+  },
+  "token_attention": [
+    {
+      "token_index": 0,
+      "token": "<|im_start|>",
+      "attention": 0.042236328125
+    },
+    {
+      "token_index": 1,
+      "token": "system",
+      "attention": 0.0013933181762695312
+    },
+    {
+      "token_index": 2,
+      "token": "Ċ",
+      "attention": 0.15380859375
+    },
+    {
+      "token_index": 3,
+      "token": "You",
+      "attention": 0.001010894775390625
+    },
+    {
+      "token_index": 4,
+      "token": "Ġare",
+      "attention": 0.0015401840209960938
+    },
+    {
+      "token_index": 5,
+      "token": "ĠQ",
+      "attention": 0.00070953369140625
+    },
+    {
+      "token_index": 6,
+      "token": "wen",
+      "attention": 0.0011968612670898438
+    },
+    {
+      "token_index": 7,
+      "token": ",",
+      "attention": 0.0037631988525390625
+    },
+    {
+      "token_index": 8,
+      "token": "Ġcreated",
+      "attention": 0.0004589557647705078
+    },
+    {
+      "token_index": 9,
+      "token": "Ġby",
+      "attention": 0.0004982948303222656
+    },
+    {
+      "token_index": 10,
+      "token": "ĠAlibaba",
+      "attention": 0.0003581047058105469
+    },
+    {
+      "token_index": 11,
+      "token": "ĠCloud",
+      "attention": 0.0009937286376953125
+    },
+    {
+      "token_index": 12,
+      "token": ".",
+      "attention": 0.00618743896484375
+    },
+    {
+      "token_index": 13,
+      "token": "ĠYou",
+      "attention": 0.0005478858947753906
+    },
+    {
+      "token_index": 14,
+      "token": "Ġare",
+      "attention": 0.000354766845703125
+    },
+    {
+      "token_index": 15,
+      "token": "Ġa",
+      "attention": 0.0011110305786132812
+    },
+    {
+      "token_index": 16,
+      "token": "Ġhelpful",
+      "attention": 4.589557647705078e-05
+    },
+    {
+      "token_index": 17,
+      "token": "Ġassistant",
+      "attention": 0.00010704994201660156
+    },
+    {
+      "token_index": 18,
+      "token": ".",
+      "attention": 0.002147674560546875
+    },
+    {
+      "token_index": 19,
+      "token": "<|im_end|>",
+      "attention": 0.0601806640625
+    },
+    {
+      "token_index": 20,
+      "token": "Ċ",
+      "attention": 0.0205841064453125
+    },
+    {
+      "token_index": 21,
+      "token": "<|im_start|>",
+      "attention": 0.002838134765625
+    },
+    {
+      "token_index": 22,
+      "token": "user",
+      "attention": 0.00592041015625
+    },
+    {
+      "token_index": 23,
+      "token": "Ċ",
+      "attention": 0.016876220703125
+    },
+    {
+      "token_index": 24,
+      "token": "Consider",
+      "attention": 0.0016326904296875
+    },
+    {
+      "token_index": 25,
+      "token": "Ġthe",
+      "attention": 0.0096282958984375
+    },
+    {
+      "token_index": 26,
+      "token": "Ġfollowing",
+      "attention": 0.00043129920959472656
+    },
+    {
+      "token_index": 27,
+      "token": "Ġfour",
+      "attention": 0.000400543212890625
+    },
+    {
+      "token_index": 28,
+      "token": "Ġstatements",
+      "attention": 0.0009918212890625
+    },
+    {
+      "token_index": 29,
+      "token": ".",
+      "attention": 0.001064300537109375
+    },
+    {
+      "token_index": 30,
+      "token": "Ġ(",
+      "attention": 0.0003752708435058594
+    },
+    {
+      "token_index": 31,
+      "token": "1",
+      "attention": 0.000507354736328125
+    },
+    {
+      "token_index": 32,
+      "token": ")",
+      "attention": 0.0015048980712890625
+    },
+    {
+      "token_index": 33,
+      "token": "ĠIf",
+      "attention": 0.0006690025329589844
+    },
+    {
+      "token_index": 34,
+      "token": "Ġwater",
+      "attention": 0.00013184547424316406
+    },
+    {
+      "token_index": 35,
+      "token": "Ġmolecules",
+      "attention": 0.00011366605758666992
+    },
+    {
+      "token_index": 36,
+      "token": "Ġcontain",
+      "attention": 5.6862831115722656e-05
+    },
+    {
+      "token_index": 37,
+      "token": "Ġoxygen",
+      "attention": 7.95125961303711e-05
+    },
+    {
+      "token_index": 38,
+      "token": "Ġatoms",
+      "attention": 0.00013697147369384766
+    },
+    {
+      "token_index": 39,
+      "token": ",",
+      "attention": 0.0002899169921875
+    },
+    {
+      "token_index": 40,
+      "token": "Ġadult",
+      "attention": 0.0001728534698486328
+    },
+    {
+      "token_index": 41,
+      "token": "Ġdogs",
+      "attention": 8.744001388549805e-05
+    },
+    {
+      "token_index": 42,
+      "token": "Ġspeak",
+      "attention": 5.4001808166503906e-05
+    },
+    {
+      "token_index": 43,
+      "token": "Ġfluent",
+      "attention": 7.975101470947266e-05
+    },
+    {
+      "token_index": 44,
+      "token": "ĠEnglish",
+      "attention": 0.00045418739318847656
+    },
+    {
+      "token_index": 45,
+      "token": ".",
+      "attention": 0.000621795654296875
+    },
+    {
+      "token_index": 46,
+      "token": "Ġ(",
+      "attention": 0.00044155120849609375
+    },
+    {
+      "token_index": 47,
+      "token": "2",
+      "attention": 0.0002658367156982422
+    },
+    {
+      "token_index": 48,
+      "token": ")",
+      "attention": 0.0006542205810546875
+    },
+    {
+      "token_index": 49,
+      "token": "ĠIf",
+      "attention": 0.0003523826599121094
+    },
+    {
+      "token_index": 50,
+      "token": "Ġadult",
+      "attention": 0.00024509429931640625
+    },
+    {
+      "token_index": 51,
+      "token": "Ġdogs",
+      "attention": 0.00019431114196777344
+    },
+    {
+      "token_index": 52,
+      "token": "Ġspeak",
+      "attention": 9.60230827331543e-05
+    },
+    {
+      "token_index": 53,
+      "token": "Ġfluent",
+      "attention": 8.749961853027344e-05
+    },
+    {
+      "token_index": 54,
+      "token": "ĠEnglish",
+      "attention": 0.0003452301025390625
+    },
+    {
+      "token_index": 55,
+      "token": ",",
+      "attention": 0.00025844573974609375
+    },
+    {
+      "token_index": 56,
+      "token": "Ġordinary",
+      "attention": 0.0001672506332397461
+    },
+    {
+      "token_index": 57,
+      "token": "Ġstones",
+      "attention": 0.0001703500747680664
+    },
+    {
+      "token_index": 58,
+      "token": "Ġare",
+      "attention": 3.7789344787597656e-05
+    },
+    {
+      "token_index": 59,
+      "token": "Ġmade",
+      "attention": 3.337860107421875e-05
+    },
+    {
+      "token_index": 60,
+      "token": "Ġof",
+      "attention": 7.176399230957031e-05
+    },
+    {
+      "token_index": 61,
+      "token": "Ġbread",
+      "attention": 0.00015473365783691406
+    },
+    {
+      "token_index": 62,
+      "token": ".",
+      "attention": 0.00039076805114746094
+    },
+    {
+      "token_index": 63,
+      "token": "Ġ(",
+      "attention": 0.137939453125
+    },
+    {
+      "token_index": 64,
+      "token": "3",
+      "attention": 0.0003230571746826172
+    },
+    {
+      "token_index": 65,
+      "token": ")",
+      "attention": 0.00018787384033203125
+    },
+    {
+      "token_index": 66,
+      "token": "ĠIf",
+      "attention": 0.00027060508728027344
+    },
+    {
+      "token_index": 67,
+      "token": "Ġordinary",
+      "attention": 0.00017380714416503906
+    },
+    {
+      "token_index": 68,
+      "token": "Ġstones",
+      "attention": 0.0001480579376220703
+    },
+    {
+      "token_index": 69,
+      "token": "Ġare",
+      "attention": 7.56382942199707e-05
+    },
+    {
+      "token_index": 70,
+      "token": "Ġmade",
+      "attention": 6.431341171264648e-05
+    },
+    {
+      "token_index": 71,
+      "token": "Ġof",
+      "attention": 0.0001741647720336914
+    },
+    {
+      "token_index": 72,
+      "token": "Ġbread",
+      "attention": 0.0004029273986816406
+    },
+    {
+      "token_index": 73,
+      "token": ",",
+      "attention": 0.00032401084899902344
+    },
+    {
+      "token_index": 74,
+      "token": "Ġthe",
+      "attention": 0.0005955696105957031
+    },
+    {
+      "token_index": 75,
+      "token": "ĠEarth",
+      "attention": 0.00018656253814697266
+    },
+    {
+      "token_index": 76,
+      "token": "Ġis",
+      "attention": 6.210803985595703e-05
+    },
+    {
+      "token_index": 77,
+      "token": "Ġnot",
+      "attention": 6.711483001708984e-05
+    },
+    {
+      "token_index": 78,
+      "token": "Ġapproximately",
+      "attention": 6.365776062011719e-05
+    },
+    {
+      "token_index": 79,
+      "token": "Ġspherical",
+      "attention": 0.000331878662109375
+    },
+    {
+      "token_index": 80,
+      "token": ".",
+      "attention": 0.0005121231079101562
+    },
+    {
+      "token_index": 81,
+      "token": "Ġ(",
+      "attention": 0.00013327598571777344
+    },
+    {
+      "token_index": 82,
+      "token": "4",
+      "attention": 0.0003781318664550781
+    },
+    {
+      "token_index": 83,
+      "token": ")",
+      "attention": 0.0002884864807128906
+    },
+    {
+      "token_index": 84,
+      "token": "ĠIf",
+      "attention": 0.0002319812774658203
+    },
+    {
+      "token_index": 85,
+      "token": "Ġthe",
+      "attention": 0.0004911422729492188
+    },
+    {
+      "token_index": 86,
+      "token": "ĠEarth",
+      "attention": 0.00018513202667236328
+    },
+    {
+      "token_index": 87,
+      "token": "Ġis",
+      "attention": 0.00010645389556884766
+    },
+    {
+      "token_index": 88,
+      "token": "Ġnot",
+      "attention": 9.250640869140625e-05
+    },
+    {
+      "token_index": 89,
+      "token": "Ġapproximately",
+      "attention": 0.00013303756713867188
+    },
+    {
+      "token_index": 90,
+      "token": "Ġspherical",
+      "attention": 0.00031185150146484375
+    },
+    {
+      "token_index": 91,
+      "token": ",",
+      "attention": 0.0002727508544921875
+    },
+    {
+      "token_index": 92,
+      "token": "Ġwater",
+      "attention": 0.0002834796905517578
+    },
+    {
+      "token_index": 93,
+      "token": "Ġmolecules",
+      "attention": 0.00016117095947265625
+    },
+    {
+      "token_index": 94,
+      "token": "Ġdo",
+      "attention": 0.0001634359359741211
+    },
+    {
+      "token_index": 95,
+      "token": "Ġnot",
+      "attention": 0.00011795759201049805
+    },
+    {
+      "token_index": 96,
+      "token": "Ġcontain",
+      "attention": 0.00020074844360351562
+    },
+    {
+      "token_index": 97,
+      "token": "Ġoxygen",
+      "attention": 9.429454803466797e-05
+    },
+    {
+      "token_index": 98,
+      "token": "Ġatoms",
+      "attention": 0.0004391670227050781
+    },
+    {
+      "token_index": 99,
+      "token": ".ĊĊ",
+      "attention": 0.0023059844970703125
+    },
+    {
+      "token_index": 100,
+      "token": "Can",
+      "attention": 0.0006728172302246094
+    },
+    {
+      "token_index": 101,
+      "token": "Ġall",
+      "attention": 0.00022530555725097656
+    },
+    {
+      "token_index": 102,
+      "token": "Ġof",
+      "attention": 0.0002734661102294922
+    },
+    {
+      "token_index": 103,
+      "token": "Ġthese",
+      "attention": 0.00035834312438964844
+    },
+    {
+      "token_index": 104,
+      "token": "Ġstatements",
+      "attention": 0.00014352798461914062
+    },
+    {
+      "token_index": 105,
+      "token": "Ġbe",
+      "attention": 0.00015914440155029297
+    },
+    {
+      "token_index": 106,
+      "token": "Ġtrue",
+      "attention": 0.00029969215393066406
+    },
+    {
+      "token_index": 107,
+      "token": "Ġat",
+      "attention": 4.1484832763671875e-05
+    },
+    {
+      "token_index": 108,
+      "token": "Ġonce",
+      "attention": 0.0007305145263671875
+    },
+    {
+      "token_index": 109,
+      "token": "?ĊĊ",
+      "attention": 0.007289886474609375
+    },
+    {
+      "token_index": 110,
+      "token": "Choose",
+      "attention": 0.00030612945556640625
+    },
+    {
+      "token_index": 111,
+      "token": "Ġexactly",
+      "attention": 0.00010251998901367188
+    },
+    {
+      "token_index": 112,
+      "token": "Ġone",
+      "attention": 0.00015115737915039062
+    },
+    {
+      "token_index": 113,
+      "token": "Ġof",
+      "attention": 0.0005893707275390625
+    },
+    {
+      "token_index": 114,
+      "token": "Ġthe",
+      "attention": 0.0017023086547851562
+    },
+    {
+      "token_index": 115,
+      "token": "Ġfollowing",
+      "attention": 0.0001767873764038086
+    },
+    {
+      "token_index": 116,
+      "token": "Ġoptions",
+      "attention": 0.000797271728515625
+    },
+    {
+      "token_index": 117,
+      "token": ":Ċ",
+      "attention": 0.0014619827270507812
+    },
+    {
+      "token_index": 118,
+      "token": "A",
+      "attention": 0.0023040771484375
+    },
+    {
+      "token_index": 119,
+      "token": ".",
+      "attention": 0.00527191162109375
+    },
+    {
+      "token_index": 120,
+      "token": "ĠUnknown",
+      "attention": 0.001956939697265625
+    },
+    {
+      "token_index": 121,
+      "token": "Ċ",
+      "attention": 0.003997802734375
+    },
+    {
+      "token_index": 122,
+      "token": "B",
+      "attention": 0.00228118896484375
+    },
+    {
+      "token_index": 123,
+      "token": ".",
+      "attention": 0.002193450927734375
+    },
+    {
+      "token_index": 124,
+      "token": "ĠTrue",
+      "attention": 0.0010929107666015625
+    },
+    {
+      "token_index": 125,
+      "token": "Ċ",
+      "attention": 0.0031147003173828125
+    },
+    {
+      "token_index": 126,
+      "token": "C",
+      "attention": 0.001956939697265625
+    },
+    {
+      "token_index": 127,
+      "token": ".",
+      "attention": 0.001125335693359375
+    },
+    {
+      "token_index": 128,
+      "token": "ĠFalse",
+      "attention": 0.0078887939453125
+    },
+    {
+      "token_index": 129,
+      "token": "Ċ",
+      "attention": 0.008392333984375
+    },
+    {
+      "token_index": 130,
+      "token": "D",
+      "attention": 0.004795074462890625
+    },
+    {
+      "token_index": 131,
+      "token": ".",
+      "attention": 0.0096282958984375
+    },
+    {
+      "token_index": 132,
+      "token": "ĠPar",
+      "attention": 0.001094818115234375
+    },
+    {
+      "token_index": 133,
+      "token": "adox",
+      "attention": 0.002300262451171875
+    },
+    {
+      "token_index": 134,
+      "token": "ĊĊ",
+      "attention": 0.0224609375
+    },
+    {
+      "token_index": 135,
+      "token": "Your",
+      "attention": 0.0009641647338867188
+    },
+    {
+      "token_index": 136,
+      "token": "Ġanswer",
+      "attention": 0.0006756782531738281
+    },
+    {
+      "token_index": 137,
+      "token": "Ġmust",
+      "attention": 0.0003819465637207031
+    },
+    {
+      "token_index": 138,
+      "token": "Ġbe",
+      "attention": 0.0004901885986328125
+    },
+    {
+      "token_index": 139,
+      "token": "Ġexactly",
+      "attention": 0.0003948211669921875
+    },
+    {
+      "token_index": 140,
+      "token": "Ġone",
+      "attention": 0.00013709068298339844
+    },
+    {
+      "token_index": 141,
+      "token": "Ġletter",
+      "attention": 0.0007257461547851562
+    },
+    {
+      "token_index": 142,
+      "token": ":",
+      "attention": 0.0015516281127929688
+    },
+    {
+      "token_index": 143,
+      "token": "ĠA",
+      "attention": 0.0027942657470703125
+    },
+    {
+      "token_index": 144,
+      "token": ",",
+      "attention": 0.003490447998046875
+    },
+    {
+      "token_index": 145,
+      "token": "ĠB",
+      "attention": 0.0017271041870117188
+    },
+    {
+      "token_index": 146,
+      "token": ",",
+      "attention": 0.0019683837890625
+    },
+    {
+      "token_index": 147,
+      "token": "ĠC",
+      "attention": 0.002178192138671875
+    },
+    {
+      "token_index": 148,
+      "token": ",",
+      "attention": 0.0028228759765625
+    },
+    {
+      "token_index": 149,
+      "token": "Ġor",
+      "attention": 0.0027561187744140625
+    },
+    {
+      "token_index": 150,
+      "token": "ĠD",
+      "attention": 0.0058135986328125
+    },
+    {
+      "token_index": 151,
+      "token": ".Ċ",
+      "attention": 0.016326904296875
+    },
+    {
+      "token_index": 152,
+      "token": "Do",
+      "attention": 0.0016641616821289062
+    },
+    {
+      "token_index": 153,
+      "token": "Ġnot",
+      "attention": 0.0015277862548828125
+    },
+    {
+      "token_index": 154,
+      "token": "Ġwrite",
+      "attention": 0.0010080337524414062
+    },
+    {
+      "token_index": 155,
+      "token": "Ġanything",
+      "attention": 0.0004074573516845703
+    },
+    {
+      "token_index": 156,
+      "token": "Ġelse",
+      "attention": 0.0009474754333496094
+    },
+    {
+      "token_index": 157,
+      "token": ".Ċ",
+      "attention": 0.0116729736328125
+    },
+    {
+      "token_index": 158,
+      "token": "Answer",
+      "attention": 0.006412506103515625
+    },
+    {
+      "token_index": 159,
+      "token": ":",
+      "attention": 0.01141357421875
+    },
+    {
+      "token_index": 160,
+      "token": "<|im_end|>",
+      "attention": 0.1080322265625
+    },
+    {
+      "token_index": 161,
+      "token": "Ċ",
+      "attention": 0.029815673828125
+    },
+    {
+      "token_index": 162,
+      "token": "<|im_start|>",
+      "attention": 0.011199951171875
+    },
+    {
+      "token_index": 163,
+      "token": "assistant",
+      "attention": 0.020751953125
+    },
+    {
+      "token_index": 164,
+      "token": "Ċ",
+      "attention": 0.04443359375
+    }
+  ],
+  "aggregation": {
+    "by_region": {
+      "NARRATIVE": {
+        "n_tokens": 67,
+        "n_scored_tokens": 67,
+        "attention_sum": 0.1543869972229004,
+        "attention_mean_per_token": 0.0023042835406403045
+      },
+      "QUESTION": {
+        "n_tokens": 10,
+        "n_scored_tokens": 10,
+        "attention_sum": 0.010194182395935059,
+        "attention_mean_per_token": 0.0010194182395935059
+      }
+    },
+    "by_role": {
+      "PREMISE": {
+        "n_tokens": 67,
+        "n_scored_tokens": 67,
+        "attention_sum": 0.1543869972229004,
+        "attention_mean_per_token": 0.0023042835406403045
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 10,
+        "n_scored_tokens": 10,
+        "attention_sum": 0.010194182395935059,
+        "attention_mean_per_token": 0.0010194182395935059
+      }
+    },
+    "by_tag": {
+      "FORWARD_CHAIN": {
+        "n_tokens": 32,
+        "n_scored_tokens": 32,
+        "attention_sum": 0.008911192417144775,
+        "attention_mean_per_token": 0.00027847476303577423
+      },
+      "NEGATIVE_LINK": {
+        "n_tokens": 17,
+        "n_scored_tokens": 17,
+        "attention_sum": 0.14139080047607422,
+        "attention_mean_per_token": 0.008317105910357307
+      },
+      "CLOSURE_LINK": {
+        "n_tokens": 18,
+        "n_scored_tokens": 18,
+        "attention_sum": 0.0040850043296813965,
+        "attention_mean_per_token": 0.0002269446849822998
+      },
+      "SAT_QUESTION": {
+        "n_tokens": 10,
+        "n_scored_tokens": 10,
+        "attention_sum": 0.010194182395935059,
+        "attention_mean_per_token": 0.0010194182395935059
+      }
+    },
+    "by_critical": {
+      "True": {
+        "n_tokens": 77,
+        "n_scored_tokens": 77,
+        "attention_sum": 0.16458117961883545,
+        "attention_mean_per_token": 0.002137417917127733
+      }
+    },
+    "by_span": {
+      "P05_bv_forward_chain": {
+        "n_tokens": 32,
+        "n_scored_tokens": 32,
+        "attention_sum": 0.008911192417144775,
+        "attention_mean_per_token": 0.00027847476303577423,
+        "text": "(1) If water molecules contain oxygen atoms, adult dogs speak fluent English. (2) If adult dogs speak fluent English, ordinary stones are made of bread",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "FORWARD_CHAIN"
+        ],
+        "critical": true,
+        "notes": "Initial implication chain with belief-laden content."
+      },
+      "P05_bv_negative_link": {
+        "n_tokens": 17,
+        "n_scored_tokens": 17,
+        "attention_sum": 0.14139080047607422,
+        "attention_mean_per_token": 0.008317105910357307,
+        "text": "(3) If ordinary stones are made of bread, the Earth is not approximately spherical",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_LINK"
+        ],
+        "critical": true,
+        "notes": "Rule introducing a belief-violating negated consequent."
+      },
+      "P05_bv_closure_link": {
+        "n_tokens": 18,
+        "n_scored_tokens": 18,
+        "attention_sum": 0.0040850043296813965,
+        "attention_mean_per_token": 0.0002269446849822998,
+        "text": "(4) If the Earth is not approximately spherical, water molecules do not contain oxygen atoms",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CLOSURE_LINK"
+        ],
+        "critical": true,
+        "notes": "Rule closing the chain back to the negation of the initial antecedent; contains belief-laden content and negation."
+      },
+      "P05_bv_question": {
+        "n_tokens": 10,
+        "n_scored_tokens": 10,
+        "attention_sum": 0.010194182395935059,
+        "attention_mean_per_token": 0.0010194182395935059,
+        "text": "Can all of these statements be true at once?",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "SAT_QUESTION"
+        ],
+        "critical": true,
+        "notes": "Satisfiability question."
+      }
+    }
+  }
+}

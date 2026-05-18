@@ -1,0 +1,301 @@
+
+{
+  "P05_abstract": {
+    "puzzle_id": "P05_abstract",
+    "template_id": "P05",
+    "variant_type": "abstract",
+    "gold_label": "True",
+    "query_type": "satisfiability",
+    "spans": [
+      {
+        "span_id": "P05_abs_rule1_forward",
+        "text": "(1) If X1, then X2",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["FORWARD_LINK"],
+        "critical": true,
+        "notes": "First forward implication."
+      },
+      {
+        "span_id": "P05_abs_rule2_forward",
+        "text": "(2) If X2, then X3",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["FORWARD_LINK"],
+        "critical": true,
+        "notes": "Second forward implication."
+      },
+      {
+        "span_id": "P05_abs_negative_link",
+        "text": "(3) If X3, then not X4",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["NEGATIVE_LINK"],
+        "critical": true,
+        "notes": "Rule introducing a negated consequent."
+      },
+      {
+        "span_id": "P05_abs_closure_link",
+        "text": "(4) If not X4, then not X1",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CLOSURE_LINK"],
+        "critical": true,
+        "notes": "Rule closing the chain back to not X1 without making the system inconsistent."
+      },
+      {
+        "span_id": "P05_abs_question",
+        "text": "Can all of these statements be true at once?",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": ["SAT_QUESTION"],
+        "critical": true,
+        "notes": "Satisfiability question."
+      }
+    ]
+  },
+
+  "P05_artificial": {
+    "puzzle_id": "P05_artificial",
+    "template_id": "P05",
+    "variant_type": "artificial",
+    "gold_label": "True",
+    "query_type": "satisfiability",
+    "spans": [
+      {
+        "span_id": "P05_art_rule1_forward",
+        "text": "(1) If the Vor sends a Plith signal, the Glent receiver activates",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["FORWARD_LINK"],
+        "critical": true,
+        "notes": "First forward implication."
+      },
+      {
+        "span_id": "P05_art_rule2_forward",
+        "text": "(2) If the Glent receiver activates, the Krell relay melts",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["FORWARD_LINK"],
+        "critical": true,
+        "notes": "Second forward implication."
+      },
+      {
+        "span_id": "P05_art_negative_link",
+        "text": "(3) If the Krell relay melts, the Vor's circuit is not intact",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["NEGATIVE_LINK"],
+        "critical": true,
+        "notes": "Rule introducing a negated consequence."
+      },
+      {
+        "span_id": "P05_art_closure_link",
+        "text": "(4) If the Vor's circuit is not intact, the Vor does not send a Plith signal",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CLOSURE_LINK"],
+        "critical": true,
+        "notes": "Rule closing the chain back to the negation of the initial antecedent."
+      },
+      {
+        "span_id": "P05_art_question",
+        "text": "Can all of these statements be true at once?",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": ["SAT_QUESTION"],
+        "critical": true,
+        "notes": "Satisfiability question."
+      }
+    ]
+  },
+
+  "P05_familiar": {
+    "puzzle_id": "P05_familiar",
+    "template_id": "P05",
+    "variant_type": "familiar",
+    "gold_label": "True",
+    "query_type": "satisfiability",
+    "spans": [
+      {
+        "span_id": "P05_fam_rule1_forward",
+        "text": "(1) If I travel back in time, I meet my grandfather",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["FORWARD_LINK"],
+        "critical": true,
+        "notes": "First forward implication."
+      },
+      {
+        "span_id": "P05_fam_rule2_forward",
+        "text": "(2) If I meet my grandfather, I distract him",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["FORWARD_LINK"],
+        "critical": true,
+        "notes": "Second forward implication."
+      },
+      {
+        "span_id": "P05_fam_negative_link",
+        "text": "(3) If I distract him, I am not born",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["NEGATIVE_LINK"],
+        "critical": true,
+        "notes": "Rule introducing the apparent paradoxical consequence."
+      },
+      {
+        "span_id": "P05_fam_closure_link",
+        "text": "(4) If I am not born, I do not travel back in time",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CLOSURE_LINK"],
+        "critical": true,
+        "notes": "Rule closing the loop back to not travelling."
+      },
+      {
+        "span_id": "P05_fam_question",
+        "text": "Can all of these statements be true at once?",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": ["SAT_QUESTION"],
+        "critical": true,
+        "notes": "Satisfiability question."
+      },
+      {
+        "span_id": "P05_fam_ct_time_travel",
+        "text": "travel back in time",
+        "occurrence": 1,
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CONTENT_TRIGGER"],
+        "critical": false,
+        "notes": "Familiar time-travel content associated with paradox framing."
+      },
+      {
+        "span_id": "P05_fam_ct_grandfather",
+        "text": "grandfather",
+        "occurrence": 1,
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CONTENT_TRIGGER"],
+        "critical": false,
+        "notes": "Grandfather-paradox semantic trigger."
+      },
+      {
+        "span_id": "P05_fam_ct_not_born",
+        "text": "not born",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CONTENT_TRIGGER"],
+        "critical": false,
+        "notes": "Paradox-like semantic trigger."
+      }
+    ]
+  },
+
+  "P05_belief_violating": {
+    "puzzle_id": "P05_belief_violating",
+    "template_id": "P05",
+    "variant_type": "belief_violating",
+    "gold_label": "True",
+    "query_type": "satisfiability",
+    "spans": [
+      {
+        "span_id": "P05_bv_rule1_forward",
+        "text": "(1) If water molecules contain oxygen atoms, adult dogs speak fluent English",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["FORWARD_LINK"],
+        "critical": true,
+        "notes": "First forward implication."
+      },
+      {
+        "span_id": "P05_bv_rule2_forward",
+        "text": "(2) If adult dogs speak fluent English, ordinary stones are made of bread",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["FORWARD_LINK"],
+        "critical": true,
+        "notes": "Second forward implication."
+      },
+      {
+        "span_id": "P05_bv_negative_link",
+        "text": "(3) If ordinary stones are made of bread, the Earth is not approximately spherical",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["NEGATIVE_LINK"],
+        "critical": true,
+        "notes": "Rule introducing a belief-violating negated consequent."
+      },
+      {
+        "span_id": "P05_bv_closure_link",
+        "text": "(4) If the Earth is not approximately spherical, water molecules do not contain oxygen atoms",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CLOSURE_LINK"],
+        "critical": true,
+        "notes": "Rule closing the chain back to the negation of the initial antecedent."
+      },
+      {
+        "span_id": "P05_bv_question",
+        "text": "Can all of these statements be true at once?",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": ["SAT_QUESTION"],
+        "critical": true,
+        "notes": "Satisfiability question."
+      },
+      {
+        "span_id": "P05_bv_ct_water_oxygen_rule1",
+        "text": "water molecules contain oxygen atoms",
+        "occurrence": 1,
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CONTENT_TRIGGER"],
+        "critical": false,
+        "notes": "Factually true content used as antecedent."
+      },
+      {
+        "span_id": "P05_bv_ct_dogs_rule1",
+        "text": "adult dogs speak fluent English",
+        "occurrence": 1,
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CONTENT_TRIGGER"],
+        "critical": false,
+        "notes": "Belief-violating content."
+      },
+      {
+        "span_id": "P05_bv_ct_stones_rule2",
+        "text": "ordinary stones are made of bread",
+        "occurrence": 1,
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CONTENT_TRIGGER"],
+        "critical": false,
+        "notes": "Belief-violating content."
+      },
+      {
+        "span_id": "P05_bv_ct_earth_rule3",
+        "text": "the Earth is not approximately spherical",
+        "occurrence": 1,
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CONTENT_TRIGGER"],
+        "critical": false,
+        "notes": "Belief-violating negated factual content."
+      },
+      {
+        "span_id": "P05_bv_ct_water_oxygen_rule4",
+        "text": "water molecules do not contain oxygen atoms",
+        "occurrence": 1,
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": ["CONTENT_TRIGGER"],
+        "critical": false,
+        "notes": "Negated factual content closing the loop."
+      }
+    ]
+  }
+}
