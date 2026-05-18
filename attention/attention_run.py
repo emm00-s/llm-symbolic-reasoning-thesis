@@ -8,13 +8,38 @@ Lightweight attention-map analysis for selected reasoning puzzles.
 This script:
 - reconstructs the exact behavioral prompt using option_order from the CSV;
 - applies the model chat template;
-- appends the model's argmax answer letter;
-- extracts attention from the answer-token position to prompt tokens;
+- tokenizes the chat prompt only (the answer letter is NOT appended);
+- reads attention at the answer-prediction step (the last prompt token,
+  whose next-token distribution is the behavioural answer-letter distribution);
 - averages over heads and the final N layers;
 - resolves manually annotated spans;
 - aggregates attention by region, role, tag, criticality, and span.
 
-This is diagnostic attention analysis, not causal attribution.
+The model's argmax answer letter is carried as metadata only; it does not
+enter the model input.
+
+Methodological caveats (must be reflected in any reporting):
+- Attention here is a DESCRIPTIVE / ASSOCIATIONAL diagnostic. It co-varies
+  with model behaviour; it is never a causal explanation of the answer.
+  Do not write that attention "explains", "drives", "causes", or "produces"
+  the answer.
+- Primary cross-variant measure is `attention_mean_per_token`;
+  `attention_sum` is reported only as a descriptive quantity (it scales with
+  span token count and prompt length and is not comparable across variants).
+- seed 0 denotes a single fixed, counterbalanced prompt (the option_order is
+  fixed by the paired behavioural row). Attention extraction is a single
+  deterministic forward pass under torch.no_grad with no sampling, so one
+  seed is sufficient by construction; `seed` is provenance of the paired
+  behavioural row, not a replication axis.
+- Aggregation over the last 4 layers and the head-average is a deliberate
+  summary choice, not an architectural claim; it bounds what can be read off.
+- P05 (query_type = satisfiability) exhibits a systematic divergence between
+  the formal satisfiable-but-self-negating ("false-paradox") structure and
+  uniform model behaviour; report and analyse this divergence, do not label
+  the item defective.
+- P07 has gold = Unknown; "Unknown" is the safe default label, so P07
+  accuracy must be read against the model's global "Unknown" base rate
+  before any reasoning interpretation.
 """
 
 from __future__ import annotations
@@ -304,34 +329,31 @@ def extract_answer_attention(
     target_letter: str,
     last_n_layers: int,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    # target_letter is metadata only: the answer letter is NOT appended to the
+    # input. Attention is read at the answer-prediction step, i.e. the last
+    # prompt token, whose next-token distribution is the behavioural answer-
+    # letter distribution. This is a descriptive/associational read, never a
+    # causal account of the answer (see module docstring caveats).
     prompt_enc = tokenizer(
         chat_prompt,
         return_tensors="pt",
         add_special_tokens=True,
     )
 
-    full_text = chat_prompt + target_letter
-
-    full_enc = tokenizer(
-        full_text,
-        return_tensors="pt",
-        add_special_tokens=True,
-    )
-
-    input_ids = full_enc["input_ids"].to(model.device)
-    attention_mask = full_enc.get("attention_mask")
+    input_ids = prompt_enc["input_ids"].to(model.device)
+    attention_mask = prompt_enc.get("attention_mask")
     if attention_mask is not None:
         attention_mask = attention_mask.to(model.device)
 
     n_prompt_tokens = int(prompt_enc["input_ids"].shape[1])
-    n_full_tokens = int(full_enc["input_ids"].shape[1])
 
-    if n_full_tokens <= n_prompt_tokens:
+    if n_prompt_tokens < 2:
         raise ValueError(
-            f"Target letter did not add tokens: prompt={n_prompt_tokens}, full={n_full_tokens}"
+            f"Prompt too short for answer-prediction-step read: "
+            f"n_prompt_tokens={n_prompt_tokens}"
         )
 
-    answer_token_index = n_prompt_tokens
+    query_pos = n_prompt_tokens - 1
 
     with torch.no_grad():
         outputs = model(
@@ -354,7 +376,7 @@ def extract_answer_attention(
 
     for attn in selected_layers:
         # shape: [batch, heads, seq, seq]
-        vec = attn[0, :, answer_token_index, :n_prompt_tokens]
+        vec = attn[0, :, query_pos, :n_prompt_tokens]
         vec = vec.mean(dim=0)
         layer_vectors.append(vec)
 
@@ -384,12 +406,11 @@ def extract_answer_attention(
         "last_n_layers": last_n_layers,
         "used_layers": list(range(start_layer, n_layers)),
         "n_prompt_tokens": n_prompt_tokens,
-        "n_full_tokens": n_full_tokens,
-        "answer_token_index": answer_token_index,
-        "answer_token": tokenizer.convert_ids_to_tokens(
-            [full_enc["input_ids"][0, answer_token_index].item()]
-        )[0],
+        "query_pos": query_pos,
+        "query_token": tokens[query_pos],
+        "read_step": "answer_prediction_step:last_prompt_token",
         "target_letter": target_letter,
+        "target_letter_role": "metadata_only_not_appended",
         "attention_sum_to_prompt": float(attention_vec.sum().item()),
     }
 
@@ -601,7 +622,7 @@ def run_one(
         f"{model_key:5s} | {puzzle_id:24s} | "
         f"gold={gold_label}->{gold_letter} | "
         f"argmax={argmax_label}->{argmax_letter} | "
-        f"answer_token={diagnostics['answer_token']!r} | "
+        f"query_token={diagnostics['query_token']!r} | "
         f"attn_sum={diagnostics['attention_sum_to_prompt']:.4f}"
     )
 
