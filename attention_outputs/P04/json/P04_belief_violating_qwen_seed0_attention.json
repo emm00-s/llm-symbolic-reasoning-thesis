@@ -25,11 +25,12 @@
       35
     ],
     "n_prompt_tokens": 136,
-    "n_full_tokens": 137,
-    "answer_token_index": 136,
-    "answer_token": "B",
+    "query_pos": 135,
+    "query_token": "Ċ",
+    "read_step": "answer_prediction_step:last_prompt_token",
     "target_letter": "B",
-    "attention_sum_to_prompt": 0.8748937249183655
+    "target_letter_role": "metadata_only_not_appended",
+    "attention_sum_to_prompt": 0.9999808073043823
   },
   "raw_prompt": "Exactly two of the following three statements are true: water molecules contain hydrogen atoms, ordinary stones can breathe, and the Moon is made of cheese. Observation: water molecules do not contain hydrogen atoms.\n\nIs it the case that both ordinary stones can breathe and the Moon is made of cheese?\n\nChoose exactly one of the following options:\nA. Paradox\nB. False\nC. True\nD. Unknown\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:",
   "chat_prompt": "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n<|im_start|>user\nExactly two of the following three statements are true: water molecules contain hydrogen atoms, ordinary stones can breathe, and the Moon is made of cheese. Observation: water molecules do not contain hydrogen atoms.\n\nIs it the case that both ordinary stones can breathe and the Moon is made of cheese?\n\nChoose exactly one of the following options:\nA. Paradox\nB. False\nC. True\nD. Unknown\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:<|im_end|>\n<|im_start|>assistant\n",
@@ -476,682 +477,682 @@
     {
       "token_index": 0,
       "token": "<|im_start|>",
-      "attention": 0.04095458984375
+      "attention": 0.01139068603515625
     },
     {
       "token_index": 1,
       "token": "system",
-      "attention": 0.0012350082397460938
+      "attention": 0.0007433891296386719
     },
     {
       "token_index": 2,
       "token": "Ċ",
-      "attention": 0.1668701171875
+      "attention": 0.12939453125
     },
     {
       "token_index": 3,
       "token": "You",
-      "attention": 0.00153350830078125
+      "attention": 0.0012073516845703125
     },
     {
       "token_index": 4,
       "token": "Ġare",
-      "attention": 0.00251007080078125
+      "attention": 0.0023479461669921875
     },
     {
       "token_index": 5,
       "token": "ĠQ",
-      "attention": 0.0006518363952636719
+      "attention": 0.0011425018310546875
     },
     {
       "token_index": 6,
       "token": "wen",
-      "attention": 0.0010728836059570312
+      "attention": 0.0010557174682617188
     },
     {
       "token_index": 7,
       "token": ",",
-      "attention": 0.004833221435546875
+      "attention": 0.0027256011962890625
     },
     {
       "token_index": 8,
       "token": "Ġcreated",
-      "attention": 0.000408172607421875
+      "attention": 0.0004570484161376953
     },
     {
       "token_index": 9,
       "token": "Ġby",
-      "attention": 0.0005779266357421875
+      "attention": 0.0008697509765625
     },
     {
       "token_index": 10,
       "token": "ĠAlibaba",
-      "attention": 0.0003879070281982422
+      "attention": 0.00077056884765625
     },
     {
       "token_index": 11,
       "token": "ĠCloud",
-      "attention": 0.0011157989501953125
+      "attention": 0.0008573532104492188
     },
     {
       "token_index": 12,
       "token": ".",
-      "attention": 0.00904083251953125
+      "attention": 0.00542449951171875
     },
     {
       "token_index": 13,
       "token": "ĠYou",
-      "attention": 0.0007815361022949219
+      "attention": 0.0006971359252929688
     },
     {
       "token_index": 14,
       "token": "Ġare",
-      "attention": 0.0003943443298339844
+      "attention": 0.0005331039428710938
     },
     {
       "token_index": 15,
       "token": "Ġa",
-      "attention": 0.00200653076171875
+      "attention": 0.0011882781982421875
     },
     {
       "token_index": 16,
       "token": "Ġhelpful",
-      "attention": 9.238719940185547e-05
+      "attention": 0.00032782554626464844
     },
     {
       "token_index": 17,
       "token": "Ġassistant",
-      "attention": 0.00011932849884033203
+      "attention": 0.0001957416534423828
     },
     {
       "token_index": 18,
       "token": ".",
-      "attention": 0.0028972625732421875
+      "attention": 0.0023345947265625
     },
     {
       "token_index": 19,
       "token": "<|im_end|>",
-      "attention": 0.0902099609375
+      "attention": 0.0032444000244140625
     },
     {
       "token_index": 20,
       "token": "Ċ",
-      "attention": 0.01898193359375
+      "attention": 0.0027790069580078125
     },
     {
       "token_index": 21,
       "token": "<|im_start|>",
-      "attention": 0.00264739990234375
+      "attention": 0.0008645057678222656
     },
     {
       "token_index": 22,
       "token": "user",
-      "attention": 0.007061004638671875
+      "attention": 0.0007486343383789062
     },
     {
       "token_index": 23,
       "token": "Ċ",
-      "attention": 0.02099609375
+      "attention": 0.016510009765625
     },
     {
       "token_index": 24,
       "token": "Exactly",
-      "attention": 0.001132965087890625
+      "attention": 0.0029010772705078125
     },
     {
       "token_index": 25,
       "token": "Ġtwo",
-      "attention": 0.0005249977111816406
+      "attention": 0.0014591217041015625
     },
     {
       "token_index": 26,
       "token": "Ġof",
-      "attention": 0.0007767677307128906
+      "attention": 0.0016193389892578125
     },
     {
       "token_index": 27,
       "token": "Ġthe",
-      "attention": 0.001186370849609375
+      "attention": 0.0023708343505859375
     },
     {
       "token_index": 28,
       "token": "Ġfollowing",
-      "attention": 0.00024628639221191406
+      "attention": 0.0009131431579589844
     },
     {
       "token_index": 29,
       "token": "Ġthree",
-      "attention": 0.0001131296157836914
+      "attention": 0.0005745887756347656
     },
     {
       "token_index": 30,
       "token": "Ġstatements",
-      "attention": 0.0003535747528076172
+      "attention": 0.000896453857421875
     },
     {
       "token_index": 31,
       "token": "Ġare",
-      "attention": 0.00018906593322753906
+      "attention": 0.0011682510375976562
     },
     {
       "token_index": 32,
       "token": "Ġtrue",
-      "attention": 0.0009174346923828125
+      "attention": 0.0018711090087890625
     },
     {
       "token_index": 33,
       "token": ":",
-      "attention": 0.0011472702026367188
+      "attention": 0.004550933837890625
     },
     {
       "token_index": 34,
       "token": "Ġwater",
-      "attention": 0.00045990943908691406
+      "attention": 0.0008778572082519531
     },
     {
       "token_index": 35,
       "token": "Ġmolecules",
-      "attention": 0.00024580955505371094
+      "attention": 0.0004878044128417969
     },
     {
       "token_index": 36,
       "token": "Ġcontain",
-      "attention": 0.000179290771484375
+      "attention": 0.0004470348358154297
     },
     {
       "token_index": 37,
       "token": "Ġhydrogen",
-      "attention": 0.00025725364685058594
+      "attention": 0.0005245208740234375
     },
     {
       "token_index": 38,
       "token": "Ġatoms",
-      "attention": 0.0004448890686035156
+      "attention": 0.0005917549133300781
     },
     {
       "token_index": 39,
       "token": ",",
-      "attention": 0.0018148422241210938
+      "attention": 0.005489349365234375
     },
     {
       "token_index": 40,
       "token": "Ġordinary",
-      "attention": 0.00031185150146484375
+      "attention": 0.0013742446899414062
     },
     {
       "token_index": 41,
       "token": "Ġstones",
-      "attention": 0.00032782554626464844
+      "attention": 0.0006737709045410156
     },
     {
       "token_index": 42,
       "token": "Ġcan",
-      "attention": 0.00024056434631347656
+      "attention": 0.00027942657470703125
     },
     {
       "token_index": 43,
       "token": "Ġbreathe",
-      "attention": 0.00041222572326660156
+      "attention": 0.0005908012390136719
     },
     {
       "token_index": 44,
       "token": ",",
-      "attention": 0.00128936767578125
+      "attention": 0.0031795501708984375
     },
     {
       "token_index": 45,
       "token": "Ġand",
-      "attention": 0.00084686279296875
+      "attention": 0.0028743743896484375
     },
     {
       "token_index": 46,
       "token": "Ġthe",
-      "attention": 0.0007581710815429688
+      "attention": 0.0021038055419921875
     },
     {
       "token_index": 47,
       "token": "ĠMoon",
-      "attention": 0.0002484321594238281
+      "attention": 0.0006327629089355469
     },
     {
       "token_index": 48,
       "token": "Ġis",
-      "attention": 0.0001404285430908203
+      "attention": 0.000499725341796875
     },
     {
       "token_index": 49,
       "token": "Ġmade",
-      "attention": 0.00016641616821289062
+      "attention": 0.0003027915954589844
     },
     {
       "token_index": 50,
       "token": "Ġof",
-      "attention": 0.0002644062042236328
+      "attention": 0.0003719329833984375
     },
     {
       "token_index": 51,
       "token": "Ġcheese",
-      "attention": 0.00212860107421875
+      "attention": 0.001926422119140625
     },
     {
       "token_index": 52,
       "token": ".",
-      "attention": 0.002147674560546875
+      "attention": 0.004138946533203125
     },
     {
       "token_index": 53,
       "token": "ĠObservation",
-      "attention": 0.0004532337188720703
+      "attention": 0.0014867782592773438
     },
     {
       "token_index": 54,
       "token": ":",
-      "attention": 0.0008563995361328125
+      "attention": 0.0046539306640625
     },
     {
       "token_index": 55,
       "token": "Ġwater",
-      "attention": 0.0004038810729980469
+      "attention": 0.0010318756103515625
     },
     {
       "token_index": 56,
       "token": "Ġmolecules",
-      "attention": 8.13603401184082e-05
+      "attention": 0.0002321004867553711
     },
     {
       "token_index": 57,
       "token": "Ġdo",
-      "attention": 7.826089859008789e-05
+      "attention": 0.0003039836883544922
     },
     {
       "token_index": 58,
       "token": "Ġnot",
-      "attention": 0.000133514404296875
+      "attention": 0.0004525184631347656
     },
     {
       "token_index": 59,
       "token": "Ġcontain",
-      "attention": 0.00023436546325683594
+      "attention": 0.0006861686706542969
     },
     {
       "token_index": 60,
       "token": "Ġhydrogen",
-      "attention": 0.00027942657470703125
+      "attention": 0.0006175041198730469
     },
     {
       "token_index": 61,
       "token": "Ġatoms",
-      "attention": 0.0010251998901367188
+      "attention": 0.0017900466918945312
     },
     {
       "token_index": 62,
       "token": ".ĊĊ",
-      "attention": 0.00276947021484375
+      "attention": 0.0089874267578125
     },
     {
       "token_index": 63,
       "token": "Is",
-      "attention": 0.0009474754333496094
+      "attention": 0.0038127899169921875
     },
     {
       "token_index": 64,
       "token": "Ġit",
-      "attention": 0.0003764629364013672
+      "attention": 0.0025787353515625
     },
     {
       "token_index": 65,
       "token": "Ġthe",
-      "attention": 0.0007829666137695312
+      "attention": 0.00315093994140625
     },
     {
       "token_index": 66,
       "token": "Ġcase",
-      "attention": 0.000835418701171875
+      "attention": 0.0019083023071289062
     },
     {
       "token_index": 67,
       "token": "Ġthat",
-      "attention": 0.0006399154663085938
+      "attention": 0.0029125213623046875
     },
     {
       "token_index": 68,
       "token": "Ġboth",
-      "attention": 0.0003762245178222656
+      "attention": 0.002185821533203125
     },
     {
       "token_index": 69,
       "token": "Ġordinary",
-      "attention": 0.0003745555877685547
+      "attention": 0.0009832382202148438
     },
     {
       "token_index": 70,
       "token": "Ġstones",
-      "attention": 0.0002665519714355469
+      "attention": 0.0005178451538085938
     },
     {
       "token_index": 71,
       "token": "Ġcan",
-      "attention": 0.00019848346710205078
+      "attention": 0.0005621910095214844
     },
     {
       "token_index": 72,
       "token": "Ġbreathe",
-      "attention": 0.00027251243591308594
+      "attention": 0.0008106231689453125
     },
     {
       "token_index": 73,
       "token": "Ġand",
-      "attention": 0.0005445480346679688
+      "attention": 0.002468109130859375
     },
     {
       "token_index": 74,
       "token": "Ġthe",
-      "attention": 0.0005350112915039062
+      "attention": 0.001140594482421875
     },
     {
       "token_index": 75,
       "token": "ĠMoon",
-      "attention": 0.00024330615997314453
+      "attention": 0.00070953369140625
     },
     {
       "token_index": 76,
       "token": "Ġis",
-      "attention": 0.00010037422180175781
+      "attention": 0.0002734661102294922
     },
     {
       "token_index": 77,
       "token": "Ġmade",
-      "attention": 6.669759750366211e-05
+      "attention": 0.00019025802612304688
     },
     {
       "token_index": 78,
       "token": "Ġof",
-      "attention": 0.0002486705780029297
+      "attention": 0.0006055831909179688
     },
     {
       "token_index": 79,
       "token": "Ġcheese",
-      "attention": 0.00043320655822753906
+      "attention": 0.000835418701171875
     },
     {
       "token_index": 80,
       "token": "?ĊĊ",
-      "attention": 0.004596710205078125
+      "attention": 0.01195526123046875
     },
     {
       "token_index": 81,
       "token": "Choose",
-      "attention": 0.0005135536193847656
+      "attention": 0.0023250579833984375
     },
     {
       "token_index": 82,
       "token": "Ġexactly",
-      "attention": 0.00011622905731201172
+      "attention": 0.0007076263427734375
     },
     {
       "token_index": 83,
       "token": "Ġone",
-      "attention": 0.00017952919006347656
+      "attention": 0.0019741058349609375
     },
     {
       "token_index": 84,
       "token": "Ġof",
-      "attention": 0.00043010711669921875
+      "attention": 0.0021038055419921875
     },
     {
       "token_index": 85,
       "token": "Ġthe",
-      "attention": 0.0013818740844726562
+      "attention": 0.004791259765625
     },
     {
       "token_index": 86,
       "token": "Ġfollowing",
-      "attention": 0.0002391338348388672
+      "attention": 0.0009851455688476562
     },
     {
       "token_index": 87,
       "token": "Ġoptions",
-      "attention": 0.0009713172912597656
+      "attention": 0.003528594970703125
     },
     {
       "token_index": 88,
       "token": ":Ċ",
-      "attention": 0.00131988525390625
+      "attention": 0.004638671875
     },
     {
       "token_index": 89,
       "token": "A",
-      "attention": 0.001995086669921875
+      "attention": 0.01995849609375
     },
     {
       "token_index": 90,
       "token": ".",
-      "attention": 0.00399017333984375
+      "attention": 0.006290435791015625
     },
     {
       "token_index": 91,
       "token": "ĠPar",
-      "attention": 0.0007114410400390625
+      "attention": 0.0030994415283203125
     },
     {
       "token_index": 92,
       "token": "adox",
-      "attention": 0.0010938644409179688
+      "attention": 0.0034999847412109375
     },
     {
       "token_index": 93,
       "token": "Ċ",
-      "attention": 0.00516510009765625
+      "attention": 0.00580596923828125
     },
     {
       "token_index": 94,
       "token": "B",
-      "attention": 0.00141143798828125
+      "attention": 0.0135345458984375
     },
     {
       "token_index": 95,
       "token": ".",
-      "attention": 0.00476837158203125
+      "attention": 0.0132904052734375
     },
     {
       "token_index": 96,
       "token": "ĠFalse",
-      "attention": 0.0014028549194335938
+      "attention": 0.01152801513671875
     },
     {
       "token_index": 97,
       "token": "Ċ",
-      "attention": 0.09844970703125
+      "attention": 0.079833984375
     },
     {
       "token_index": 98,
       "token": "C",
-      "attention": 0.0013790130615234375
+      "attention": 0.00786590576171875
     },
     {
       "token_index": 99,
       "token": ".",
-      "attention": 0.0020122528076171875
+      "attention": 0.0033168792724609375
     },
     {
       "token_index": 100,
       "token": "ĠTrue",
-      "attention": 0.006622314453125
+      "attention": 0.00652313232421875
     },
     {
       "token_index": 101,
       "token": "Ċ",
-      "attention": 0.006153106689453125
+      "attention": 0.005924224853515625
     },
     {
       "token_index": 102,
       "token": "D",
-      "attention": 0.002590179443359375
+      "attention": 0.013763427734375
     },
     {
       "token_index": 103,
       "token": ".",
-      "attention": 0.005130767822265625
+      "attention": 0.0095672607421875
     },
     {
       "token_index": 104,
       "token": "ĠUnknown",
-      "attention": 0.004650115966796875
+      "attention": 0.0202789306640625
     },
     {
       "token_index": 105,
       "token": "ĊĊ",
-      "attention": 0.0143280029296875
+      "attention": 0.012664794921875
     },
     {
       "token_index": 106,
       "token": "Your",
-      "attention": 0.0009560585021972656
+      "attention": 0.0022106170654296875
     },
     {
       "token_index": 107,
       "token": "Ġanswer",
-      "attention": 0.0007104873657226562
+      "attention": 0.0017690658569335938
     },
     {
       "token_index": 108,
       "token": "Ġmust",
-      "attention": 0.0005054473876953125
+      "attention": 0.0018243789672851562
     },
     {
       "token_index": 109,
       "token": "Ġbe",
-      "attention": 0.0005536079406738281
+      "attention": 0.0036029815673828125
     },
     {
       "token_index": 110,
       "token": "Ġexactly",
-      "attention": 0.00029540061950683594
+      "attention": 0.002201080322265625
     },
     {
       "token_index": 111,
       "token": "Ġone",
-      "attention": 0.0002503395080566406
+      "attention": 0.00145721435546875
     },
     {
       "token_index": 112,
       "token": "Ġletter",
-      "attention": 0.0010137557983398438
+      "attention": 0.003330230712890625
     },
     {
       "token_index": 113,
       "token": ":",
-      "attention": 0.0016698837280273438
+      "attention": 0.00556182861328125
     },
     {
       "token_index": 114,
       "token": "ĠA",
-      "attention": 0.0024242401123046875
+      "attention": 0.017486572265625
     },
     {
       "token_index": 115,
       "token": ",",
-      "attention": 0.00243377685546875
+      "attention": 0.00565338134765625
     },
     {
       "token_index": 116,
       "token": "ĠB",
-      "attention": 0.0013027191162109375
+      "attention": 0.014678955078125
     },
     {
       "token_index": 117,
       "token": ",",
-      "attention": 0.0009775161743164062
+      "attention": 0.00376129150390625
     },
     {
       "token_index": 118,
       "token": "ĠC",
-      "attention": 0.001689910888671875
+      "attention": 0.01042938232421875
     },
     {
       "token_index": 119,
       "token": ",",
-      "attention": 0.0018148422241210938
+      "attention": 0.00455474853515625
     },
     {
       "token_index": 120,
       "token": "Ġor",
-      "attention": 0.003238677978515625
+      "attention": 0.0104827880859375
     },
     {
       "token_index": 121,
       "token": "ĠD",
-      "attention": 0.004207611083984375
+      "attention": 0.04620361328125
     },
     {
       "token_index": 122,
       "token": ".Ċ",
-      "attention": 0.01033782958984375
+      "attention": 0.01168060302734375
     },
     {
       "token_index": 123,
       "token": "Do",
-      "attention": 0.0014934539794921875
+      "attention": 0.004558563232421875
     },
     {
       "token_index": 124,
       "token": "Ġnot",
-      "attention": 0.001476287841796875
+      "attention": 0.0028018951416015625
     },
     {
       "token_index": 125,
       "token": "Ġwrite",
-      "attention": 0.0006380081176757812
+      "attention": 0.002655029296875
     },
     {
       "token_index": 126,
       "token": "Ġanything",
-      "attention": 0.0004112720489501953
+      "attention": 0.0010251998901367188
     },
     {
       "token_index": 127,
       "token": "Ġelse",
-      "attention": 0.0010223388671875
+      "attention": 0.0037746429443359375
     },
     {
       "token_index": 128,
       "token": ".Ċ",
-      "attention": 0.0105133056640625
+      "attention": 0.025482177734375
     },
     {
       "token_index": 129,
       "token": "Answer",
-      "attention": 0.005245208740234375
+      "attention": 0.01397705078125
     },
     {
       "token_index": 130,
       "token": ":",
-      "attention": 0.0085296630859375
+      "attention": 0.02960205078125
     },
     {
       "token_index": 131,
       "token": "<|im_end|>",
-      "attention": 0.08990478515625
+      "attention": 0.02093505859375
     },
     {
       "token_index": 132,
       "token": "Ċ",
-      "attention": 0.0229339599609375
+      "attention": 0.01346588134765625
     },
     {
       "token_index": 133,
       "token": "<|im_start|>",
-      "attention": 0.0095977783203125
+      "attention": 0.009613037109375
     },
     {
       "token_index": 134,
       "token": "assistant",
-      "attention": 0.069091796875
+      "attention": 0.058868408203125
     },
     {
       "token_index": 135,
       "token": "Ċ",
-      "attention": 0.037841796875
+      "attention": 0.1171875
     }
   ],
   "aggregation": {
@@ -1159,100 +1160,70 @@
       "NARRATIVE": {
         "n_tokens": 24,
         "n_scored_tokens": 24,
-        "attention_sum": 0.010480046272277832,
-        "attention_mean_per_token": 0.000436668594678243,
-        "attention_mass_share": 0.011978650633544896,
-        "token_share": 0.17647058823529413,
-        "attention_enrichment": 0.06787902025675441
+        "attention_sum": 0.021159052848815918,
+        "attention_mean_per_token": 0.0008816272020339966
       },
       "QUESTION": {
         "n_tokens": 11,
         "n_scored_tokens": 11,
-        "attention_sum": 0.0053751468658447266,
-        "attention_mean_per_token": 0.0004886497150767933,
-        "attention_mass_share": 0.0061437711950057365,
-        "token_share": 0.08088235294117647,
-        "attention_enrichment": 0.07595935295643455
+        "attention_sum": 0.010941505432128906,
+        "attention_mean_per_token": 0.0009946823120117188
       }
     },
     "by_role": {
       "PREMISE": {
         "n_tokens": 17,
         "n_scored_tokens": 17,
-        "attention_sum": 0.008244037628173828,
-        "attention_mean_per_token": 0.0004849433898925781,
-        "attention_mass_share": 0.009422901768946923,
-        "token_share": 0.125,
-        "attention_enrichment": 0.07538321415157538
+        "attention_sum": 0.01604485511779785,
+        "attention_mean_per_token": 0.0009438150069292854
       },
       "OBSERVATION": {
         "n_tokens": 7,
         "n_scored_tokens": 7,
-        "attention_sum": 0.002236008644104004,
-        "attention_mean_per_token": 0.00031942980630057197,
-        "attention_mass_share": 0.002555748864597973,
-        "token_share": 0.051470588235294115,
-        "attention_enrichment": 0.04965454936933205
+        "attention_sum": 0.005114197731018066,
+        "attention_mean_per_token": 0.0007305996758597237
       },
       "QUESTION_TARGET": {
         "n_tokens": 11,
         "n_scored_tokens": 11,
-        "attention_sum": 0.0053751468658447266,
-        "attention_mean_per_token": 0.0004886497150767933,
-        "attention_mass_share": 0.0061437711950057365,
-        "token_share": 0.08088235294117647,
-        "attention_enrichment": 0.07595935295643455
+        "attention_sum": 0.010941505432128906,
+        "attention_mean_per_token": 0.0009946823120117188
       }
     },
     "by_tag": {
       "LOGICAL_OP": {
         "n_tokens": 3,
         "n_scored_tokens": 3,
-        "attention_sum": 0.0020341873168945312,
-        "attention_mean_per_token": 0.0006780624389648438,
-        "attention_mass_share": 0.0023250679013434882,
-        "token_share": 0.022058823529411766,
-        "attention_enrichment": 0.10540307819423812
+        "attention_sum": 0.0065460205078125,
+        "attention_mean_per_token": 0.0021820068359375
       },
       "CONTENT_TRIGGER": {
         "n_tokens": 22,
         "n_scored_tokens": 22,
-        "attention_sum": 0.008822083473205566,
-        "attention_mean_per_token": 0.00040100379423661667,
-        "attention_mass_share": 0.010083605839130618,
-        "token_share": 0.16176470588235295,
-        "attention_enrichment": 0.06233501791462564
+        "attention_sum": 0.016798853874206543,
+        "attention_mean_per_token": 0.0007635842670093883
       },
       "NEGATION": {
         "n_tokens": 2,
         "n_scored_tokens": 2,
-        "attention_sum": 0.0002117753028869629,
-        "attention_mean_per_token": 0.00010588765144348145,
-        "attention_mass_share": 0.00024205831731931006,
-        "token_share": 0.014705882352941176,
-        "attention_enrichment": 0.016459965577713086
+        "attention_sum": 0.0007565021514892578,
+        "attention_mean_per_token": 0.0003782510757446289
       }
     },
     "by_critical": {
       "True": {
         "n_tokens": 25,
         "n_scored_tokens": 25,
-        "attention_sum": 0.010856270790100098,
-        "attention_mean_per_token": 0.00043425083160400393,
-        "attention_mass_share": 0.012408673740474106,
-        "token_share": 0.18382352941176472,
-        "attention_enrichment": 0.06750318514817913
+        "attention_sum": 0.023344874382019043,
+        "attention_mean_per_token": 0.0009337949752807617
       }
     },
     "by_span": {
       "P04_bv_exactly_two": {
         "n_tokens": 2,
         "n_scored_tokens": 2,
-        "attention_sum": 0.0016579627990722656,
-        "attention_mean_per_token": 0.0008289813995361328,
-        "attention_mass_share": 0.0018950447944142779,
-        "token_share": 0.014705882352941176,
-        "attention_enrichment": 0.1288630460201709,
+        "attention_sum": 0.004360198974609375,
+        "attention_mean_per_token": 0.0021800994873046875,
         "text": "Exactly two",
         "region": "NARRATIVE",
         "role": "PREMISE",
@@ -1265,11 +1236,8 @@
       "P04_bv_content_water_premise": {
         "n_tokens": 5,
         "n_scored_tokens": 5,
-        "attention_sum": 0.0015871524810791016,
-        "attention_mean_per_token": 0.00031743049621582033,
-        "attention_mass_share": 0.0018141088864561184,
-        "token_share": 0.03676470588235294,
-        "attention_enrichment": 0.04934376171160642,
+        "attention_sum": 0.0029289722442626953,
+        "attention_mean_per_token": 0.0005857944488525391,
         "text": "water molecules contain hydrogen atoms",
         "region": "NARRATIVE",
         "role": "PREMISE",
@@ -1282,11 +1250,8 @@
       "P04_bv_content_stones_premise": {
         "n_tokens": 4,
         "n_scored_tokens": 4,
-        "attention_sum": 0.0012924671173095703,
-        "attention_mean_per_token": 0.0003231167793273926,
-        "attention_mass_share": 0.001477284703842364,
-        "token_share": 0.029411764705882353,
-        "attention_enrichment": 0.05022767993064038,
+        "attention_sum": 0.002918243408203125,
+        "attention_mean_per_token": 0.0007295608520507812,
         "text": "ordinary stones can breathe",
         "region": "NARRATIVE",
         "role": "PREMISE",
@@ -1299,11 +1264,8 @@
       "P04_bv_content_moon_premise": {
         "n_tokens": 6,
         "n_scored_tokens": 6,
-        "attention_sum": 0.0037064552307128906,
-        "attention_mean_per_token": 0.0006177425384521484,
-        "attention_mass_share": 0.004236463384234162,
-        "token_share": 0.04411764705882353,
-        "attention_enrichment": 0.09602650337597433,
+        "attention_sum": 0.005837440490722656,
+        "attention_mean_per_token": 0.000972906748453776,
         "text": "the Moon is made of cheese",
         "region": "NARRATIVE",
         "role": "PREMISE",
@@ -1316,11 +1278,8 @@
       "P04_bv_obs_negation": {
         "n_tokens": 2,
         "n_scored_tokens": 2,
-        "attention_sum": 0.0002117753028869629,
-        "attention_mean_per_token": 0.00010588765144348145,
-        "attention_mass_share": 0.00024205831731931006,
-        "token_share": 0.014705882352941176,
-        "attention_enrichment": 0.016459965577713086,
+        "attention_sum": 0.0007565021514892578,
+        "attention_mean_per_token": 0.0003782510757446289,
         "text": "do not",
         "region": "NARRATIVE",
         "role": "OBSERVATION",
@@ -1333,11 +1292,8 @@
       "P04_bv_content_water_observation": {
         "n_tokens": 7,
         "n_scored_tokens": 7,
-        "attention_sum": 0.002236008644104004,
-        "attention_mean_per_token": 0.00031942980630057197,
-        "attention_mass_share": 0.002555748864597973,
-        "token_share": 0.051470588235294115,
-        "attention_enrichment": 0.04965454936933205,
+        "attention_sum": 0.005114197731018066,
+        "attention_mean_per_token": 0.0007305996758597237,
         "text": "water molecules do not contain hydrogen atoms",
         "region": "NARRATIVE",
         "role": "OBSERVATION",
@@ -1350,11 +1306,8 @@
       "P04_bv_both": {
         "n_tokens": 1,
         "n_scored_tokens": 1,
-        "attention_sum": 0.0003762245178222656,
-        "attention_mean_per_token": 0.0003762245178222656,
-        "attention_mass_share": 0.0004300231069292106,
-        "token_share": 0.007352941176470588,
-        "attention_enrichment": 0.05848314254237264,
+        "attention_sum": 0.002185821533203125,
+        "attention_mean_per_token": 0.002185821533203125,
         "text": "both",
         "region": "QUESTION",
         "role": "QUESTION_TARGET",
@@ -1367,11 +1320,8 @@
       "P04_bv_content_stones_question": {
         "n_tokens": 4,
         "n_scored_tokens": 4,
-        "attention_sum": 0.0012924671173095703,
-        "attention_mean_per_token": 0.0003231167793273926,
-        "attention_mass_share": 0.001477284703842364,
-        "token_share": 0.029411764705882353,
-        "attention_enrichment": 0.05022767993064038,
+        "attention_sum": 0.002918243408203125,
+        "attention_mean_per_token": 0.0007295608520507812,
         "text": "ordinary stones can breathe",
         "region": "QUESTION",
         "role": "QUESTION_TARGET",
@@ -1384,11 +1334,8 @@
       "P04_bv_content_moon_question": {
         "n_tokens": 6,
         "n_scored_tokens": 6,
-        "attention_sum": 0.0037064552307128906,
-        "attention_mean_per_token": 0.0006177425384521484,
-        "attention_mass_share": 0.004236463384234162,
-        "token_share": 0.04411764705882353,
-        "attention_enrichment": 0.09602650337597433,
+        "attention_sum": 0.005837440490722656,
+        "attention_mean_per_token": 0.000972906748453776,
         "text": "the Moon is made of cheese",
         "region": "QUESTION",
         "role": "QUESTION_TARGET",
