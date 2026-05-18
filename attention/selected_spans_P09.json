@@ -1,0 +1,227 @@
+{
+  "P09_abstract": {
+    "puzzle_id": "P09_abstract",
+    "template_id": "P09",
+    "variant_type": "abstract",
+    "gold_label": "Paradox",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P09_abs_assertion",
+        "text": "X1",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "ASSERTION"
+        ],
+        "critical": true,
+        "notes": "Positive assertion.",
+        "occurrence": 1
+      },
+      {
+        "span_id": "P09_abs_contradiction",
+        "text": "Not X1",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTRADICTION"
+        ],
+        "critical": true,
+        "notes": "Negated assertion creating inconsistency.",
+        "anchor": "(2) Not X1"
+      },
+      {
+        "span_id": "P09_abs_negation",
+        "text": "Not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker.",
+        "anchor": "(2) Not X1"
+      },
+      {
+        "span_id": "P09_abs_question_target",
+        "text": "X1",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition.",
+        "anchor": "Is it the case that X1?"
+      }
+    ]
+  },
+  "P09_artificial": {
+    "puzzle_id": "P09_artificial",
+    "template_id": "P09",
+    "variant_type": "artificial",
+    "gold_label": "Paradox",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P09_art_assertion",
+        "text": "The Plort is active",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "ASSERTION"
+        ],
+        "critical": true,
+        "notes": "Positive assertion."
+      },
+      {
+        "span_id": "P09_art_contradiction",
+        "text": "The Plort is not active",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTRADICTION"
+        ],
+        "critical": true,
+        "notes": "Negated assertion creating inconsistency."
+      },
+      {
+        "span_id": "P09_art_negation",
+        "text": "not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker.",
+        "anchor": "The Plort is not active"
+      },
+      {
+        "span_id": "P09_art_question_target",
+        "text": "the Plort is active",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition.",
+        "anchor": "Is it the case that the Plort is active?"
+      }
+    ]
+  },
+  "P09_belief_violating": {
+    "puzzle_id": "P09_belief_violating",
+    "template_id": "P09",
+    "variant_type": "belief_violating",
+    "gold_label": "Paradox",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P09_bv_assertion",
+        "text": "Water molecules contain oxygen atoms",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "ASSERTION",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Positive factual assertion."
+      },
+      {
+        "span_id": "P09_bv_contradiction",
+        "text": "Water molecules do not contain oxygen atoms",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTRADICTION",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Negated assertion creating inconsistency."
+      },
+      {
+        "span_id": "P09_bv_negation",
+        "text": "do not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker.",
+        "anchor": "Water molecules do not contain oxygen atoms"
+      },
+      {
+        "span_id": "P09_bv_question_target",
+        "text": "water molecules contain oxygen atoms",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Queried factual proposition.",
+        "anchor": "Is it the case that water molecules contain oxygen atoms?"
+      }
+    ]
+  },
+  "P09_familiar": {
+    "puzzle_id": "P09_familiar",
+    "template_id": "P09",
+    "variant_type": "familiar",
+    "gold_label": "Paradox",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P09_fam_assertion",
+        "text": "The lamp is on",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "ASSERTION"
+        ],
+        "critical": true,
+        "notes": "Positive assertion."
+      },
+      {
+        "span_id": "P09_fam_contradiction",
+        "text": "The lamp is not on",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTRADICTION"
+        ],
+        "critical": true,
+        "notes": "Negated assertion creating inconsistency."
+      },
+      {
+        "span_id": "P09_fam_negation",
+        "text": "not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker.",
+        "anchor": "The lamp is not on"
+      },
+      {
+        "span_id": "P09_fam_question_target",
+        "text": "the lamp is on",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition.",
+        "anchor": "Is it the case that the lamp is on?"
+      }
+    ]
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "P08_abstract": {
+    "puzzle_id": "P08_abstract",
+    "template_id": "P08",
+    "variant_type": "abstract",
+    "gold_label": "True",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P08_abs_positive_branch",
+        "text": "If X1, then X2",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Positive case branch."
+      },
+      {
+        "span_id": "P08_abs_negative_branch",
+        "text": "If not X1, then X2",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Negative case branch."
+      },
+      {
+        "span_id": "P08_abs_negation",
+        "text": "not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case.",
+        "anchor": "If not X1, then X2"
+      },
+      {
+        "span_id": "P08_abs_question_target",
+        "text": "X2",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition entailed by both branches.",
+        "anchor": "Is it the case that X2?"
+      }
+    ]
+  },
+  "P08_artificial": {
+    "puzzle_id": "P08_artificial",
+    "template_id": "P08",
+    "variant_type": "artificial",
+    "gold_label": "True",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P08_art_positive_branch",
+        "text": "If the Plort opens, the Snorg arrives",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Positive case branch."
+      },
+      {
+        "span_id": "P08_art_negative_branch",
+        "text": "If the Plort does not open, the Snorg still arrives",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Negative case branch."
+      },
+      {
+        "span_id": "P08_art_negation",
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case.",
+        "anchor": "If the Plort does not open, the Snorg still arrives"
+      },
+      {
+        "span_id": "P08_art_question_target",
+        "text": "the Snorg arrives",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition entailed by both branches.",
+        "anchor": "Is it the case that the Snorg arrives?"
+      }
+    ]
+  },
+  "P08_belief_violating": {
+    "puzzle_id": "P08_belief_violating",
+    "template_id": "P08",
+    "variant_type": "belief_violating",
+    "gold_label": "True",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P08_bv_positive_branch",
+        "text": "If the Earth orbits the Sun, ordinary stones can breathe",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Positive case branch with factual antecedent and belief-violating consequent."
+      },
+      {
+        "span_id": "P08_bv_negative_branch",
+        "text": "If the Earth does not orbit the Sun, ordinary stones can breathe",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Negative case branch with belief-violating consequent."
+      },
+      {
+        "span_id": "P08_bv_negation",
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case.",
+        "anchor": "If the Earth does not orbit the Sun, ordinary stones can breathe"
+      },
+      {
+        "span_id": "P08_bv_question_target",
+        "text": "ordinary stones can breathe",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Queried belief-violating proposition entailed by both branches.",
+        "anchor": "Is it the case that ordinary stones can breathe?"
+      }
+    ]
+  },
+  "P08_familiar": {
+    "puzzle_id": "P08_familiar",
+    "template_id": "P08",
+    "variant_type": "familiar",
+    "gold_label": "True",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P08_fam_positive_branch",
+        "text": "If the market goes up, the trader makes a profit",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Positive case branch."
+      },
+      {
+        "span_id": "P08_fam_negative_branch",
+        "text": "If the market does not go up, the trader still makes a profit",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Negative case branch."
+      },
+      {
+        "span_id": "P08_fam_negation",
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case.",
+        "anchor": "If the market does not go up, the trader still makes a profit"
+      },
+      {
+        "span_id": "P08_fam_question_target",
+        "text": "the trader makes a profit",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition entailed by both branches.",
+        "anchor": "Is it the case that the trader makes a profit?"
+      }
+    ]
+  }
+}

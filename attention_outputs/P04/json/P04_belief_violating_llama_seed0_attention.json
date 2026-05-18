@@ -1,0 +1,1438 @@
+{
+  "metadata": {
+    "model_key": "llama",
+    "model_name": "meta-llama/Llama-3.2-3B-Instruct",
+    "puzzle_id": "P04_belief_violating",
+    "template_id": "P04",
+    "variant_type": "belief_violating",
+    "seed": 0,
+    "option_order": "Paradox|False|True|Unknown",
+    "gold_label": "True",
+    "gold_letter": "C",
+    "argmax_label": "False",
+    "argmax_letter": "B",
+    "target_letter": "B",
+    "correct_argmax": "False",
+    "last_n_layers": 4
+  },
+  "diagnostics": {
+    "n_layers": 28,
+    "last_n_layers": 4,
+    "used_layers": [
+      24,
+      25,
+      26,
+      27
+    ],
+    "n_prompt_tokens": 143,
+    "n_full_tokens": 144,
+    "answer_token_index": 143,
+    "answer_token": "B",
+    "target_letter": "B",
+    "attention_sum_to_prompt": 0.9180076718330383
+  },
+  "raw_prompt": "Exactly two of the following three statements are true: water molecules contain hydrogen atoms, ordinary stones can breathe, and the Moon is made of cheese. Observation: water molecules do not contain hydrogen atoms.\n\nIs it the case that both ordinary stones can breathe and the Moon is made of cheese?\n\nChoose exactly one of the following options:\nA. Paradox\nB. False\nC. True\nD. Unknown\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:",
+  "chat_prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 18 May 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nExactly two of the following three statements are true: water molecules contain hydrogen atoms, ordinary stones can breathe, and the Moon is made of cheese. Observation: water molecules do not contain hydrogen atoms.\n\nIs it the case that both ordinary stones can breathe and the Moon is made of cheese?\n\nChoose exactly one of the following options:\nA. Paradox\nB. False\nC. True\nD. Unknown\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+  "resolved": {
+    "resolved_spans": [
+      {
+        "span_id": "P04_bv_exactly_two",
+        "text": "Exactly two",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Cardinality operator.",
+        "start_char": 176,
+        "end_char": 187,
+        "token_indices": [
+          31,
+          32
+        ],
+        "tokens": [
+          "Exactly",
+          "Ġtwo"
+        ]
+      },
+      {
+        "span_id": "P04_bv_content_water_premise",
+        "text": "water molecules contain hydrogen atoms",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Factual content used as first statement.",
+        "start_char": 232,
+        "end_char": 270,
+        "token_indices": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "tokens": [
+          "Ġwater",
+          "Ġmolecules",
+          "Ġcontain",
+          "Ġhydrogen",
+          "Ġatoms"
+        ]
+      },
+      {
+        "span_id": "P04_bv_content_stones_premise",
+        "text": "ordinary stones can breathe",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-violating content used as second statement.",
+        "start_char": 272,
+        "end_char": 299,
+        "token_indices": [
+          47,
+          48,
+          49,
+          50
+        ],
+        "tokens": [
+          "Ġordinary",
+          "Ġstones",
+          "Ġcan",
+          "Ġbreathe"
+        ]
+      },
+      {
+        "span_id": "P04_bv_content_moon_premise",
+        "text": "the Moon is made of cheese",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-violating content used as third statement.",
+        "start_char": 305,
+        "end_char": 331,
+        "token_indices": [
+          53,
+          54,
+          55,
+          56,
+          57,
+          58
+        ],
+        "tokens": [
+          "Ġthe",
+          "ĠMoon",
+          "Ġis",
+          "Ġmade",
+          "Ġof",
+          "Ġcheese"
+        ]
+      },
+      {
+        "span_id": "P04_bv_obs_negation",
+        "anchor": "Observation: water molecules do not contain hydrogen atoms",
+        "text": "do not",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker excluding the first statement.",
+        "start_char": 362,
+        "end_char": 368,
+        "token_indices": [
+          64,
+          65
+        ],
+        "tokens": [
+          "Ġdo",
+          "Ġnot"
+        ]
+      },
+      {
+        "span_id": "P04_bv_content_water_observation",
+        "anchor": "Observation: water molecules do not contain hydrogen atoms",
+        "text": "water molecules do not contain hydrogen atoms",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-relevant observation contradicting ordinary factual knowledge.",
+        "start_char": 346,
+        "end_char": 391,
+        "token_indices": [
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "tokens": [
+          "Ġwater",
+          "Ġmolecules",
+          "Ġdo",
+          "Ġnot",
+          "Ġcontain",
+          "Ġhydrogen",
+          "Ġatoms"
+        ]
+      },
+      {
+        "span_id": "P04_bv_both",
+        "text": "both",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Conjunction operator in the question target.",
+        "start_char": 414,
+        "end_char": 418,
+        "token_indices": [
+          75
+        ],
+        "tokens": [
+          "Ġboth"
+        ]
+      },
+      {
+        "span_id": "P04_bv_content_stones_question",
+        "text": "ordinary stones can breathe",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-violating content in the question target.",
+        "start_char": 272,
+        "end_char": 299,
+        "token_indices": [
+          47,
+          48,
+          49,
+          50
+        ],
+        "tokens": [
+          "Ġordinary",
+          "Ġstones",
+          "Ġcan",
+          "Ġbreathe"
+        ]
+      },
+      {
+        "span_id": "P04_bv_content_moon_question",
+        "text": "the Moon is made of cheese",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-violating content in the question target.",
+        "start_char": 305,
+        "end_char": 331,
+        "token_indices": [
+          53,
+          54,
+          55,
+          56,
+          57,
+          58
+        ],
+        "tokens": [
+          "Ġthe",
+          "ĠMoon",
+          "Ġis",
+          "Ġmade",
+          "Ġof",
+          "Ġcheese"
+        ]
+      }
+    ],
+    "errors": [],
+    "by_region": {
+      "NARRATIVE": [
+        31,
+        32,
+        41,
+        42,
+        43,
+        44,
+        45,
+        47,
+        48,
+        49,
+        50,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "QUESTION": [
+        47,
+        48,
+        49,
+        50,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        75
+      ]
+    },
+    "by_role": {
+      "PREMISE": [
+        31,
+        32,
+        41,
+        42,
+        43,
+        44,
+        45,
+        47,
+        48,
+        49,
+        50,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "OBSERVATION": [
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "QUESTION_TARGET": [
+        47,
+        48,
+        49,
+        50,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        75
+      ]
+    },
+    "by_tag": {
+      "LOGICAL_OP": [
+        31,
+        32,
+        75
+      ],
+      "CONTENT_TRIGGER": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        47,
+        48,
+        49,
+        50,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "NEGATION": [
+        64,
+        65
+      ]
+    },
+    "by_critical": {
+      "True": [
+        31,
+        32,
+        41,
+        42,
+        43,
+        44,
+        45,
+        47,
+        48,
+        49,
+        50,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        75
+      ]
+    },
+    "by_span": {
+      "P04_bv_exactly_two": [
+        31,
+        32
+      ],
+      "P04_bv_content_water_premise": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "P04_bv_content_stones_premise": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "P04_bv_content_moon_premise": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "P04_bv_obs_negation": [
+        64,
+        65
+      ],
+      "P04_bv_content_water_observation": [
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "P04_bv_both": [
+        75
+      ],
+      "P04_bv_content_stones_question": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "P04_bv_content_moon_question": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ]
+    }
+  },
+  "token_attention": [
+    {
+      "token_index": 0,
+      "token": "<|begin_of_text|>",
+      "attention": 0.2978515625
+    },
+    {
+      "token_index": 1,
+      "token": "<|begin_of_text|>",
+      "attention": 0.297607421875
+    },
+    {
+      "token_index": 2,
+      "token": "<|start_header_id|>",
+      "attention": 0.035552978515625
+    },
+    {
+      "token_index": 3,
+      "token": "system",
+      "attention": 0.0010938644409179688
+    },
+    {
+      "token_index": 4,
+      "token": "<|end_header_id|>",
+      "attention": 0.004344940185546875
+    },
+    {
+      "token_index": 5,
+      "token": "ĊĊ",
+      "attention": 0.00263214111328125
+    },
+    {
+      "token_index": 6,
+      "token": "Cut",
+      "attention": 0.0003635883331298828
+    },
+    {
+      "token_index": 7,
+      "token": "ting",
+      "attention": 0.00022983551025390625
+    },
+    {
+      "token_index": 8,
+      "token": "ĠKnowledge",
+      "attention": 0.00021314620971679688
+    },
+    {
+      "token_index": 9,
+      "token": "ĠDate",
+      "attention": 0.0002818107604980469
+    },
+    {
+      "token_index": 10,
+      "token": ":",
+      "attention": 0.000293731689453125
+    },
+    {
+      "token_index": 11,
+      "token": "ĠDecember",
+      "attention": 0.00036025047302246094
+    },
+    {
+      "token_index": 12,
+      "token": "Ġ",
+      "attention": 0.0002491474151611328
+    },
+    {
+      "token_index": 13,
+      "token": "202",
+      "attention": 0.00038361549377441406
+    },
+    {
+      "token_index": 14,
+      "token": "3",
+      "attention": 0.0006947517395019531
+    },
+    {
+      "token_index": 15,
+      "token": "Ċ",
+      "attention": 0.0013570785522460938
+    },
+    {
+      "token_index": 16,
+      "token": "Today",
+      "attention": 0.000545501708984375
+    },
+    {
+      "token_index": 17,
+      "token": "ĠDate",
+      "attention": 0.0004360675811767578
+    },
+    {
+      "token_index": 18,
+      "token": ":",
+      "attention": 0.00027823448181152344
+    },
+    {
+      "token_index": 19,
+      "token": "Ġ",
+      "attention": 0.00036025047302246094
+    },
+    {
+      "token_index": 20,
+      "token": "18",
+      "attention": 0.0001404285430908203
+    },
+    {
+      "token_index": 21,
+      "token": "ĠMay",
+      "attention": 0.0008029937744140625
+    },
+    {
+      "token_index": 22,
+      "token": "Ġ",
+      "attention": 0.0035381317138671875
+    },
+    {
+      "token_index": 23,
+      "token": "202",
+      "attention": 0.0005035400390625
+    },
+    {
+      "token_index": 24,
+      "token": "6",
+      "attention": 0.0008392333984375
+    },
+    {
+      "token_index": 25,
+      "token": "ĊĊ",
+      "attention": 0.002506256103515625
+    },
+    {
+      "token_index": 26,
+      "token": "<|eot_id|>",
+      "attention": 0.0183258056640625
+    },
+    {
+      "token_index": 27,
+      "token": "<|start_header_id|>",
+      "attention": 0.013275146484375
+    },
+    {
+      "token_index": 28,
+      "token": "user",
+      "attention": 0.00136566162109375
+    },
+    {
+      "token_index": 29,
+      "token": "<|end_header_id|>",
+      "attention": 0.0047607421875
+    },
+    {
+      "token_index": 30,
+      "token": "ĊĊ",
+      "attention": 0.0068359375
+    },
+    {
+      "token_index": 31,
+      "token": "Exactly",
+      "attention": 0.00032067298889160156
+    },
+    {
+      "token_index": 32,
+      "token": "Ġtwo",
+      "attention": 0.00031304359436035156
+    },
+    {
+      "token_index": 33,
+      "token": "Ġof",
+      "attention": 0.0001461505889892578
+    },
+    {
+      "token_index": 34,
+      "token": "Ġthe",
+      "attention": 4.762411117553711e-05
+    },
+    {
+      "token_index": 35,
+      "token": "Ġfollowing",
+      "attention": 0.00020825862884521484
+    },
+    {
+      "token_index": 36,
+      "token": "Ġthree",
+      "attention": 0.00014138221740722656
+    },
+    {
+      "token_index": 37,
+      "token": "Ġstatements",
+      "attention": 0.0006723403930664062
+    },
+    {
+      "token_index": 38,
+      "token": "Ġare",
+      "attention": 0.00037741661071777344
+    },
+    {
+      "token_index": 39,
+      "token": "Ġtrue",
+      "attention": 0.0005669593811035156
+    },
+    {
+      "token_index": 40,
+      "token": ":",
+      "attention": 0.0005445480346679688
+    },
+    {
+      "token_index": 41,
+      "token": "Ġwater",
+      "attention": 0.0009250640869140625
+    },
+    {
+      "token_index": 42,
+      "token": "Ġmolecules",
+      "attention": 0.00041222572326660156
+    },
+    {
+      "token_index": 43,
+      "token": "Ġcontain",
+      "attention": 0.00020194053649902344
+    },
+    {
+      "token_index": 44,
+      "token": "Ġhydrogen",
+      "attention": 0.0002193450927734375
+    },
+    {
+      "token_index": 45,
+      "token": "Ġatoms",
+      "attention": 0.00015306472778320312
+    },
+    {
+      "token_index": 46,
+      "token": ",",
+      "attention": 0.0005664825439453125
+    },
+    {
+      "token_index": 47,
+      "token": "Ġordinary",
+      "attention": 0.00043010711669921875
+    },
+    {
+      "token_index": 48,
+      "token": "Ġstones",
+      "attention": 0.00039124488830566406
+    },
+    {
+      "token_index": 49,
+      "token": "Ġcan",
+      "attention": 0.00019848346710205078
+    },
+    {
+      "token_index": 50,
+      "token": "Ġbreathe",
+      "attention": 0.0003895759582519531
+    },
+    {
+      "token_index": 51,
+      "token": ",",
+      "attention": 0.0004570484161376953
+    },
+    {
+      "token_index": 52,
+      "token": "Ġand",
+      "attention": 0.00034332275390625
+    },
+    {
+      "token_index": 53,
+      "token": "Ġthe",
+      "attention": 0.00013446807861328125
+    },
+    {
+      "token_index": 54,
+      "token": "ĠMoon",
+      "attention": 0.0003070831298828125
+    },
+    {
+      "token_index": 55,
+      "token": "Ġis",
+      "attention": 0.00011467933654785156
+    },
+    {
+      "token_index": 56,
+      "token": "Ġmade",
+      "attention": 0.0001227855682373047
+    },
+    {
+      "token_index": 57,
+      "token": "Ġof",
+      "attention": 0.00012433528900146484
+    },
+    {
+      "token_index": 58,
+      "token": "Ġcheese",
+      "attention": 0.0004584789276123047
+    },
+    {
+      "token_index": 59,
+      "token": ".",
+      "attention": 0.0008955001831054688
+    },
+    {
+      "token_index": 60,
+      "token": "ĠObservation",
+      "attention": 0.0004858970642089844
+    },
+    {
+      "token_index": 61,
+      "token": ":",
+      "attention": 0.0003540515899658203
+    },
+    {
+      "token_index": 62,
+      "token": "Ġwater",
+      "attention": 0.00024318695068359375
+    },
+    {
+      "token_index": 63,
+      "token": "Ġmolecules",
+      "attention": 7.796287536621094e-05
+    },
+    {
+      "token_index": 64,
+      "token": "Ġdo",
+      "attention": 0.00012874603271484375
+    },
+    {
+      "token_index": 65,
+      "token": "Ġnot",
+      "attention": 0.0001195669174194336
+    },
+    {
+      "token_index": 66,
+      "token": "Ġcontain",
+      "attention": 0.00014078617095947266
+    },
+    {
+      "token_index": 67,
+      "token": "Ġhydrogen",
+      "attention": 0.00018668174743652344
+    },
+    {
+      "token_index": 68,
+      "token": "Ġatoms",
+      "attention": 0.00014531612396240234
+    },
+    {
+      "token_index": 69,
+      "token": ".ĊĊ",
+      "attention": 0.0019083023071289062
+    },
+    {
+      "token_index": 70,
+      "token": "Is",
+      "attention": 0.0010433197021484375
+    },
+    {
+      "token_index": 71,
+      "token": "Ġit",
+      "attention": 0.0005979537963867188
+    },
+    {
+      "token_index": 72,
+      "token": "Ġthe",
+      "attention": 0.0003845691680908203
+    },
+    {
+      "token_index": 73,
+      "token": "Ġcase",
+      "attention": 0.00035762786865234375
+    },
+    {
+      "token_index": 74,
+      "token": "Ġthat",
+      "attention": 0.0007061958312988281
+    },
+    {
+      "token_index": 75,
+      "token": "Ġboth",
+      "attention": 0.0005259513854980469
+    },
+    {
+      "token_index": 76,
+      "token": "Ġordinary",
+      "attention": 0.00035643577575683594
+    },
+    {
+      "token_index": 77,
+      "token": "Ġstones",
+      "attention": 0.00042247772216796875
+    },
+    {
+      "token_index": 78,
+      "token": "Ġcan",
+      "attention": 0.00029730796813964844
+    },
+    {
+      "token_index": 79,
+      "token": "Ġbreathe",
+      "attention": 0.0004527568817138672
+    },
+    {
+      "token_index": 80,
+      "token": "Ġand",
+      "attention": 0.0004436969757080078
+    },
+    {
+      "token_index": 81,
+      "token": "Ġthe",
+      "attention": 0.00014638900756835938
+    },
+    {
+      "token_index": 82,
+      "token": "ĠMoon",
+      "attention": 0.0001404285430908203
+    },
+    {
+      "token_index": 83,
+      "token": "Ġis",
+      "attention": 5.632638931274414e-05
+    },
+    {
+      "token_index": 84,
+      "token": "Ġmade",
+      "attention": 4.988908767700195e-05
+    },
+    {
+      "token_index": 85,
+      "token": "Ġof",
+      "attention": 6.461143493652344e-05
+    },
+    {
+      "token_index": 86,
+      "token": "Ġcheese",
+      "attention": 0.0002574920654296875
+    },
+    {
+      "token_index": 87,
+      "token": "?ĊĊ",
+      "attention": 0.00266265869140625
+    },
+    {
+      "token_index": 88,
+      "token": "Choose",
+      "attention": 0.001277923583984375
+    },
+    {
+      "token_index": 89,
+      "token": "Ġexactly",
+      "attention": 0.0003981590270996094
+    },
+    {
+      "token_index": 90,
+      "token": "Ġone",
+      "attention": 0.00036907196044921875
+    },
+    {
+      "token_index": 91,
+      "token": "Ġof",
+      "attention": 0.00029730796813964844
+    },
+    {
+      "token_index": 92,
+      "token": "Ġthe",
+      "attention": 0.0003452301025390625
+    },
+    {
+      "token_index": 93,
+      "token": "Ġfollowing",
+      "attention": 0.00030231475830078125
+    },
+    {
+      "token_index": 94,
+      "token": "Ġoptions",
+      "attention": 0.001163482666015625
+    },
+    {
+      "token_index": 95,
+      "token": ":Ċ",
+      "attention": 0.0027828216552734375
+    },
+    {
+      "token_index": 96,
+      "token": "A",
+      "attention": 0.00478363037109375
+    },
+    {
+      "token_index": 97,
+      "token": ".",
+      "attention": 0.003597259521484375
+    },
+    {
+      "token_index": 98,
+      "token": "ĠPar",
+      "attention": 0.001739501953125
+    },
+    {
+      "token_index": 99,
+      "token": "adox",
+      "attention": 0.001888275146484375
+    },
+    {
+      "token_index": 100,
+      "token": "Ċ",
+      "attention": 0.0030307769775390625
+    },
+    {
+      "token_index": 101,
+      "token": "B",
+      "attention": 0.00494384765625
+    },
+    {
+      "token_index": 102,
+      "token": ".",
+      "attention": 0.001354217529296875
+    },
+    {
+      "token_index": 103,
+      "token": "ĠFalse",
+      "attention": 0.00276947021484375
+    },
+    {
+      "token_index": 104,
+      "token": "Ċ",
+      "attention": 0.003078460693359375
+    },
+    {
+      "token_index": 105,
+      "token": "C",
+      "attention": 0.003124237060546875
+    },
+    {
+      "token_index": 106,
+      "token": ".",
+      "attention": 0.00101470947265625
+    },
+    {
+      "token_index": 107,
+      "token": "ĠTrue",
+      "attention": 0.0020427703857421875
+    },
+    {
+      "token_index": 108,
+      "token": "Ċ",
+      "attention": 0.0026035308837890625
+    },
+    {
+      "token_index": 109,
+      "token": "D",
+      "attention": 0.005401611328125
+    },
+    {
+      "token_index": 110,
+      "token": ".",
+      "attention": 0.0019054412841796875
+    },
+    {
+      "token_index": 111,
+      "token": "ĠUnknown",
+      "attention": 0.0023860931396484375
+    },
+    {
+      "token_index": 112,
+      "token": "ĊĊ",
+      "attention": 0.006580352783203125
+    },
+    {
+      "token_index": 113,
+      "token": "Your",
+      "attention": 0.0015344619750976562
+    },
+    {
+      "token_index": 114,
+      "token": "Ġanswer",
+      "attention": 0.0007457733154296875
+    },
+    {
+      "token_index": 115,
+      "token": "Ġmust",
+      "attention": 0.0006918907165527344
+    },
+    {
+      "token_index": 116,
+      "token": "Ġbe",
+      "attention": 0.0005917549133300781
+    },
+    {
+      "token_index": 117,
+      "token": "Ġexactly",
+      "attention": 0.0004496574401855469
+    },
+    {
+      "token_index": 118,
+      "token": "Ġone",
+      "attention": 0.0004954338073730469
+    },
+    {
+      "token_index": 119,
+      "token": "Ġletter",
+      "attention": 0.0014400482177734375
+    },
+    {
+      "token_index": 120,
+      "token": ":",
+      "attention": 0.0033473968505859375
+    },
+    {
+      "token_index": 121,
+      "token": "ĠA",
+      "attention": 0.00565338134765625
+    },
+    {
+      "token_index": 122,
+      "token": ",",
+      "attention": 0.001556396484375
+    },
+    {
+      "token_index": 123,
+      "token": "ĠB",
+      "attention": 0.0028553009033203125
+    },
+    {
+      "token_index": 124,
+      "token": ",",
+      "attention": 0.0005931854248046875
+    },
+    {
+      "token_index": 125,
+      "token": "ĠC",
+      "attention": 0.0016880035400390625
+    },
+    {
+      "token_index": 126,
+      "token": ",",
+      "attention": 0.0008764266967773438
+    },
+    {
+      "token_index": 127,
+      "token": "Ġor",
+      "attention": 0.0010089874267578125
+    },
+    {
+      "token_index": 128,
+      "token": "ĠD",
+      "attention": 0.0033245086669921875
+    },
+    {
+      "token_index": 129,
+      "token": ".Ċ",
+      "attention": 0.005252838134765625
+    },
+    {
+      "token_index": 130,
+      "token": "Do",
+      "attention": 0.002349853515625
+    },
+    {
+      "token_index": 131,
+      "token": "Ġnot",
+      "attention": 0.001087188720703125
+    },
+    {
+      "token_index": 132,
+      "token": "Ġwrite",
+      "attention": 0.0009403228759765625
+    },
+    {
+      "token_index": 133,
+      "token": "Ġanything",
+      "attention": 0.0006761550903320312
+    },
+    {
+      "token_index": 134,
+      "token": "Ġelse",
+      "attention": 0.00148773193359375
+    },
+    {
+      "token_index": 135,
+      "token": ".Ċ",
+      "attention": 0.0134124755859375
+    },
+    {
+      "token_index": 136,
+      "token": "Answer",
+      "attention": 0.00743865966796875
+    },
+    {
+      "token_index": 137,
+      "token": ":",
+      "attention": 0.003437042236328125
+    },
+    {
+      "token_index": 138,
+      "token": "<|eot_id|>",
+      "attention": 0.0098114013671875
+    },
+    {
+      "token_index": 139,
+      "token": "<|start_header_id|>",
+      "attention": 0.00478363037109375
+    },
+    {
+      "token_index": 140,
+      "token": "assistant",
+      "attention": 0.009033203125
+    },
+    {
+      "token_index": 141,
+      "token": "<|end_header_id|>",
+      "attention": 0.024566650390625
+    },
+    {
+      "token_index": 142,
+      "token": "ĊĊ",
+      "attention": 0.0267333984375
+    }
+  ],
+  "aggregation": {
+    "by_region": {
+      "NARRATIVE": {
+        "n_tokens": 24,
+        "n_scored_tokens": 24,
+        "attention_sum": 0.006258845329284668,
+        "attention_mean_per_token": 0.00026078522205352783,
+        "attention_mass_share": 0.006817857324424396,
+        "token_share": 0.16783216783216784,
+        "attention_enrichment": 0.04062306655802869
+      },
+      "QUESTION": {
+        "n_tokens": 11,
+        "n_scored_tokens": 11,
+        "attention_sum": 0.003197193145751953,
+        "attention_mean_per_token": 0.00029065392234108663,
+        "attention_mass_share": 0.0034827520987574484,
+        "token_share": 0.07692307692307693,
+        "attention_enrichment": 0.045275777283846824
+      }
+    },
+    "by_role": {
+      "PREMISE": {
+        "n_tokens": 17,
+        "n_scored_tokens": 17,
+        "attention_sum": 0.0052165985107421875,
+        "attention_mean_per_token": 0.000306858735926011,
+        "attention_mass_share": 0.00568252169431864,
+        "token_share": 0.11888111888111888,
+        "attention_enrichment": 0.047800035428680325
+      },
+      "OBSERVATION": {
+        "n_tokens": 7,
+        "n_scored_tokens": 7,
+        "attention_sum": 0.0010422468185424805,
+        "attention_mean_per_token": 0.00014889240264892578,
+        "attention_mass_share": 0.0011353356301057559,
+        "token_share": 0.04895104895104895,
+        "attention_enrichment": 0.023193285015017585
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 11,
+        "n_scored_tokens": 11,
+        "attention_sum": 0.003197193145751953,
+        "attention_mean_per_token": 0.00029065392234108663,
+        "attention_mass_share": 0.0034827520987574484,
+        "token_share": 0.07692307692307693,
+        "attention_enrichment": 0.045275777283846824
+      }
+    },
+    "by_tag": {
+      "LOGICAL_OP": {
+        "n_tokens": 3,
+        "n_scored_tokens": 3,
+        "attention_sum": 0.00115966796875,
+        "attention_mean_per_token": 0.0003865559895833333,
+        "attention_mass_share": 0.0012632443108393906,
+        "token_share": 0.02097902097902098,
+        "attention_enrichment": 0.060214645483344285
+      },
+      "CONTENT_TRIGGER": {
+        "n_tokens": 22,
+        "n_scored_tokens": 22,
+        "attention_sum": 0.005625128746032715,
+        "attention_mean_per_token": 0.0002556876702742143,
+        "attention_mass_share": 0.0061275400180487586,
+        "token_share": 0.15384615384615385,
+        "attention_enrichment": 0.039829010117316925
+      },
+      "NEGATION": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.00024831295013427734,
+        "attention_mean_per_token": 0.00012415647506713867,
+        "attention_mass_share": 0.0002704911492062552,
+        "token_share": 0.013986013986013986,
+        "attention_enrichment": 0.019340117168247246
+      }
+    },
+    "by_critical": {
+      "True": {
+        "n_tokens": 25,
+        "n_scored_tokens": 25,
+        "attention_sum": 0.006784796714782715,
+        "attention_mean_per_token": 0.0002713918685913086,
+        "attention_mass_share": 0.007390784328888149,
+        "token_share": 0.17482517482517482,
+        "attention_enrichment": 0.042275286361240214
+      }
+    },
+    "by_span": {
+      "P04_bv_exactly_two": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.0006337165832519531,
+        "attention_mean_per_token": 0.00031685829162597656,
+        "attention_mass_share": 0.0006903173063756374,
+        "token_share": 0.013986013986013986,
+        "attention_enrichment": 0.049357687405858074,
+        "text": "Exactly two",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Cardinality operator."
+      },
+      "P04_bv_content_water_premise": {
+        "n_tokens": 5,
+        "n_scored_tokens": 5,
+        "attention_sum": 0.0019116401672363281,
+        "attention_mean_per_token": 0.0003823280334472656,
+        "attention_mass_share": 0.002082379293649308,
+        "token_share": 0.03496503496503497,
+        "attention_enrichment": 0.059556047798370204,
+        "text": "water molecules contain hydrogen atoms",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Factual content used as first statement."
+      },
+      "P04_bv_content_stones_premise": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0014094114303588867,
+        "attention_mean_per_token": 0.0003523528575897217,
+        "attention_mass_share": 0.0015352937383896089,
+        "token_share": 0.027972027972027972,
+        "attention_enrichment": 0.05488675114742852,
+        "text": "ordinary stones can breathe",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-violating content used as second statement."
+      },
+      "P04_bv_content_moon_premise": {
+        "n_tokens": 6,
+        "n_scored_tokens": 6,
+        "attention_sum": 0.0012618303298950195,
+        "attention_mean_per_token": 0.00021030505498250326,
+        "attention_mass_share": 0.0013745313559040862,
+        "token_share": 0.04195804195804196,
+        "attention_enrichment": 0.03275966398238072,
+        "text": "the Moon is made of cheese",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-violating content used as third statement."
+      },
+      "P04_bv_obs_negation": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.00024831295013427734,
+        "attention_mean_per_token": 0.00012415647506713867,
+        "attention_mass_share": 0.0002704911492062552,
+        "token_share": 0.013986013986013986,
+        "attention_enrichment": 0.019340117168247246,
+        "text": "do not",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker excluding the first statement."
+      },
+      "P04_bv_content_water_observation": {
+        "n_tokens": 7,
+        "n_scored_tokens": 7,
+        "attention_sum": 0.0010422468185424805,
+        "attention_mean_per_token": 0.00014889240264892578,
+        "attention_mass_share": 0.0011353356301057559,
+        "token_share": 0.04895104895104895,
+        "attention_enrichment": 0.023193285015017585,
+        "text": "water molecules do not contain hydrogen atoms",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-relevant observation contradicting ordinary factual knowledge."
+      },
+      "P04_bv_both": {
+        "n_tokens": 1,
+        "n_scored_tokens": 1,
+        "attention_sum": 0.0005259513854980469,
+        "attention_mean_per_token": 0.0005259513854980469,
+        "attention_mass_share": 0.0005729270044637532,
+        "token_share": 0.006993006993006993,
+        "attention_enrichment": 0.08192856163831672,
+        "text": "both",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Conjunction operator in the question target."
+      },
+      "P04_bv_content_stones_question": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0014094114303588867,
+        "attention_mean_per_token": 0.0003523528575897217,
+        "attention_mass_share": 0.0015352937383896089,
+        "token_share": 0.027972027972027972,
+        "attention_enrichment": 0.05488675114742852,
+        "text": "ordinary stones can breathe",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-violating content in the question target."
+      },
+      "P04_bv_content_moon_question": {
+        "n_tokens": 6,
+        "n_scored_tokens": 6,
+        "attention_sum": 0.0012618303298950195,
+        "attention_mean_per_token": 0.00021030505498250326,
+        "attention_mass_share": 0.0013745313559040862,
+        "token_share": 0.04195804195804196,
+        "attention_enrichment": 0.03275966398238072,
+        "text": "the Moon is made of cheese",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Belief-violating content in the question target."
+      }
+    }
+  }
+}

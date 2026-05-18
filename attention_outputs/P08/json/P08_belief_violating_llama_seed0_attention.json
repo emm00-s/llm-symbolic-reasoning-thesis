@@ -1,0 +1,1229 @@
+{
+  "metadata": {
+    "model_key": "llama",
+    "model_name": "meta-llama/Llama-3.2-3B-Instruct",
+    "puzzle_id": "P08_belief_violating",
+    "template_id": "P08",
+    "variant_type": "belief_violating",
+    "seed": 0,
+    "option_order": "Unknown|True|False|Paradox",
+    "gold_label": "True",
+    "gold_letter": "B",
+    "argmax_label": "False",
+    "argmax_letter": "C",
+    "target_letter": "C",
+    "correct_argmax": "False",
+    "last_n_layers": 4
+  },
+  "diagnostics": {
+    "n_layers": 28,
+    "last_n_layers": 4,
+    "used_layers": [
+      24,
+      25,
+      26,
+      27
+    ],
+    "n_prompt_tokens": 134,
+    "n_full_tokens": 135,
+    "answer_token_index": 134,
+    "answer_token": "C",
+    "target_letter": "C",
+    "attention_sum_to_prompt": 0.9164636135101318
+  },
+  "raw_prompt": "Consider the following two rules. (1) If the Earth orbits the Sun, ordinary stones can breathe. (2) If the Earth does not orbit the Sun, ordinary stones can breathe.\n\nIs it the case that ordinary stones can breathe?\n\nChoose exactly one of the following options:\nA. Unknown\nB. True\nC. False\nD. Paradox\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:",
+  "chat_prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 18 May 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nConsider the following two rules. (1) If the Earth orbits the Sun, ordinary stones can breathe. (2) If the Earth does not orbit the Sun, ordinary stones can breathe.\n\nIs it the case that ordinary stones can breathe?\n\nChoose exactly one of the following options:\nA. Unknown\nB. True\nC. False\nD. Paradox\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+  "resolved": {
+    "resolved_spans": [
+      {
+        "span_id": "P08_bv_positive_branch",
+        "text": "If the Earth orbits the Sun, ordinary stones can breathe",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Positive case branch with factual antecedent and belief-violating consequent.",
+        "start_char": 214,
+        "end_char": 270,
+        "token_indices": [
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "tokens": [
+          "ĠIf",
+          "Ġthe",
+          "ĠEarth",
+          "Ġorbits",
+          "Ġthe",
+          "ĠSun",
+          ",",
+          "Ġordinary",
+          "Ġstones",
+          "Ġcan",
+          "Ġbreathe"
+        ]
+      },
+      {
+        "span_id": "P08_bv_negative_branch",
+        "text": "If the Earth does not orbit the Sun, ordinary stones can breathe",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Negative case branch with belief-violating consequent.",
+        "start_char": 276,
+        "end_char": 340,
+        "token_indices": [
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ],
+        "tokens": [
+          "ĠIf",
+          "Ġthe",
+          "ĠEarth",
+          "Ġdoes",
+          "Ġnot",
+          "Ġorbit",
+          "Ġthe",
+          "ĠSun",
+          ",",
+          "Ġordinary",
+          "Ġstones",
+          "Ġcan",
+          "Ġbreathe"
+        ]
+      },
+      {
+        "span_id": "P08_bv_negation",
+        "anchor": "If the Earth does not orbit the Sun, ordinary stones can breathe",
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case.",
+        "start_char": 289,
+        "end_char": 297,
+        "token_indices": [
+          58,
+          59
+        ],
+        "tokens": [
+          "Ġdoes",
+          "Ġnot"
+        ]
+      },
+      {
+        "span_id": "P08_bv_question_target",
+        "anchor": "Is it the case that ordinary stones can breathe?",
+        "text": "ordinary stones can breathe",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Queried belief-violating proposition entailed by both branches.",
+        "start_char": 363,
+        "end_char": 390,
+        "token_indices": [
+          74,
+          75,
+          76,
+          77
+        ],
+        "tokens": [
+          "Ġordinary",
+          "Ġstones",
+          "Ġcan",
+          "Ġbreathe"
+        ]
+      }
+    ],
+    "errors": [],
+    "by_region": {
+      "NARRATIVE": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "QUESTION": [
+        74,
+        75,
+        76,
+        77
+      ]
+    },
+    "by_role": {
+      "PREMISE": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "QUESTION_TARGET": [
+        74,
+        75,
+        76,
+        77
+      ]
+    },
+    "by_tag": {
+      "POSITIVE_BRANCH": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "CONTENT_TRIGGER": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        74,
+        75,
+        76,
+        77
+      ],
+      "NEGATIVE_BRANCH": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "NEGATION": [
+        58,
+        59
+      ],
+      "QUESTION_TARGET": [
+        74,
+        75,
+        76,
+        77
+      ]
+    },
+    "by_critical": {
+      "True": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        74,
+        75,
+        76,
+        77
+      ]
+    },
+    "by_span": {
+      "P08_bv_positive_branch": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "P08_bv_negative_branch": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "P08_bv_negation": [
+        58,
+        59
+      ],
+      "P08_bv_question_target": [
+        74,
+        75,
+        76,
+        77
+      ]
+    }
+  },
+  "token_attention": [
+    {
+      "token_index": 0,
+      "token": "<|begin_of_text|>",
+      "attention": 0.2978515625
+    },
+    {
+      "token_index": 1,
+      "token": "<|begin_of_text|>",
+      "attention": 0.298095703125
+    },
+    {
+      "token_index": 2,
+      "token": "<|start_header_id|>",
+      "attention": 0.035797119140625
+    },
+    {
+      "token_index": 3,
+      "token": "system",
+      "attention": 0.0012922286987304688
+    },
+    {
+      "token_index": 4,
+      "token": "<|end_header_id|>",
+      "attention": 0.00609588623046875
+    },
+    {
+      "token_index": 5,
+      "token": "ĊĊ",
+      "attention": 0.0025691986083984375
+    },
+    {
+      "token_index": 6,
+      "token": "Cut",
+      "attention": 0.0004076957702636719
+    },
+    {
+      "token_index": 7,
+      "token": "ting",
+      "attention": 0.00028514862060546875
+    },
+    {
+      "token_index": 8,
+      "token": "ĠKnowledge",
+      "attention": 0.0002849102020263672
+    },
+    {
+      "token_index": 9,
+      "token": "ĠDate",
+      "attention": 0.0004131793975830078
+    },
+    {
+      "token_index": 10,
+      "token": ":",
+      "attention": 0.00032138824462890625
+    },
+    {
+      "token_index": 11,
+      "token": "ĠDecember",
+      "attention": 0.000423431396484375
+    },
+    {
+      "token_index": 12,
+      "token": "Ġ",
+      "attention": 0.0002448558807373047
+    },
+    {
+      "token_index": 13,
+      "token": "202",
+      "attention": 0.0003070831298828125
+    },
+    {
+      "token_index": 14,
+      "token": "3",
+      "attention": 0.0007953643798828125
+    },
+    {
+      "token_index": 15,
+      "token": "Ċ",
+      "attention": 0.001346588134765625
+    },
+    {
+      "token_index": 16,
+      "token": "Today",
+      "attention": 0.0004837512969970703
+    },
+    {
+      "token_index": 17,
+      "token": "ĠDate",
+      "attention": 0.00034332275390625
+    },
+    {
+      "token_index": 18,
+      "token": ":",
+      "attention": 0.00024139881134033203
+    },
+    {
+      "token_index": 19,
+      "token": "Ġ",
+      "attention": 0.0004100799560546875
+    },
+    {
+      "token_index": 20,
+      "token": "18",
+      "attention": 0.000247955322265625
+    },
+    {
+      "token_index": 21,
+      "token": "ĠMay",
+      "attention": 0.0011510848999023438
+    },
+    {
+      "token_index": 22,
+      "token": "Ġ",
+      "attention": 0.00431060791015625
+    },
+    {
+      "token_index": 23,
+      "token": "202",
+      "attention": 0.0006375312805175781
+    },
+    {
+      "token_index": 24,
+      "token": "6",
+      "attention": 0.0009593963623046875
+    },
+    {
+      "token_index": 25,
+      "token": "ĊĊ",
+      "attention": 0.0026035308837890625
+    },
+    {
+      "token_index": 26,
+      "token": "<|eot_id|>",
+      "attention": 0.0204620361328125
+    },
+    {
+      "token_index": 27,
+      "token": "<|start_header_id|>",
+      "attention": 0.01190185546875
+    },
+    {
+      "token_index": 28,
+      "token": "user",
+      "attention": 0.0016078948974609375
+    },
+    {
+      "token_index": 29,
+      "token": "<|end_header_id|>",
+      "attention": 0.005771636962890625
+    },
+    {
+      "token_index": 30,
+      "token": "ĊĊ",
+      "attention": 0.007293701171875
+    },
+    {
+      "token_index": 31,
+      "token": "Consider",
+      "attention": 0.000270843505859375
+    },
+    {
+      "token_index": 32,
+      "token": "Ġthe",
+      "attention": 0.00011682510375976562
+    },
+    {
+      "token_index": 33,
+      "token": "Ġfollowing",
+      "attention": 0.00012862682342529297
+    },
+    {
+      "token_index": 34,
+      "token": "Ġtwo",
+      "attention": 0.0002315044403076172
+    },
+    {
+      "token_index": 35,
+      "token": "Ġrules",
+      "attention": 0.00047898292541503906
+    },
+    {
+      "token_index": 36,
+      "token": ".",
+      "attention": 0.0005311965942382812
+    },
+    {
+      "token_index": 37,
+      "token": "Ġ(",
+      "attention": 0.0006132125854492188
+    },
+    {
+      "token_index": 38,
+      "token": "1",
+      "attention": 0.0006399154663085938
+    },
+    {
+      "token_index": 39,
+      "token": ")",
+      "attention": 0.00034618377685546875
+    },
+    {
+      "token_index": 40,
+      "token": "ĠIf",
+      "attention": 0.00020182132720947266
+    },
+    {
+      "token_index": 41,
+      "token": "Ġthe",
+      "attention": 7.623434066772461e-05
+    },
+    {
+      "token_index": 42,
+      "token": "ĠEarth",
+      "attention": 0.0002789497375488281
+    },
+    {
+      "token_index": 43,
+      "token": "Ġorbits",
+      "attention": 0.0002448558807373047
+    },
+    {
+      "token_index": 44,
+      "token": "Ġthe",
+      "attention": 7.557868957519531e-05
+    },
+    {
+      "token_index": 45,
+      "token": "ĠSun",
+      "attention": 0.0001920461654663086
+    },
+    {
+      "token_index": 46,
+      "token": ",",
+      "attention": 0.0002980232238769531
+    },
+    {
+      "token_index": 47,
+      "token": "Ġordinary",
+      "attention": 0.0005021095275878906
+    },
+    {
+      "token_index": 48,
+      "token": "Ġstones",
+      "attention": 0.00043892860412597656
+    },
+    {
+      "token_index": 49,
+      "token": "Ġcan",
+      "attention": 0.0002002716064453125
+    },
+    {
+      "token_index": 50,
+      "token": "Ġbreathe",
+      "attention": 0.0006685256958007812
+    },
+    {
+      "token_index": 51,
+      "token": ".",
+      "attention": 0.0006175041198730469
+    },
+    {
+      "token_index": 52,
+      "token": "Ġ(",
+      "attention": 0.0009822845458984375
+    },
+    {
+      "token_index": 53,
+      "token": "2",
+      "attention": 0.0006809234619140625
+    },
+    {
+      "token_index": 54,
+      "token": ")",
+      "attention": 0.0002391338348388672
+    },
+    {
+      "token_index": 55,
+      "token": "ĠIf",
+      "attention": 0.00011259317398071289
+    },
+    {
+      "token_index": 56,
+      "token": "Ġthe",
+      "attention": 0.00013196468353271484
+    },
+    {
+      "token_index": 57,
+      "token": "ĠEarth",
+      "attention": 0.00014019012451171875
+    },
+    {
+      "token_index": 58,
+      "token": "Ġdoes",
+      "attention": 0.00019872188568115234
+    },
+    {
+      "token_index": 59,
+      "token": "Ġnot",
+      "attention": 0.00016379356384277344
+    },
+    {
+      "token_index": 60,
+      "token": "Ġorbit",
+      "attention": 0.0001252889633178711
+    },
+    {
+      "token_index": 61,
+      "token": "Ġthe",
+      "attention": 7.259845733642578e-05
+    },
+    {
+      "token_index": 62,
+      "token": "ĠSun",
+      "attention": 0.00010883808135986328
+    },
+    {
+      "token_index": 63,
+      "token": ",",
+      "attention": 0.0003509521484375
+    },
+    {
+      "token_index": 64,
+      "token": "Ġordinary",
+      "attention": 0.00012886524200439453
+    },
+    {
+      "token_index": 65,
+      "token": "Ġstones",
+      "attention": 0.0005207061767578125
+    },
+    {
+      "token_index": 66,
+      "token": "Ġcan",
+      "attention": 0.0002510547637939453
+    },
+    {
+      "token_index": 67,
+      "token": "Ġbreathe",
+      "attention": 0.0003933906555175781
+    },
+    {
+      "token_index": 68,
+      "token": ".ĊĊ",
+      "attention": 0.0016803741455078125
+    },
+    {
+      "token_index": 69,
+      "token": "Is",
+      "attention": 0.0007891654968261719
+    },
+    {
+      "token_index": 70,
+      "token": "Ġit",
+      "attention": 0.0004279613494873047
+    },
+    {
+      "token_index": 71,
+      "token": "Ġthe",
+      "attention": 0.00032830238342285156
+    },
+    {
+      "token_index": 72,
+      "token": "Ġcase",
+      "attention": 0.000518798828125
+    },
+    {
+      "token_index": 73,
+      "token": "Ġthat",
+      "attention": 0.0006837844848632812
+    },
+    {
+      "token_index": 74,
+      "token": "Ġordinary",
+      "attention": 0.0004019737243652344
+    },
+    {
+      "token_index": 75,
+      "token": "Ġstones",
+      "attention": 0.0005273818969726562
+    },
+    {
+      "token_index": 76,
+      "token": "Ġcan",
+      "attention": 0.0008330345153808594
+    },
+    {
+      "token_index": 77,
+      "token": "Ġbreathe",
+      "attention": 0.0006656646728515625
+    },
+    {
+      "token_index": 78,
+      "token": "?ĊĊ",
+      "attention": 0.003887176513671875
+    },
+    {
+      "token_index": 79,
+      "token": "Choose",
+      "attention": 0.000797271728515625
+    },
+    {
+      "token_index": 80,
+      "token": "Ġexactly",
+      "attention": 0.00039768218994140625
+    },
+    {
+      "token_index": 81,
+      "token": "Ġone",
+      "attention": 0.0003993511199951172
+    },
+    {
+      "token_index": 82,
+      "token": "Ġof",
+      "attention": 0.0003676414489746094
+    },
+    {
+      "token_index": 83,
+      "token": "Ġthe",
+      "attention": 0.0003097057342529297
+    },
+    {
+      "token_index": 84,
+      "token": "Ġfollowing",
+      "attention": 0.0003323554992675781
+    },
+    {
+      "token_index": 85,
+      "token": "Ġoptions",
+      "attention": 0.0011157989501953125
+    },
+    {
+      "token_index": 86,
+      "token": ":Ċ",
+      "attention": 0.0024509429931640625
+    },
+    {
+      "token_index": 87,
+      "token": "A",
+      "attention": 0.00408172607421875
+    },
+    {
+      "token_index": 88,
+      "token": ".",
+      "attention": 0.004180908203125
+    },
+    {
+      "token_index": 89,
+      "token": "ĠUnknown",
+      "attention": 0.0024166107177734375
+    },
+    {
+      "token_index": 90,
+      "token": "Ċ",
+      "attention": 0.0030975341796875
+    },
+    {
+      "token_index": 91,
+      "token": "B",
+      "attention": 0.003215789794921875
+    },
+    {
+      "token_index": 92,
+      "token": ".",
+      "attention": 0.0010023117065429688
+    },
+    {
+      "token_index": 93,
+      "token": "ĠTrue",
+      "attention": 0.0023288726806640625
+    },
+    {
+      "token_index": 94,
+      "token": "Ċ",
+      "attention": 0.001499176025390625
+    },
+    {
+      "token_index": 95,
+      "token": "C",
+      "attention": 0.004581451416015625
+    },
+    {
+      "token_index": 96,
+      "token": ".",
+      "attention": 0.0010013580322265625
+    },
+    {
+      "token_index": 97,
+      "token": "ĠFalse",
+      "attention": 0.0044708251953125
+    },
+    {
+      "token_index": 98,
+      "token": "Ċ",
+      "attention": 0.0028285980224609375
+    },
+    {
+      "token_index": 99,
+      "token": "D",
+      "attention": 0.004543304443359375
+    },
+    {
+      "token_index": 100,
+      "token": ".",
+      "attention": 0.0021266937255859375
+    },
+    {
+      "token_index": 101,
+      "token": "ĠPar",
+      "attention": 0.0019969940185546875
+    },
+    {
+      "token_index": 102,
+      "token": "adox",
+      "attention": 0.002246856689453125
+    },
+    {
+      "token_index": 103,
+      "token": "ĊĊ",
+      "attention": 0.0063629150390625
+    },
+    {
+      "token_index": 104,
+      "token": "Your",
+      "attention": 0.0014886856079101562
+    },
+    {
+      "token_index": 105,
+      "token": "Ġanswer",
+      "attention": 0.00069427490234375
+    },
+    {
+      "token_index": 106,
+      "token": "Ġmust",
+      "attention": 0.0005192756652832031
+    },
+    {
+      "token_index": 107,
+      "token": "Ġbe",
+      "attention": 0.0016641616821289062
+    },
+    {
+      "token_index": 108,
+      "token": "Ġexactly",
+      "attention": 0.00044655799865722656
+    },
+    {
+      "token_index": 109,
+      "token": "Ġone",
+      "attention": 0.00044727325439453125
+    },
+    {
+      "token_index": 110,
+      "token": "Ġletter",
+      "attention": 0.001300811767578125
+    },
+    {
+      "token_index": 111,
+      "token": ":",
+      "attention": 0.002471923828125
+    },
+    {
+      "token_index": 112,
+      "token": "ĠA",
+      "attention": 0.0042572021484375
+    },
+    {
+      "token_index": 113,
+      "token": ",",
+      "attention": 0.001277923583984375
+    },
+    {
+      "token_index": 114,
+      "token": "ĠB",
+      "attention": 0.0013036727905273438
+    },
+    {
+      "token_index": 115,
+      "token": ",",
+      "attention": 0.0009641647338867188
+    },
+    {
+      "token_index": 116,
+      "token": "ĠC",
+      "attention": 0.003162384033203125
+    },
+    {
+      "token_index": 117,
+      "token": ",",
+      "attention": 0.0009908676147460938
+    },
+    {
+      "token_index": 118,
+      "token": "Ġor",
+      "attention": 0.0010805130004882812
+    },
+    {
+      "token_index": 119,
+      "token": "ĠD",
+      "attention": 0.0035610198974609375
+    },
+    {
+      "token_index": 120,
+      "token": ".Ċ",
+      "attention": 0.004150390625
+    },
+    {
+      "token_index": 121,
+      "token": "Do",
+      "attention": 0.0016508102416992188
+    },
+    {
+      "token_index": 122,
+      "token": "Ġnot",
+      "attention": 0.0008211135864257812
+    },
+    {
+      "token_index": 123,
+      "token": "Ġwrite",
+      "attention": 0.0007505416870117188
+    },
+    {
+      "token_index": 124,
+      "token": "Ġanything",
+      "attention": 0.0005841255187988281
+    },
+    {
+      "token_index": 125,
+      "token": "Ġelse",
+      "attention": 0.0014171600341796875
+    },
+    {
+      "token_index": 126,
+      "token": ".Ċ",
+      "attention": 0.01189422607421875
+    },
+    {
+      "token_index": 127,
+      "token": "Answer",
+      "attention": 0.00653839111328125
+    },
+    {
+      "token_index": 128,
+      "token": ":",
+      "attention": 0.00327301025390625
+    },
+    {
+      "token_index": 129,
+      "token": "<|eot_id|>",
+      "attention": 0.00885009765625
+    },
+    {
+      "token_index": 130,
+      "token": "<|start_header_id|>",
+      "attention": 0.004497528076171875
+    },
+    {
+      "token_index": 131,
+      "token": "assistant",
+      "attention": 0.00988006591796875
+    },
+    {
+      "token_index": 132,
+      "token": "<|end_header_id|>",
+      "attention": 0.0249786376953125
+    },
+    {
+      "token_index": 133,
+      "token": "ĊĊ",
+      "attention": 0.02593994140625
+    }
+  ],
+  "aggregation": {
+    "by_region": {
+      "NARRATIVE": {
+        "n_tokens": 24,
+        "n_scored_tokens": 24,
+        "attention_sum": 0.005876302719116211,
+        "attention_mean_per_token": 0.0002448459466298421,
+        "attention_mass_share": 0.0064119323806097256,
+        "token_share": 0.1791044776119403,
+        "attention_enrichment": 0.035799955791737635
+      },
+      "QUESTION": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0024280548095703125,
+        "attention_mean_per_token": 0.0006070137023925781,
+        "attention_mass_share": 0.002649373934520609,
+        "token_share": 0.029850746268656716,
+        "attention_enrichment": 0.0887540268064404
+      }
+    },
+    "by_role": {
+      "PREMISE": {
+        "n_tokens": 24,
+        "n_scored_tokens": 24,
+        "attention_sum": 0.005876302719116211,
+        "attention_mean_per_token": 0.0002448459466298421,
+        "attention_mass_share": 0.0064119323806097256,
+        "token_share": 0.1791044776119403,
+        "attention_enrichment": 0.035799955791737635
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0024280548095703125,
+        "attention_mean_per_token": 0.0006070137023925781,
+        "attention_mass_share": 0.002649373934520609,
+        "token_share": 0.029850746268656716,
+        "attention_enrichment": 0.0887540268064404
+      }
+    },
+    "by_tag": {
+      "POSITIVE_BRANCH": {
+        "n_tokens": 11,
+        "n_scored_tokens": 11,
+        "attention_sum": 0.003177344799041748,
+        "attention_mean_per_token": 0.00028884952718561345,
+        "attention_mass_share": 0.0034669623018335157,
+        "token_share": 0.08208955223880597,
+        "attention_enrichment": 0.042233904404153734
+      },
+      "CONTENT_TRIGGER": {
+        "n_tokens": 28,
+        "n_scored_tokens": 28,
+        "attention_sum": 0.008304357528686523,
+        "attention_mean_per_token": 0.00029658419745309014,
+        "attention_mass_share": 0.009061306315130335,
+        "token_share": 0.208955223880597,
+        "attention_enrichment": 0.04336482307955232
+      },
+      "NEGATIVE_BRANCH": {
+        "n_tokens": 13,
+        "n_scored_tokens": 13,
+        "attention_sum": 0.002698957920074463,
+        "attention_mean_per_token": 0.0002076121476980356,
+        "attention_mass_share": 0.00294497007877621,
+        "token_share": 0.09701492537313433,
+        "attention_enrichment": 0.030355845427385546
+      },
+      "NEGATION": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.0003625154495239258,
+        "attention_mean_per_token": 0.0001812577247619629,
+        "attention_mass_share": 0.0003955590207618407,
+        "token_share": 0.014925373134328358,
+        "attention_enrichment": 0.026502454391043324
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0024280548095703125,
+        "attention_mean_per_token": 0.0006070137023925781,
+        "attention_mass_share": 0.002649373934520609,
+        "token_share": 0.029850746268656716,
+        "attention_enrichment": 0.0887540268064404
+      }
+    },
+    "by_critical": {
+      "True": {
+        "n_tokens": 28,
+        "n_scored_tokens": 28,
+        "attention_sum": 0.008304357528686523,
+        "attention_mean_per_token": 0.00029658419745309014,
+        "attention_mass_share": 0.009061306315130335,
+        "token_share": 0.208955223880597,
+        "attention_enrichment": 0.04336482307955232
+      }
+    },
+    "by_span": {
+      "P08_bv_positive_branch": {
+        "n_tokens": 11,
+        "n_scored_tokens": 11,
+        "attention_sum": 0.003177344799041748,
+        "attention_mean_per_token": 0.00028884952718561345,
+        "attention_mass_share": 0.0034669623018335157,
+        "token_share": 0.08208955223880597,
+        "attention_enrichment": 0.042233904404153734,
+        "text": "If the Earth orbits the Sun, ordinary stones can breathe",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Positive case branch with factual antecedent and belief-violating consequent."
+      },
+      "P08_bv_negative_branch": {
+        "n_tokens": 13,
+        "n_scored_tokens": 13,
+        "attention_sum": 0.002698957920074463,
+        "attention_mean_per_token": 0.0002076121476980356,
+        "attention_mass_share": 0.00294497007877621,
+        "token_share": 0.09701492537313433,
+        "attention_enrichment": 0.030355845427385546,
+        "text": "If the Earth does not orbit the Sun, ordinary stones can breathe",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Negative case branch with belief-violating consequent."
+      },
+      "P08_bv_negation": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.0003625154495239258,
+        "attention_mean_per_token": 0.0001812577247619629,
+        "attention_mass_share": 0.0003955590207618407,
+        "token_share": 0.014925373134328358,
+        "attention_enrichment": 0.026502454391043324,
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case."
+      },
+      "P08_bv_question_target": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0024280548095703125,
+        "attention_mean_per_token": 0.0006070137023925781,
+        "attention_mass_share": 0.002649373934520609,
+        "token_share": 0.029850746268656716,
+        "attention_enrichment": 0.0887540268064404,
+        "text": "ordinary stones can breathe",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Queried belief-violating proposition entailed by both branches."
+      }
+    }
+  }
+}

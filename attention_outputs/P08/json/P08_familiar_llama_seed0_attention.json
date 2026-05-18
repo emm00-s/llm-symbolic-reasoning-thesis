@@ -1,0 +1,1208 @@
+{
+  "metadata": {
+    "model_key": "llama",
+    "model_name": "meta-llama/Llama-3.2-3B-Instruct",
+    "puzzle_id": "P08_familiar",
+    "template_id": "P08",
+    "variant_type": "familiar",
+    "seed": 0,
+    "option_order": "Paradox|Unknown|True|False",
+    "gold_label": "True",
+    "gold_letter": "C",
+    "argmax_label": "Unknown",
+    "argmax_letter": "B",
+    "target_letter": "B",
+    "correct_argmax": "False",
+    "last_n_layers": 4
+  },
+  "diagnostics": {
+    "n_layers": 28,
+    "last_n_layers": 4,
+    "used_layers": [
+      24,
+      25,
+      26,
+      27
+    ],
+    "n_prompt_tokens": 136,
+    "n_full_tokens": 137,
+    "answer_token_index": 136,
+    "answer_token": "B",
+    "target_letter": "B",
+    "attention_sum_to_prompt": 0.9126836061477661
+  },
+  "raw_prompt": "Consider the following two rules. (1) If the market goes up, the trader makes a profit. (2) If the market does not go up, the trader still makes a profit.\n\nIs it the case that the trader makes a profit?\n\nChoose exactly one of the following options:\nA. Paradox\nB. Unknown\nC. True\nD. False\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:",
+  "chat_prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 18 May 2026\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nConsider the following two rules. (1) If the market goes up, the trader makes a profit. (2) If the market does not go up, the trader still makes a profit.\n\nIs it the case that the trader makes a profit?\n\nChoose exactly one of the following options:\nA. Paradox\nB. Unknown\nC. True\nD. False\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+  "resolved": {
+    "resolved_spans": [
+      {
+        "span_id": "P08_fam_positive_branch",
+        "text": "If the market goes up, the trader makes a profit",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Positive case branch.",
+        "start_char": 214,
+        "end_char": 262,
+        "token_indices": [
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "tokens": [
+          "ĠIf",
+          "Ġthe",
+          "Ġmarket",
+          "Ġgoes",
+          "Ġup",
+          ",",
+          "Ġthe",
+          "Ġtrader",
+          "Ġmakes",
+          "Ġa",
+          "Ġprofit"
+        ]
+      },
+      {
+        "span_id": "P08_fam_negative_branch",
+        "text": "If the market does not go up, the trader still makes a profit",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Negative case branch.",
+        "start_char": 268,
+        "end_char": 329,
+        "token_indices": [
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "tokens": [
+          "ĠIf",
+          "Ġthe",
+          "Ġmarket",
+          "Ġdoes",
+          "Ġnot",
+          "Ġgo",
+          "Ġup",
+          ",",
+          "Ġthe",
+          "Ġtrader",
+          "Ġstill",
+          "Ġmakes",
+          "Ġa",
+          "Ġprofit"
+        ]
+      },
+      {
+        "span_id": "P08_fam_negation",
+        "anchor": "If the market does not go up, the trader still makes a profit",
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case.",
+        "start_char": 282,
+        "end_char": 290,
+        "token_indices": [
+          58,
+          59
+        ],
+        "tokens": [
+          "Ġdoes",
+          "Ġnot"
+        ]
+      },
+      {
+        "span_id": "P08_fam_question_target",
+        "anchor": "Is it the case that the trader makes a profit?",
+        "text": "the trader makes a profit",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition entailed by both branches.",
+        "start_char": 352,
+        "end_char": 377,
+        "token_indices": [
+          75,
+          76,
+          77,
+          78,
+          79
+        ],
+        "tokens": [
+          "Ġthe",
+          "Ġtrader",
+          "Ġmakes",
+          "Ġa",
+          "Ġprofit"
+        ]
+      }
+    ],
+    "errors": [],
+    "by_region": {
+      "NARRATIVE": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "QUESTION": [
+        75,
+        76,
+        77,
+        78,
+        79
+      ]
+    },
+    "by_role": {
+      "PREMISE": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "QUESTION_TARGET": [
+        75,
+        76,
+        77,
+        78,
+        79
+      ]
+    },
+    "by_tag": {
+      "POSITIVE_BRANCH": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "NEGATIVE_BRANCH": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "NEGATION": [
+        58,
+        59
+      ],
+      "QUESTION_TARGET": [
+        75,
+        76,
+        77,
+        78,
+        79
+      ]
+    },
+    "by_critical": {
+      "True": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        75,
+        76,
+        77,
+        78,
+        79
+      ]
+    },
+    "by_span": {
+      "P08_fam_positive_branch": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "P08_fam_negative_branch": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "P08_fam_negation": [
+        58,
+        59
+      ],
+      "P08_fam_question_target": [
+        75,
+        76,
+        77,
+        78,
+        79
+      ]
+    }
+  },
+  "token_attention": [
+    {
+      "token_index": 0,
+      "token": "<|begin_of_text|>",
+      "attention": 0.296142578125
+    },
+    {
+      "token_index": 1,
+      "token": "<|begin_of_text|>",
+      "attention": 0.296142578125
+    },
+    {
+      "token_index": 2,
+      "token": "<|start_header_id|>",
+      "attention": 0.03533935546875
+    },
+    {
+      "token_index": 3,
+      "token": "system",
+      "attention": 0.001667022705078125
+    },
+    {
+      "token_index": 4,
+      "token": "<|end_header_id|>",
+      "attention": 0.00576019287109375
+    },
+    {
+      "token_index": 5,
+      "token": "ĊĊ",
+      "attention": 0.003467559814453125
+    },
+    {
+      "token_index": 6,
+      "token": "Cut",
+      "attention": 0.0003769397735595703
+    },
+    {
+      "token_index": 7,
+      "token": "ting",
+      "attention": 0.00027871131896972656
+    },
+    {
+      "token_index": 8,
+      "token": "ĠKnowledge",
+      "attention": 0.00026679039001464844
+    },
+    {
+      "token_index": 9,
+      "token": "ĠDate",
+      "attention": 0.00034809112548828125
+    },
+    {
+      "token_index": 10,
+      "token": ":",
+      "attention": 0.0003521442413330078
+    },
+    {
+      "token_index": 11,
+      "token": "ĠDecember",
+      "attention": 0.000400543212890625
+    },
+    {
+      "token_index": 12,
+      "token": "Ġ",
+      "attention": 0.0002410411834716797
+    },
+    {
+      "token_index": 13,
+      "token": "202",
+      "attention": 0.00037789344787597656
+    },
+    {
+      "token_index": 14,
+      "token": "3",
+      "attention": 0.0008578300476074219
+    },
+    {
+      "token_index": 15,
+      "token": "Ċ",
+      "attention": 0.001743316650390625
+    },
+    {
+      "token_index": 16,
+      "token": "Today",
+      "attention": 0.0006208419799804688
+    },
+    {
+      "token_index": 17,
+      "token": "ĠDate",
+      "attention": 0.0002989768981933594
+    },
+    {
+      "token_index": 18,
+      "token": ":",
+      "attention": 0.00024890899658203125
+    },
+    {
+      "token_index": 19,
+      "token": "Ġ",
+      "attention": 0.0003485679626464844
+    },
+    {
+      "token_index": 20,
+      "token": "18",
+      "attention": 0.0001800060272216797
+    },
+    {
+      "token_index": 21,
+      "token": "ĠMay",
+      "attention": 0.0008053779602050781
+    },
+    {
+      "token_index": 22,
+      "token": "Ġ",
+      "attention": 0.004253387451171875
+    },
+    {
+      "token_index": 23,
+      "token": "202",
+      "attention": 0.000766754150390625
+    },
+    {
+      "token_index": 24,
+      "token": "6",
+      "attention": 0.0010576248168945312
+    },
+    {
+      "token_index": 25,
+      "token": "ĊĊ",
+      "attention": 0.0030975341796875
+    },
+    {
+      "token_index": 26,
+      "token": "<|eot_id|>",
+      "attention": 0.0181427001953125
+    },
+    {
+      "token_index": 27,
+      "token": "<|start_header_id|>",
+      "attention": 0.01238250732421875
+    },
+    {
+      "token_index": 28,
+      "token": "user",
+      "attention": 0.001781463623046875
+    },
+    {
+      "token_index": 29,
+      "token": "<|end_header_id|>",
+      "attention": 0.00399017333984375
+    },
+    {
+      "token_index": 30,
+      "token": "ĊĊ",
+      "attention": 0.007701873779296875
+    },
+    {
+      "token_index": 31,
+      "token": "Consider",
+      "attention": 0.0003046989440917969
+    },
+    {
+      "token_index": 32,
+      "token": "Ġthe",
+      "attention": 0.00012350082397460938
+    },
+    {
+      "token_index": 33,
+      "token": "Ġfollowing",
+      "attention": 0.00011479854583740234
+    },
+    {
+      "token_index": 34,
+      "token": "Ġtwo",
+      "attention": 0.0002589225769042969
+    },
+    {
+      "token_index": 35,
+      "token": "Ġrules",
+      "attention": 0.0005578994750976562
+    },
+    {
+      "token_index": 36,
+      "token": ".",
+      "attention": 0.0006928443908691406
+    },
+    {
+      "token_index": 37,
+      "token": "Ġ(",
+      "attention": 0.0006799697875976562
+    },
+    {
+      "token_index": 38,
+      "token": "1",
+      "attention": 0.000514984130859375
+    },
+    {
+      "token_index": 39,
+      "token": ")",
+      "attention": 0.000339508056640625
+    },
+    {
+      "token_index": 40,
+      "token": "ĠIf",
+      "attention": 0.00017118453979492188
+    },
+    {
+      "token_index": 41,
+      "token": "Ġthe",
+      "attention": 6.639957427978516e-05
+    },
+    {
+      "token_index": 42,
+      "token": "Ġmarket",
+      "attention": 0.0002532005310058594
+    },
+    {
+      "token_index": 43,
+      "token": "Ġgoes",
+      "attention": 0.00013649463653564453
+    },
+    {
+      "token_index": 44,
+      "token": "Ġup",
+      "attention": 0.00013458728790283203
+    },
+    {
+      "token_index": 45,
+      "token": ",",
+      "attention": 0.00011533498764038086
+    },
+    {
+      "token_index": 46,
+      "token": "Ġthe",
+      "attention": 7.390975952148438e-05
+    },
+    {
+      "token_index": 47,
+      "token": "Ġtrader",
+      "attention": 0.0002472400665283203
+    },
+    {
+      "token_index": 48,
+      "token": "Ġmakes",
+      "attention": 0.00010275840759277344
+    },
+    {
+      "token_index": 49,
+      "token": "Ġa",
+      "attention": 6.258487701416016e-05
+    },
+    {
+      "token_index": 50,
+      "token": "Ġprofit",
+      "attention": 0.0002321004867553711
+    },
+    {
+      "token_index": 51,
+      "token": ".",
+      "attention": 0.00041747093200683594
+    },
+    {
+      "token_index": 52,
+      "token": "Ġ(",
+      "attention": 0.00030517578125
+    },
+    {
+      "token_index": 53,
+      "token": "2",
+      "attention": 0.0004019737243652344
+    },
+    {
+      "token_index": 54,
+      "token": ")",
+      "attention": 0.0003075599670410156
+    },
+    {
+      "token_index": 55,
+      "token": "ĠIf",
+      "attention": 0.0001266002655029297
+    },
+    {
+      "token_index": 56,
+      "token": "Ġthe",
+      "attention": 8.362531661987305e-05
+    },
+    {
+      "token_index": 57,
+      "token": "Ġmarket",
+      "attention": 8.761882781982422e-05
+    },
+    {
+      "token_index": 58,
+      "token": "Ġdoes",
+      "attention": 8.928775787353516e-05
+    },
+    {
+      "token_index": 59,
+      "token": "Ġnot",
+      "attention": 0.00014841556549072266
+    },
+    {
+      "token_index": 60,
+      "token": "Ġgo",
+      "attention": 7.045269012451172e-05
+    },
+    {
+      "token_index": 61,
+      "token": "Ġup",
+      "attention": 6.747245788574219e-05
+    },
+    {
+      "token_index": 62,
+      "token": ",",
+      "attention": 0.00020742416381835938
+    },
+    {
+      "token_index": 63,
+      "token": "Ġthe",
+      "attention": 0.00013005733489990234
+    },
+    {
+      "token_index": 64,
+      "token": "Ġtrader",
+      "attention": 0.00011688470840454102
+    },
+    {
+      "token_index": 65,
+      "token": "Ġstill",
+      "attention": 0.00015854835510253906
+    },
+    {
+      "token_index": 66,
+      "token": "Ġmakes",
+      "attention": 0.00011146068572998047
+    },
+    {
+      "token_index": 67,
+      "token": "Ġa",
+      "attention": 0.00018835067749023438
+    },
+    {
+      "token_index": 68,
+      "token": "Ġprofit",
+      "attention": 0.00020420551300048828
+    },
+    {
+      "token_index": 69,
+      "token": ".ĊĊ",
+      "attention": 0.0019311904907226562
+    },
+    {
+      "token_index": 70,
+      "token": "Is",
+      "attention": 0.0008306503295898438
+    },
+    {
+      "token_index": 71,
+      "token": "Ġit",
+      "attention": 0.00037980079650878906
+    },
+    {
+      "token_index": 72,
+      "token": "Ġthe",
+      "attention": 0.0003497600555419922
+    },
+    {
+      "token_index": 73,
+      "token": "Ġcase",
+      "attention": 0.0004088878631591797
+    },
+    {
+      "token_index": 74,
+      "token": "Ġthat",
+      "attention": 0.0006036758422851562
+    },
+    {
+      "token_index": 75,
+      "token": "Ġthe",
+      "attention": 0.0002987384796142578
+    },
+    {
+      "token_index": 76,
+      "token": "Ġtrader",
+      "attention": 0.00019240379333496094
+    },
+    {
+      "token_index": 77,
+      "token": "Ġmakes",
+      "attention": 0.00018036365509033203
+    },
+    {
+      "token_index": 78,
+      "token": "Ġa",
+      "attention": 0.00011056661605834961
+    },
+    {
+      "token_index": 79,
+      "token": "Ġprofit",
+      "attention": 0.0003409385681152344
+    },
+    {
+      "token_index": 80,
+      "token": "?ĊĊ",
+      "attention": 0.0025539398193359375
+    },
+    {
+      "token_index": 81,
+      "token": "Choose",
+      "attention": 0.0007729530334472656
+    },
+    {
+      "token_index": 82,
+      "token": "Ġexactly",
+      "attention": 0.0003848075866699219
+    },
+    {
+      "token_index": 83,
+      "token": "Ġone",
+      "attention": 0.0003237724304199219
+    },
+    {
+      "token_index": 84,
+      "token": "Ġof",
+      "attention": 0.0004115104675292969
+    },
+    {
+      "token_index": 85,
+      "token": "Ġthe",
+      "attention": 0.0005125999450683594
+    },
+    {
+      "token_index": 86,
+      "token": "Ġfollowing",
+      "attention": 0.00036787986755371094
+    },
+    {
+      "token_index": 87,
+      "token": "Ġoptions",
+      "attention": 0.0013027191162109375
+    },
+    {
+      "token_index": 88,
+      "token": ":Ċ",
+      "attention": 0.0028514862060546875
+    },
+    {
+      "token_index": 89,
+      "token": "A",
+      "attention": 0.00392913818359375
+    },
+    {
+      "token_index": 90,
+      "token": ".",
+      "attention": 0.003238677978515625
+    },
+    {
+      "token_index": 91,
+      "token": "ĠPar",
+      "attention": 0.0014171600341796875
+    },
+    {
+      "token_index": 92,
+      "token": "adox",
+      "attention": 0.002239227294921875
+    },
+    {
+      "token_index": 93,
+      "token": "Ċ",
+      "attention": 0.004535675048828125
+    },
+    {
+      "token_index": 94,
+      "token": "B",
+      "attention": 0.007762908935546875
+    },
+    {
+      "token_index": 95,
+      "token": ".",
+      "attention": 0.0016794204711914062
+    },
+    {
+      "token_index": 96,
+      "token": "ĠUnknown",
+      "attention": 0.003314971923828125
+    },
+    {
+      "token_index": 97,
+      "token": "Ċ",
+      "attention": 0.00431060791015625
+    },
+    {
+      "token_index": 98,
+      "token": "C",
+      "attention": 0.0031070709228515625
+    },
+    {
+      "token_index": 99,
+      "token": ".",
+      "attention": 0.0007944107055664062
+    },
+    {
+      "token_index": 100,
+      "token": "ĠTrue",
+      "attention": 0.0019779205322265625
+    },
+    {
+      "token_index": 101,
+      "token": "Ċ",
+      "attention": 0.0018482208251953125
+    },
+    {
+      "token_index": 102,
+      "token": "D",
+      "attention": 0.005176544189453125
+    },
+    {
+      "token_index": 103,
+      "token": ".",
+      "attention": 0.0027942657470703125
+    },
+    {
+      "token_index": 104,
+      "token": "ĠFalse",
+      "attention": 0.0027618408203125
+    },
+    {
+      "token_index": 105,
+      "token": "ĊĊ",
+      "attention": 0.0052642822265625
+    },
+    {
+      "token_index": 106,
+      "token": "Your",
+      "attention": 0.0012292861938476562
+    },
+    {
+      "token_index": 107,
+      "token": "Ġanswer",
+      "attention": 0.00060272216796875
+    },
+    {
+      "token_index": 108,
+      "token": "Ġmust",
+      "attention": 0.0005230903625488281
+    },
+    {
+      "token_index": 109,
+      "token": "Ġbe",
+      "attention": 0.0008306503295898438
+    },
+    {
+      "token_index": 110,
+      "token": "Ġexactly",
+      "attention": 0.0003857612609863281
+    },
+    {
+      "token_index": 111,
+      "token": "Ġone",
+      "attention": 0.0003833770751953125
+    },
+    {
+      "token_index": 112,
+      "token": "Ġletter",
+      "attention": 0.0010995864868164062
+    },
+    {
+      "token_index": 113,
+      "token": ":",
+      "attention": 0.002223968505859375
+    },
+    {
+      "token_index": 114,
+      "token": "ĠA",
+      "attention": 0.00433349609375
+    },
+    {
+      "token_index": 115,
+      "token": ",",
+      "attention": 0.001979827880859375
+    },
+    {
+      "token_index": 116,
+      "token": "ĠB",
+      "attention": 0.002819061279296875
+    },
+    {
+      "token_index": 117,
+      "token": ",",
+      "attention": 0.0010433197021484375
+    },
+    {
+      "token_index": 118,
+      "token": "ĠC",
+      "attention": 0.0012445449829101562
+    },
+    {
+      "token_index": 119,
+      "token": ",",
+      "attention": 0.0010156631469726562
+    },
+    {
+      "token_index": 120,
+      "token": "Ġor",
+      "attention": 0.0011501312255859375
+    },
+    {
+      "token_index": 121,
+      "token": "ĠD",
+      "attention": 0.0036640167236328125
+    },
+    {
+      "token_index": 122,
+      "token": ".Ċ",
+      "attention": 0.004184722900390625
+    },
+    {
+      "token_index": 123,
+      "token": "Do",
+      "attention": 0.0025482177734375
+    },
+    {
+      "token_index": 124,
+      "token": "Ġnot",
+      "attention": 0.00119781494140625
+    },
+    {
+      "token_index": 125,
+      "token": "Ġwrite",
+      "attention": 0.00092315673828125
+    },
+    {
+      "token_index": 126,
+      "token": "Ġanything",
+      "attention": 0.0006003379821777344
+    },
+    {
+      "token_index": 127,
+      "token": "Ġelse",
+      "attention": 0.0014810562133789062
+    },
+    {
+      "token_index": 128,
+      "token": ".Ċ",
+      "attention": 0.011322021484375
+    },
+    {
+      "token_index": 129,
+      "token": "Answer",
+      "attention": 0.00665283203125
+    },
+    {
+      "token_index": 130,
+      "token": ":",
+      "attention": 0.003681182861328125
+    },
+    {
+      "token_index": 131,
+      "token": "<|eot_id|>",
+      "attention": 0.00897979736328125
+    },
+    {
+      "token_index": 132,
+      "token": "<|start_header_id|>",
+      "attention": 0.007389068603515625
+    },
+    {
+      "token_index": 133,
+      "token": "assistant",
+      "attention": 0.0096282958984375
+    },
+    {
+      "token_index": 134,
+      "token": "<|end_header_id|>",
+      "attention": 0.0217132568359375
+    },
+    {
+      "token_index": 135,
+      "token": "ĊĊ",
+      "attention": 0.02874755859375
+    }
+  ],
+  "aggregation": {
+    "by_region": {
+      "NARRATIVE": {
+        "n_tokens": 25,
+        "n_scored_tokens": 25,
+        "attention_sum": 0.003386199474334717,
+        "attention_mean_per_token": 0.00013544797897338868,
+        "attention_mass_share": 0.0037101570046021858,
+        "token_share": 0.18382352941176472,
+        "attention_enrichment": 0.02018325410503589
+      },
+      "QUESTION": {
+        "n_tokens": 5,
+        "n_scored_tokens": 5,
+        "attention_sum": 0.0011230111122131348,
+        "attention_mean_per_token": 0.00022460222244262694,
+        "attention_mass_share": 0.0012304495277976057,
+        "token_share": 0.03676470588235294,
+        "attention_enrichment": 0.033468227156094876
+      }
+    },
+    "by_role": {
+      "PREMISE": {
+        "n_tokens": 25,
+        "n_scored_tokens": 25,
+        "attention_sum": 0.003386199474334717,
+        "attention_mean_per_token": 0.00013544797897338868,
+        "attention_mass_share": 0.0037101570046021858,
+        "token_share": 0.18382352941176472,
+        "attention_enrichment": 0.02018325410503589
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 5,
+        "n_scored_tokens": 5,
+        "attention_sum": 0.0011230111122131348,
+        "attention_mean_per_token": 0.00022460222244262694,
+        "attention_mass_share": 0.0012304495277976057,
+        "token_share": 0.03676470588235294,
+        "attention_enrichment": 0.033468227156094876
+      }
+    },
+    "by_tag": {
+      "POSITIVE_BRANCH": {
+        "n_tokens": 11,
+        "n_scored_tokens": 11,
+        "attention_sum": 0.0015957951545715332,
+        "attention_mean_per_token": 0.0001450722867792303,
+        "attention_mass_share": 0.0017484647952722943,
+        "token_share": 0.08088235294117647,
+        "attention_enrichment": 0.021617382923366547
+      },
+      "NEGATIVE_BRANCH": {
+        "n_tokens": 14,
+        "n_scored_tokens": 14,
+        "attention_sum": 0.0017904043197631836,
+        "attention_mean_per_token": 0.0001278860228402274,
+        "attention_mass_share": 0.0019616922093298912,
+        "token_share": 0.10294117647058823,
+        "attention_enrichment": 0.019056438604918943
+      },
+      "NEGATION": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.0002377033233642578,
+        "attention_mean_per_token": 0.0001188516616821289,
+        "attention_mass_share": 0.0002604443881352822,
+        "token_share": 0.014705882352941176,
+        "attention_enrichment": 0.01771021839319919
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 5,
+        "n_scored_tokens": 5,
+        "attention_sum": 0.0011230111122131348,
+        "attention_mean_per_token": 0.00022460222244262694,
+        "attention_mass_share": 0.0012304495277976057,
+        "token_share": 0.03676470588235294,
+        "attention_enrichment": 0.033468227156094876
+      }
+    },
+    "by_critical": {
+      "True": {
+        "n_tokens": 30,
+        "n_scored_tokens": 30,
+        "attention_sum": 0.0045092105865478516,
+        "attention_mean_per_token": 0.00015030701955159504,
+        "attention_mass_share": 0.004940606532399791,
+        "token_share": 0.22058823529411764,
+        "attention_enrichment": 0.022397416280212388
+      }
+    },
+    "by_span": {
+      "P08_fam_positive_branch": {
+        "n_tokens": 11,
+        "n_scored_tokens": 11,
+        "attention_sum": 0.0015957951545715332,
+        "attention_mean_per_token": 0.0001450722867792303,
+        "attention_mass_share": 0.0017484647952722943,
+        "token_share": 0.08088235294117647,
+        "attention_enrichment": 0.021617382923366547,
+        "text": "If the market goes up, the trader makes a profit",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Positive case branch."
+      },
+      "P08_fam_negative_branch": {
+        "n_tokens": 14,
+        "n_scored_tokens": 14,
+        "attention_sum": 0.0017904043197631836,
+        "attention_mean_per_token": 0.0001278860228402274,
+        "attention_mass_share": 0.0019616922093298912,
+        "token_share": 0.10294117647058823,
+        "attention_enrichment": 0.019056438604918943,
+        "text": "If the market does not go up, the trader still makes a profit",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Negative case branch."
+      },
+      "P08_fam_negation": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.0002377033233642578,
+        "attention_mean_per_token": 0.0001188516616821289,
+        "attention_mass_share": 0.0002604443881352822,
+        "token_share": 0.014705882352941176,
+        "attention_enrichment": 0.01771021839319919,
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case."
+      },
+      "P08_fam_question_target": {
+        "n_tokens": 5,
+        "n_scored_tokens": 5,
+        "attention_sum": 0.0011230111122131348,
+        "attention_mean_per_token": 0.00022460222244262694,
+        "attention_mass_share": 0.0012304495277976057,
+        "token_share": 0.03676470588235294,
+        "attention_enrichment": 0.033468227156094876,
+        "text": "the trader makes a profit",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition entailed by both branches."
+      }
+    }
+  }
+}

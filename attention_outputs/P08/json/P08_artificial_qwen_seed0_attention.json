@@ -1,0 +1,1137 @@
+{
+  "metadata": {
+    "model_key": "qwen",
+    "model_name": "Qwen/Qwen2.5-3B-Instruct",
+    "puzzle_id": "P08_artificial",
+    "template_id": "P08",
+    "variant_type": "artificial",
+    "seed": 0,
+    "option_order": "True|Unknown|False|Paradox",
+    "gold_label": "True",
+    "gold_letter": "A",
+    "argmax_label": "Unknown",
+    "argmax_letter": "B",
+    "target_letter": "B",
+    "correct_argmax": "False",
+    "last_n_layers": 4
+  },
+  "diagnostics": {
+    "n_layers": 36,
+    "last_n_layers": 4,
+    "used_layers": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "n_prompt_tokens": 126,
+    "n_full_tokens": 127,
+    "answer_token_index": 126,
+    "answer_token": "B",
+    "target_letter": "B",
+    "attention_sum_to_prompt": 0.8843034505844116
+  },
+  "raw_prompt": "Consider the following two rules. (1) If the Plort opens, the Snorg arrives. (2) If the Plort does not open, the Snorg still arrives.\n\nIs it the case that the Snorg arrives?\n\nChoose exactly one of the following options:\nA. True\nB. Unknown\nC. False\nD. Paradox\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:",
+  "chat_prompt": "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n<|im_start|>user\nConsider the following two rules. (1) If the Plort opens, the Snorg arrives. (2) If the Plort does not open, the Snorg still arrives.\n\nIs it the case that the Snorg arrives?\n\nChoose exactly one of the following options:\nA. True\nB. Unknown\nC. False\nD. Paradox\n\nYour answer must be exactly one letter: A, B, C, or D.\nDo not write anything else.\nAnswer:<|im_end|>\n<|im_start|>assistant\n",
+  "resolved": {
+    "resolved_spans": [
+      {
+        "span_id": "P08_art_positive_branch",
+        "text": "If the Plort opens, the Snorg arrives",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Positive case branch.",
+        "start_char": 153,
+        "end_char": 190,
+        "token_indices": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "tokens": [
+          "ĠIf",
+          "Ġthe",
+          "ĠPl",
+          "ort",
+          "Ġopens",
+          ",",
+          "Ġthe",
+          "ĠSn",
+          "org",
+          "Ġarrives"
+        ]
+      },
+      {
+        "span_id": "P08_art_negative_branch",
+        "text": "If the Plort does not open, the Snorg still arrives",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Negative case branch.",
+        "start_char": 196,
+        "end_char": 247,
+        "token_indices": [
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59
+        ],
+        "tokens": [
+          "ĠIf",
+          "Ġthe",
+          "ĠPl",
+          "ort",
+          "Ġdoes",
+          "Ġnot",
+          "Ġopen",
+          ",",
+          "Ġthe",
+          "ĠSn",
+          "org",
+          "Ġstill",
+          "Ġarrives"
+        ]
+      },
+      {
+        "span_id": "P08_art_negation",
+        "anchor": "If the Plort does not open, the Snorg still arrives",
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case.",
+        "start_char": 209,
+        "end_char": 217,
+        "token_indices": [
+          51,
+          52
+        ],
+        "tokens": [
+          "Ġdoes",
+          "Ġnot"
+        ]
+      },
+      {
+        "span_id": "P08_art_question_target",
+        "anchor": "Is it the case that the Snorg arrives?",
+        "text": "the Snorg arrives",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition entailed by both branches.",
+        "start_char": 270,
+        "end_char": 287,
+        "token_indices": [
+          66,
+          67,
+          68,
+          69
+        ],
+        "tokens": [
+          "Ġthe",
+          "ĠSn",
+          "org",
+          "Ġarrives"
+        ]
+      }
+    ],
+    "errors": [],
+    "by_region": {
+      "NARRATIVE": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "QUESTION": [
+        66,
+        67,
+        68,
+        69
+      ]
+    },
+    "by_role": {
+      "PREMISE": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "QUESTION_TARGET": [
+        66,
+        67,
+        68,
+        69
+      ]
+    },
+    "by_tag": {
+      "POSITIVE_BRANCH": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "NEGATIVE_BRANCH": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "NEGATION": [
+        51,
+        52
+      ],
+      "QUESTION_TARGET": [
+        66,
+        67,
+        68,
+        69
+      ]
+    },
+    "by_critical": {
+      "True": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        66,
+        67,
+        68,
+        69
+      ]
+    },
+    "by_span": {
+      "P08_art_positive_branch": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "P08_art_negative_branch": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "P08_art_negation": [
+        51,
+        52
+      ],
+      "P08_art_question_target": [
+        66,
+        67,
+        68,
+        69
+      ]
+    }
+  },
+  "token_attention": [
+    {
+      "token_index": 0,
+      "token": "<|im_start|>",
+      "attention": 0.050018310546875
+    },
+    {
+      "token_index": 1,
+      "token": "system",
+      "attention": 0.0016565322875976562
+    },
+    {
+      "token_index": 2,
+      "token": "Ċ",
+      "attention": 0.1817626953125
+    },
+    {
+      "token_index": 3,
+      "token": "You",
+      "attention": 0.001312255859375
+    },
+    {
+      "token_index": 4,
+      "token": "Ġare",
+      "attention": 0.0019989013671875
+    },
+    {
+      "token_index": 5,
+      "token": "ĠQ",
+      "attention": 0.0007491111755371094
+    },
+    {
+      "token_index": 6,
+      "token": "wen",
+      "attention": 0.0015840530395507812
+    },
+    {
+      "token_index": 7,
+      "token": ",",
+      "attention": 0.005702972412109375
+    },
+    {
+      "token_index": 8,
+      "token": "Ġcreated",
+      "attention": 0.0005445480346679688
+    },
+    {
+      "token_index": 9,
+      "token": "Ġby",
+      "attention": 0.0009465217590332031
+    },
+    {
+      "token_index": 10,
+      "token": "ĠAlibaba",
+      "attention": 0.0004589557647705078
+    },
+    {
+      "token_index": 11,
+      "token": "ĠCloud",
+      "attention": 0.00124359130859375
+    },
+    {
+      "token_index": 12,
+      "token": ".",
+      "attention": 0.01055145263671875
+    },
+    {
+      "token_index": 13,
+      "token": "ĠYou",
+      "attention": 0.0010824203491210938
+    },
+    {
+      "token_index": 14,
+      "token": "Ġare",
+      "attention": 0.00042629241943359375
+    },
+    {
+      "token_index": 15,
+      "token": "Ġa",
+      "attention": 0.0016813278198242188
+    },
+    {
+      "token_index": 16,
+      "token": "Ġhelpful",
+      "attention": 0.00011134147644042969
+    },
+    {
+      "token_index": 17,
+      "token": "Ġassistant",
+      "attention": 0.00014734268188476562
+    },
+    {
+      "token_index": 18,
+      "token": ".",
+      "attention": 0.0033130645751953125
+    },
+    {
+      "token_index": 19,
+      "token": "<|im_end|>",
+      "attention": 0.07611083984375
+    },
+    {
+      "token_index": 20,
+      "token": "Ċ",
+      "attention": 0.018585205078125
+    },
+    {
+      "token_index": 21,
+      "token": "<|im_start|>",
+      "attention": 0.0021076202392578125
+    },
+    {
+      "token_index": 22,
+      "token": "user",
+      "attention": 0.00650787353515625
+    },
+    {
+      "token_index": 23,
+      "token": "Ċ",
+      "attention": 0.0217742919921875
+    },
+    {
+      "token_index": 24,
+      "token": "Consider",
+      "attention": 0.0028629302978515625
+    },
+    {
+      "token_index": 25,
+      "token": "Ġthe",
+      "attention": 0.0141448974609375
+    },
+    {
+      "token_index": 26,
+      "token": "Ġfollowing",
+      "attention": 0.0004723072052001953
+    },
+    {
+      "token_index": 27,
+      "token": "Ġtwo",
+      "attention": 0.00042939186096191406
+    },
+    {
+      "token_index": 28,
+      "token": "Ġrules",
+      "attention": 0.000701904296875
+    },
+    {
+      "token_index": 29,
+      "token": ".",
+      "attention": 0.0015439987182617188
+    },
+    {
+      "token_index": 30,
+      "token": "Ġ(",
+      "attention": 0.0010271072387695312
+    },
+    {
+      "token_index": 31,
+      "token": "1",
+      "attention": 0.0008187294006347656
+    },
+    {
+      "token_index": 32,
+      "token": ")",
+      "attention": 0.0010223388671875
+    },
+    {
+      "token_index": 33,
+      "token": "ĠIf",
+      "attention": 0.0014486312866210938
+    },
+    {
+      "token_index": 34,
+      "token": "Ġthe",
+      "attention": 0.0013723373413085938
+    },
+    {
+      "token_index": 35,
+      "token": "ĠPl",
+      "attention": 0.00020623207092285156
+    },
+    {
+      "token_index": 36,
+      "token": "ort",
+      "attention": 0.0008907318115234375
+    },
+    {
+      "token_index": 37,
+      "token": "Ġopens",
+      "attention": 0.0005044937133789062
+    },
+    {
+      "token_index": 38,
+      "token": ",",
+      "attention": 0.0006651878356933594
+    },
+    {
+      "token_index": 39,
+      "token": "Ġthe",
+      "attention": 0.0016193389892578125
+    },
+    {
+      "token_index": 40,
+      "token": "ĠSn",
+      "attention": 0.00127410888671875
+    },
+    {
+      "token_index": 41,
+      "token": "org",
+      "attention": 0.0005784034729003906
+    },
+    {
+      "token_index": 42,
+      "token": "Ġarrives",
+      "attention": 0.0004684925079345703
+    },
+    {
+      "token_index": 43,
+      "token": ".",
+      "attention": 0.001026153564453125
+    },
+    {
+      "token_index": 44,
+      "token": "Ġ(",
+      "attention": 0.0002570152282714844
+    },
+    {
+      "token_index": 45,
+      "token": "2",
+      "attention": 0.0005960464477539062
+    },
+    {
+      "token_index": 46,
+      "token": ")",
+      "attention": 0.0005249977111816406
+    },
+    {
+      "token_index": 47,
+      "token": "ĠIf",
+      "attention": 0.0003936290740966797
+    },
+    {
+      "token_index": 48,
+      "token": "Ġthe",
+      "attention": 0.0013990402221679688
+    },
+    {
+      "token_index": 49,
+      "token": "ĠPl",
+      "attention": 0.0009174346923828125
+    },
+    {
+      "token_index": 50,
+      "token": "ort",
+      "attention": 0.0003764629364013672
+    },
+    {
+      "token_index": 51,
+      "token": "Ġdoes",
+      "attention": 0.0002168416976928711
+    },
+    {
+      "token_index": 52,
+      "token": "Ġnot",
+      "attention": 0.00025844573974609375
+    },
+    {
+      "token_index": 53,
+      "token": "Ġopen",
+      "attention": 0.00040340423583984375
+    },
+    {
+      "token_index": 54,
+      "token": ",",
+      "attention": 0.00026917457580566406
+    },
+    {
+      "token_index": 55,
+      "token": "Ġthe",
+      "attention": 0.0012664794921875
+    },
+    {
+      "token_index": 56,
+      "token": "ĠSn",
+      "attention": 0.0012922286987304688
+    },
+    {
+      "token_index": 57,
+      "token": "org",
+      "attention": 0.0003230571746826172
+    },
+    {
+      "token_index": 58,
+      "token": "Ġstill",
+      "attention": 0.00023639202117919922
+    },
+    {
+      "token_index": 59,
+      "token": "Ġarrives",
+      "attention": 0.00018644332885742188
+    },
+    {
+      "token_index": 60,
+      "token": ".ĊĊ",
+      "attention": 0.0019178390502929688
+    },
+    {
+      "token_index": 61,
+      "token": "Is",
+      "attention": 0.0006098747253417969
+    },
+    {
+      "token_index": 62,
+      "token": "Ġit",
+      "attention": 0.00034880638122558594
+    },
+    {
+      "token_index": 63,
+      "token": "Ġthe",
+      "attention": 0.0005478858947753906
+    },
+    {
+      "token_index": 64,
+      "token": "Ġcase",
+      "attention": 0.0005021095275878906
+    },
+    {
+      "token_index": 65,
+      "token": "Ġthat",
+      "attention": 0.00067138671875
+    },
+    {
+      "token_index": 66,
+      "token": "Ġthe",
+      "attention": 0.0011796951293945312
+    },
+    {
+      "token_index": 67,
+      "token": "ĠSn",
+      "attention": 0.000606536865234375
+    },
+    {
+      "token_index": 68,
+      "token": "org",
+      "attention": 0.0003590583801269531
+    },
+    {
+      "token_index": 69,
+      "token": "Ġarrives",
+      "attention": 0.0010833740234375
+    },
+    {
+      "token_index": 70,
+      "token": "?ĊĊ",
+      "attention": 0.00494384765625
+    },
+    {
+      "token_index": 71,
+      "token": "Choose",
+      "attention": 0.00029540061950683594
+    },
+    {
+      "token_index": 72,
+      "token": "Ġexactly",
+      "attention": 0.0001513957977294922
+    },
+    {
+      "token_index": 73,
+      "token": "Ġone",
+      "attention": 0.00014781951904296875
+    },
+    {
+      "token_index": 74,
+      "token": "Ġof",
+      "attention": 0.0005421638488769531
+    },
+    {
+      "token_index": 75,
+      "token": "Ġthe",
+      "attention": 0.001369476318359375
+    },
+    {
+      "token_index": 76,
+      "token": "Ġfollowing",
+      "attention": 0.00023186206817626953
+    },
+    {
+      "token_index": 77,
+      "token": "Ġoptions",
+      "attention": 0.0009427070617675781
+    },
+    {
+      "token_index": 78,
+      "token": ":Ċ",
+      "attention": 0.001293182373046875
+    },
+    {
+      "token_index": 79,
+      "token": "A",
+      "attention": 0.0019025802612304688
+    },
+    {
+      "token_index": 80,
+      "token": ".",
+      "attention": 0.00252532958984375
+    },
+    {
+      "token_index": 81,
+      "token": "ĠTrue",
+      "attention": 0.0025177001953125
+    },
+    {
+      "token_index": 82,
+      "token": "Ċ",
+      "attention": 0.00997161865234375
+    },
+    {
+      "token_index": 83,
+      "token": "B",
+      "attention": 0.0018949508666992188
+    },
+    {
+      "token_index": 84,
+      "token": ".",
+      "attention": 0.0018377304077148438
+    },
+    {
+      "token_index": 85,
+      "token": "ĠUnknown",
+      "attention": 0.0019702911376953125
+    },
+    {
+      "token_index": 86,
+      "token": "Ċ",
+      "attention": 0.004512786865234375
+    },
+    {
+      "token_index": 87,
+      "token": "C",
+      "attention": 0.0018396377563476562
+    },
+    {
+      "token_index": 88,
+      "token": ".",
+      "attention": 0.0033054351806640625
+    },
+    {
+      "token_index": 89,
+      "token": "ĠFalse",
+      "attention": 0.00811767578125
+    },
+    {
+      "token_index": 90,
+      "token": "Ċ",
+      "attention": 0.0064239501953125
+    },
+    {
+      "token_index": 91,
+      "token": "D",
+      "attention": 0.002811431884765625
+    },
+    {
+      "token_index": 92,
+      "token": ".",
+      "attention": 0.00478363037109375
+    },
+    {
+      "token_index": 93,
+      "token": "ĠPar",
+      "attention": 0.0007805824279785156
+    },
+    {
+      "token_index": 94,
+      "token": "adox",
+      "attention": 0.0017414093017578125
+    },
+    {
+      "token_index": 95,
+      "token": "ĊĊ",
+      "attention": 0.01154327392578125
+    },
+    {
+      "token_index": 96,
+      "token": "Your",
+      "attention": 0.0009088516235351562
+    },
+    {
+      "token_index": 97,
+      "token": "Ġanswer",
+      "attention": 0.0006732940673828125
+    },
+    {
+      "token_index": 98,
+      "token": "Ġmust",
+      "attention": 0.0005431175231933594
+    },
+    {
+      "token_index": 99,
+      "token": "Ġbe",
+      "attention": 0.0006718635559082031
+    },
+    {
+      "token_index": 100,
+      "token": "Ġexactly",
+      "attention": 0.000492095947265625
+    },
+    {
+      "token_index": 101,
+      "token": "Ġone",
+      "attention": 0.00030875205993652344
+    },
+    {
+      "token_index": 102,
+      "token": "Ġletter",
+      "attention": 0.0007581710815429688
+    },
+    {
+      "token_index": 103,
+      "token": ":",
+      "attention": 0.0016222000122070312
+    },
+    {
+      "token_index": 104,
+      "token": "ĠA",
+      "attention": 0.003185272216796875
+    },
+    {
+      "token_index": 105,
+      "token": ",",
+      "attention": 0.0032215118408203125
+    },
+    {
+      "token_index": 106,
+      "token": "ĠB",
+      "attention": 0.0013322830200195312
+    },
+    {
+      "token_index": 107,
+      "token": ",",
+      "attention": 0.0012388229370117188
+    },
+    {
+      "token_index": 108,
+      "token": "ĠC",
+      "attention": 0.0022525787353515625
+    },
+    {
+      "token_index": 109,
+      "token": ",",
+      "attention": 0.0033283233642578125
+    },
+    {
+      "token_index": 110,
+      "token": "Ġor",
+      "attention": 0.0028781890869140625
+    },
+    {
+      "token_index": 111,
+      "token": "ĠD",
+      "attention": 0.0037384033203125
+    },
+    {
+      "token_index": 112,
+      "token": ".Ċ",
+      "attention": 0.01285552978515625
+    },
+    {
+      "token_index": 113,
+      "token": "Do",
+      "attention": 0.0015821456909179688
+    },
+    {
+      "token_index": 114,
+      "token": "Ġnot",
+      "attention": 0.0011835098266601562
+    },
+    {
+      "token_index": 115,
+      "token": "Ġwrite",
+      "attention": 0.0006551742553710938
+    },
+    {
+      "token_index": 116,
+      "token": "Ġanything",
+      "attention": 0.0004115104675292969
+    },
+    {
+      "token_index": 117,
+      "token": "Ġelse",
+      "attention": 0.0010986328125
+    },
+    {
+      "token_index": 118,
+      "token": ".Ċ",
+      "attention": 0.01104736328125
+    },
+    {
+      "token_index": 119,
+      "token": "Answer",
+      "attention": 0.006587982177734375
+    },
+    {
+      "token_index": 120,
+      "token": ":",
+      "attention": 0.01389312744140625
+    },
+    {
+      "token_index": 121,
+      "token": "<|im_end|>",
+      "attention": 0.09490966796875
+    },
+    {
+      "token_index": 122,
+      "token": "Ċ",
+      "attention": 0.0265350341796875
+    },
+    {
+      "token_index": 123,
+      "token": "<|im_start|>",
+      "attention": 0.00836944580078125
+    },
+    {
+      "token_index": 124,
+      "token": "assistant",
+      "attention": 0.1143798828125
+    },
+    {
+      "token_index": 125,
+      "token": "Ċ",
+      "attention": 0.0450439453125
+    }
+  ],
+  "aggregation": {
+    "by_region": {
+      "NARRATIVE": {
+        "n_tokens": 23,
+        "n_scored_tokens": 23,
+        "attention_sum": 0.016566991806030273,
+        "attention_mean_per_token": 0.0007203039915665337,
+        "attention_mass_share": 0.01873450996383833,
+        "token_share": 0.18253968253968253,
+        "attention_enrichment": 0.1026325328453752
+      },
+      "QUESTION": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0032286643981933594,
+        "attention_mean_per_token": 0.0008071660995483398,
+        "attention_mass_share": 0.0036510819855555517,
+        "token_share": 0.031746031746031744,
+        "attention_enrichment": 0.11500908254499989
+      }
+    },
+    "by_role": {
+      "PREMISE": {
+        "n_tokens": 23,
+        "n_scored_tokens": 23,
+        "attention_sum": 0.016566991806030273,
+        "attention_mean_per_token": 0.0007203039915665337,
+        "attention_mass_share": 0.01873450996383833,
+        "token_share": 0.18253968253968253,
+        "attention_enrichment": 0.1026325328453752
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0032286643981933594,
+        "attention_mean_per_token": 0.0008071660995483398,
+        "attention_mass_share": 0.0036510819855555517,
+        "token_share": 0.031746031746031744,
+        "attention_enrichment": 0.11500908254499989
+      }
+    },
+    "by_tag": {
+      "POSITIVE_BRANCH": {
+        "n_tokens": 10,
+        "n_scored_tokens": 10,
+        "attention_sum": 0.009027957916259766,
+        "attention_mean_per_token": 0.0009027957916259765,
+        "attention_mass_share": 0.010209117594524185,
+        "token_share": 0.07936507936507936,
+        "attention_enrichment": 0.12863488169100473
+      },
+      "NEGATIVE_BRANCH": {
+        "n_tokens": 13,
+        "n_scored_tokens": 13,
+        "attention_sum": 0.007539033889770508,
+        "attention_mean_per_token": 0.0005799256838285006,
+        "attention_mass_share": 0.008525392369314141,
+        "token_share": 0.10317460317460317,
+        "attention_enrichment": 0.08263072604104477
+      },
+      "NEGATION": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.00047528743743896484,
+        "attention_mean_per_token": 0.00023764371871948242,
+        "attention_mass_share": 0.0005374709746126859,
+        "token_share": 0.015873015873015872,
+        "attention_enrichment": 0.03386067140059921
+      },
+      "QUESTION_TARGET": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0032286643981933594,
+        "attention_mean_per_token": 0.0008071660995483398,
+        "attention_mass_share": 0.0036510819855555517,
+        "token_share": 0.031746031746031744,
+        "attention_enrichment": 0.11500908254499989
+      }
+    },
+    "by_critical": {
+      "True": {
+        "n_tokens": 27,
+        "n_scored_tokens": 27,
+        "attention_sum": 0.019795656204223633,
+        "attention_mean_per_token": 0.0007331724520082827,
+        "attention_mass_share": 0.02238559194939388,
+        "token_share": 0.21428571428571427,
+        "attention_enrichment": 0.10446609576383811
+      }
+    },
+    "by_span": {
+      "P08_art_positive_branch": {
+        "n_tokens": 10,
+        "n_scored_tokens": 10,
+        "attention_sum": 0.009027957916259766,
+        "attention_mean_per_token": 0.0009027957916259765,
+        "attention_mass_share": 0.010209117594524185,
+        "token_share": 0.07936507936507936,
+        "attention_enrichment": 0.12863488169100473,
+        "text": "If the Plort opens, the Snorg arrives",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "POSITIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Positive case branch."
+      },
+      "P08_art_negative_branch": {
+        "n_tokens": 13,
+        "n_scored_tokens": 13,
+        "attention_sum": 0.007539033889770508,
+        "attention_mean_per_token": 0.0005799256838285006,
+        "attention_mass_share": 0.008525392369314141,
+        "token_share": 0.10317460317460317,
+        "attention_enrichment": 0.08263072604104477,
+        "text": "If the Plort does not open, the Snorg still arrives",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATIVE_BRANCH"
+        ],
+        "critical": true,
+        "notes": "Negative case branch."
+      },
+      "P08_art_negation": {
+        "n_tokens": 2,
+        "n_scored_tokens": 2,
+        "attention_sum": 0.00047528743743896484,
+        "attention_mean_per_token": 0.00023764371871948242,
+        "attention_mass_share": 0.0005374709746126859,
+        "token_share": 0.015873015873015872,
+        "attention_enrichment": 0.03386067140059921,
+        "text": "does not",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "NEGATION"
+        ],
+        "critical": true,
+        "notes": "Negation marker defining the complementary case."
+      },
+      "P08_art_question_target": {
+        "n_tokens": 4,
+        "n_scored_tokens": 4,
+        "attention_sum": 0.0032286643981933594,
+        "attention_mean_per_token": 0.0008071660995483398,
+        "attention_mass_share": 0.0036510819855555517,
+        "token_share": 0.031746031746031744,
+        "attention_enrichment": 0.11500908254499989,
+        "text": "the Snorg arrives",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "QUESTION_TARGET"
+        ],
+        "critical": true,
+        "notes": "Queried proposition entailed by both branches."
+      }
+    }
+  }
+}

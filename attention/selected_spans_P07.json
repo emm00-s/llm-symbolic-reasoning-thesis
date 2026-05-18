@@ -1,0 +1,230 @@
+{
+  "P07_abstract": {
+    "puzzle_id": "P07_abstract",
+    "template_id": "P07",
+    "variant_type": "abstract",
+    "gold_label": "Unknown",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P07_abs_group_a_rule",
+        "text": "Group A: If X1, then X2",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "RELEVANT_CLUSTER",
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Cluster A is relevant because the query asks about X2."
+      },
+      {
+        "span_id": "P07_abs_group_b_rule",
+        "text": "Group B: If X3, then X4",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "IRRELEVANT_CLUSTER",
+          "LOGICAL_OP"
+        ],
+        "critical": false,
+        "notes": "Cluster B is activated by the observation but irrelevant to X2."
+      },
+      {
+        "span_id": "P07_abs_observation",
+        "text": "Observation: X3",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "IRRELEVANT_CLUSTER"
+        ],
+        "critical": false,
+        "notes": "Observation belongs to cluster B and does not constrain X2."
+      },
+      {
+        "span_id": "P07_abs_question_target",
+        "text": "X2",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "RELEVANT_CLUSTER"
+        ],
+        "critical": true,
+        "notes": "Queried proposition.",
+        "anchor": "Is it the case that X2?"
+      }
+    ]
+  },
+  "P07_artificial": {
+    "puzzle_id": "P07_artificial",
+    "template_id": "P07",
+    "variant_type": "artificial",
+    "gold_label": "Unknown",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P07_art_group_a_rule",
+        "text": "In Mern, if the Krell stone hums, the harvest is doubled",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "RELEVANT_CLUSTER",
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Cluster A rule; relevant because the question asks about the harvest in Mern."
+      },
+      {
+        "span_id": "P07_art_group_b_rule",
+        "text": "In Vell, if the Plith star rises, the river runs gold",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "IRRELEVANT_CLUSTER",
+          "LOGICAL_OP"
+        ],
+        "critical": false,
+        "notes": "Cluster B rule; activated by observation but irrelevant to the queried Mern proposition."
+      },
+      {
+        "span_id": "P07_art_observation",
+        "text": "Observation: in Vell, the Plith star rises",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "IRRELEVANT_CLUSTER"
+        ],
+        "critical": false,
+        "notes": "Observation belongs to cluster B."
+      },
+      {
+        "span_id": "P07_art_question_target",
+        "text": "the harvest in Mern is doubled",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "RELEVANT_CLUSTER"
+        ],
+        "critical": true,
+        "notes": "Queried proposition in cluster A.",
+        "anchor": "Is it the case that the harvest in Mern is doubled?"
+      }
+    ]
+  },
+  "P07_belief_violating": {
+    "puzzle_id": "P07_belief_violating",
+    "template_id": "P07",
+    "variant_type": "belief_violating",
+    "gold_label": "Unknown",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P07_bv_group_a_rule",
+        "text": "In Group A, if the Moon is made of cheese, water molecules contain oxygen atoms",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "RELEVANT_CLUSTER",
+          "LOGICAL_OP",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Cluster A rule; relevant to the query but not activated by any observation."
+      },
+      {
+        "span_id": "P07_bv_group_b_rule",
+        "text": "In Group B, if the Earth rotates, shadows move during the day",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "IRRELEVANT_CLUSTER",
+          "LOGICAL_OP",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": false,
+        "notes": "Cluster B rule; activated by observation but irrelevant to the queried proposition."
+      },
+      {
+        "span_id": "P07_bv_observation",
+        "text": "Observation: the Earth rotates",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "IRRELEVANT_CLUSTER",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": false,
+        "notes": "Observation activates only cluster B."
+      },
+      {
+        "span_id": "P07_bv_question_target",
+        "text": "water molecules contain oxygen atoms",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "RELEVANT_CLUSTER",
+          "CONTENT_TRIGGER"
+        ],
+        "critical": true,
+        "notes": "Queried proposition in cluster A; factually true but formally unconstrained.",
+        "anchor": "Is it the case that water molecules contain oxygen atoms?"
+      }
+    ]
+  },
+  "P07_familiar": {
+    "puzzle_id": "P07_familiar",
+    "template_id": "P07",
+    "variant_type": "familiar",
+    "gold_label": "Unknown",
+    "query_type": "entailment",
+    "spans": [
+      {
+        "span_id": "P07_fam_group_a_rule",
+        "text": "In Room A, if Switch A is flipped, the Fan is on",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "RELEVANT_CLUSTER",
+          "LOGICAL_OP"
+        ],
+        "critical": true,
+        "notes": "Cluster A rule; relevant because the question asks about the Fan in Room A."
+      },
+      {
+        "span_id": "P07_fam_group_b_rule",
+        "text": "In Room B, if Switch B is flipped, the Light is on",
+        "region": "NARRATIVE",
+        "role": "PREMISE",
+        "tags": [
+          "IRRELEVANT_CLUSTER",
+          "LOGICAL_OP"
+        ],
+        "critical": false,
+        "notes": "Cluster B rule; activated by observation but irrelevant to the Fan in Room A."
+      },
+      {
+        "span_id": "P07_fam_observation",
+        "text": "Observation: in Room B, Switch B is flipped",
+        "region": "NARRATIVE",
+        "role": "OBSERVATION",
+        "tags": [
+          "IRRELEVANT_CLUSTER"
+        ],
+        "critical": false,
+        "notes": "Observation belongs to cluster B."
+      },
+      {
+        "span_id": "P07_fam_question_target",
+        "text": "the Fan in Room A is on",
+        "region": "QUESTION",
+        "role": "QUESTION_TARGET",
+        "tags": [
+          "RELEVANT_CLUSTER"
+        ],
+        "critical": true,
+        "notes": "Queried proposition in cluster A.",
+        "anchor": "Is it the case that the Fan in Room A is on?"
+      }
+    ]
+  }
+}
