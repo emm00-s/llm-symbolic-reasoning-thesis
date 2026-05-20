@@ -21,7 +21,7 @@ Reports:
   - paired bootstrap deltas over template_id for variant comparisons
 
 Usage:
-    python analyze.py path/to/results_qwen3b_TIMESTAMP.csv
+    python -m src.analyze path/to/results_qwen3b_TIMESTAMP.csv
 """
 
 import argparse

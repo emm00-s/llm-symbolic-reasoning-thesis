@@ -1,7 +1,7 @@
 """Generate the behavioral analysis figures for Qwen-2.5-3B vs Llama-3.2-3B.
 
-Reads the two result CSVs from ``results/`` and writes PNGs (plus a few HTML
-copies and one CSV table) to ``figures/behavioral/``.
+Reads the two result CSVs from ``results/`` and writes PNGs (and one CSV
+table) to ``figures/behavioral/``.
 
 Dependencies (not installed automatically by this script):
     pip install pandas plotly kaleido==0.2.1

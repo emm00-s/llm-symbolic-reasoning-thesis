@@ -1,6 +1,7 @@
 Loaded 360 rows from results_qwen3b_T0.7_topP1.0_n10_20260513_114931.csv
   36 puzzles × 10 seeds
   9 templates
+  Model: Qwen/Qwen2.5-3B-Instruct
 
 === Sanity check ===
   Invalid outputs: 0/360 = 0.0%
