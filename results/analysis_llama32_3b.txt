@@ -1,0 +1,151 @@
+Loaded 360 rows from results_llama32_3b_T0.7_topP1.0_n10_20260513_154349.csv
+  36 puzzles × 10 seeds
+  9 templates
+  Model: meta-llama/Llama-3.2-3B-Instruct
+
+=== Sanity check ===
+  Invalid outputs: 0/360 = 0.0%
+
+=== Per-run accuracy ===
+  Sampled label: 92/360 = 25.6%   cluster CI: 0.256 [0.197, 0.325]
+  Argmax label:  102/360 = 28.3%   cluster CI: 0.283 [0.192, 0.392]
+
+=== Positional diagnostics ===
+Chosen-letter distribution (diagnostic for residual positional bias):
+  A: 71/360 = 19.7%
+  B: 149/360 = 41.4%
+  C: 90/360 = 25.0%
+  D: 50/360 = 13.9%
+
+Mean letter-level probability (positional preference, independent of label assignment):
+  prob_A: 0.190
+  prob_B: 0.408
+  prob_C: 0.263
+  prob_D: 0.140
+
+Sampled accuracy by chosen letter:
+  A: 26/71 = 36.6%
+  B: 32/149 = 21.5%
+  C: 21/90 = 23.3%
+  D: 13/50 = 26.0%
+
+Sampled accuracy by gold-label position (where the correct option was placed):
+  gold@A: 26/96 = 27.1%
+  gold@B: 32/90 = 35.6%
+  gold@C: 21/87 = 24.1%
+  gold@D: 13/87 = 14.9%
+
+Distinct option_order permutations observed: 24 (of 24 possible)
+
+Sampled accuracy by variant_type:
+  familiar             23/90 = 25.6%   cluster CI: 0.256 [0.133, 0.400]
+  belief_violating     10/90 = 11.1%   cluster CI: 0.111 [0.067, 0.156]
+  artificial           33/90 = 36.7%   cluster CI: 0.367 [0.256, 0.489]
+  abstract             26/90 = 28.9%   cluster CI: 0.289 [0.200, 0.411]
+
+Sampled accuracy by template_id:
+  P01                  16/40 = 40.0%   cluster CI: 0.400 [0.200, 0.600]
+  P02                  8/40 = 20.0%   cluster CI: 0.200 [0.125, 0.275]
+  P03                  12/40 = 30.0%   cluster CI: 0.300 [0.175, 0.400]
+  P04                  8/40 = 20.0%   cluster CI: 0.200 [0.100, 0.300]
+  P05                  8/40 = 20.0%   cluster CI: 0.200 [0.050, 0.400]
+  P06                  4/40 = 10.0%   cluster CI: 0.100 [0.025, 0.175]
+  P07                  8/40 = 20.0%   cluster CI: 0.200 [0.100, 0.300]
+  P08                  17/40 = 42.5%   cluster CI: 0.425 [0.200, 0.650]
+  P09                  11/40 = 27.5%   cluster CI: 0.275 [0.050, 0.575]
+
+Sampled accuracy by category:
+  Default/Exception    4/40 = 10.0%   cluster CI: 0.100 [0.025, 0.175]
+  Fallacy              8/40 = 20.0%   cluster CI: 0.200 [0.100, 0.300]
+  Meta-Logic           8/40 = 20.0%   cluster CI: 0.200 [0.050, 0.400]
+  Paradox              11/40 = 27.5%   cluster CI: 0.275 [0.050, 0.575]
+  Propositional        17/40 = 42.5%   cluster CI: 0.425 [0.200, 0.650]
+  Sets                 20/80 = 25.0%   cluster CI: 0.250 [0.163, 0.325]
+  Transitive           24/80 = 30.0%   cluster CI: 0.300 [0.188, 0.438]
+
+=== Majority-vote analysis per puzzle ===
+  Majority-vote accuracy: 7/36 = 19.4%
+  Mean response stability: 0.553
+  Tied majorities: 2/36 puzzles
+
+Majority-vote accuracy by variant_type:
+  familiar           2/9 = 22.2%
+  belief_violating   0/9 = 0.0%
+  artificial         3/9 = 33.3%
+  abstract           2/9 = 22.2%
+
+Mean stability by variant_type:
+  familiar           0.544
+  belief_violating   0.656
+  artificial         0.533
+  abstract           0.478
+
+Cross-variant consistency on majority predictions:
+  1/9 templates have identical majority prediction across all 4 variants
+  inconsistent templates:
+    P01: {'familiar': 'False', 'belief_violating': 'True', 'artificial': 'False', 'abstract': 'Unknown'}
+    P02: {'familiar': 'Unknown', 'belief_violating': 'True', 'artificial': 'True', 'abstract': 'Unknown'}
+    P03: {'familiar': 'False', 'belief_violating': 'False', 'artificial': 'False', 'abstract': 'True'}
+    P04: {'familiar': 'False', 'belief_violating': 'False', 'artificial': 'False', 'abstract': 'Unknown'}
+    P05: {'familiar': 'False', 'belief_violating': 'False', 'artificial': 'True', 'abstract': 'Unknown'}
+    P07: {'familiar': 'False', 'belief_violating': 'False', 'artificial': 'False', 'abstract': 'True'}
+    P08: {'familiar': 'True', 'belief_violating': 'False', 'artificial': 'True', 'abstract': 'Unknown'}
+    P09: {'familiar': 'False', 'belief_violating': 'True', 'artificial': 'False', 'abstract': 'Paradox'}
+
+Paired bootstrap deltas on majority-vote accuracy:
+  familiar           - belief_violating  : +0.222 [+0.000, +0.444]
+  artificial         - belief_violating  : +0.333 [+0.000, +0.667]
+  abstract           - belief_violating  : +0.222 [+0.000, +0.556]
+  abstract           - familiar          : +0.000 [-0.444, +0.444]
+
+Mean confidence (max_prob) by sampled correctness:
+  Correct  (n=  92): mean = 0.596
+  Wrong    (n= 268): mean = 0.601
+
+Mean entropy (nats) by sampled correctness:
+  Correct  (n=  92): mean H = 0.948
+  Wrong    (n= 268): mean H = 0.934
+
+Mean confidence and entropy by variant_type:
+  familiar           mean conf = 0.610   mean H = 0.923
+  belief_violating   mean conf = 0.646   mean H = 0.830
+  artificial         mean conf = 0.603   mean H = 0.936
+  abstract           mean conf = 0.541   mean H = 1.061
+
+Per-puzzle majority predictions and stability:
+  P01_abstract             gold=False    majority=Unknown  correct=False stability=0.40 invalid=0/10 votes={'Unknown': 4, 'False': 2, 'True': 3, 'Paradox': 1}
+  P01_artificial           gold=False    majority=False    correct=True  stability=0.60 invalid=0/10 votes={'True': 2, 'False': 6, 'Unknown': 2}
+  P01_belief_violating     gold=False    majority=True     correct=False stability=0.50 invalid=0/10 votes={'Unknown': 3, 'True': 5, 'False': 2}
+  P01_familiar             gold=False    majority=False    correct=True  stability=0.60 invalid=0/10 votes={'True': 4, 'False': 6}
+  P02_abstract             gold=False    majority=Unknown  correct=False stability=0.50 invalid=0/10 votes={'Paradox': 1, 'Unknown': 5, 'False': 3, 'True': 1}
+  P02_artificial           gold=False    majority=True     correct=False stability=0.30 invalid=0/10 votes={'Unknown': 3, 'True': 3, 'Paradox': 2, 'False': 2}
+  P02_belief_violating     gold=False    majority=True     correct=False stability=0.60 invalid=0/10 votes={'False': 2, 'True': 6, 'Paradox': 1, 'Unknown': 1}
+  P02_familiar             gold=False    majority=Unknown  correct=False stability=0.40 invalid=0/10 votes={'True': 3, 'Unknown': 4, 'False': 1, 'Paradox': 2}
+  P03_abstract             gold=True     majority=True     correct=True  stability=0.40 invalid=0/10 votes={'True': 4, 'Unknown': 3, 'Paradox': 2, 'False': 1}
+  P03_artificial           gold=True     majority=False    correct=False stability=0.50 invalid=0/10 votes={'False': 5, 'True': 4, 'Unknown': 1}
+  P03_belief_violating     gold=True     majority=False    correct=False stability=0.60 invalid=0/10 votes={'Paradox': 1, 'False': 6, 'Unknown': 2, 'True': 1}
+  P03_familiar             gold=True     majority=False    correct=False stability=0.40 invalid=0/10 votes={'False': 4, 'Paradox': 2, 'True': 3, 'Unknown': 1}
+  P04_abstract             gold=True     majority=Unknown  correct=False stability=0.50 invalid=0/10 votes={'Unknown': 5, 'False': 1, 'True': 3, 'Paradox': 1}
+  P04_artificial           gold=True     majority=False    correct=False stability=0.60 invalid=0/10 votes={'Paradox': 1, 'False': 6, 'True': 3}
+  P04_belief_violating     gold=True     majority=False    correct=False stability=0.60 invalid=0/10 votes={'False': 6, 'Unknown': 2, 'True': 1, 'Paradox': 1}
+  P04_familiar             gold=True     majority=False    correct=False stability=0.70 invalid=0/10 votes={'Unknown': 1, 'False': 7, 'True': 1, 'Paradox': 1}
+  P05_abstract             gold=True     majority=Unknown  correct=False stability=0.40 invalid=0/10 votes={'Unknown': 4, 'Paradox': 1, 'False': 3, 'True': 2}
+  P05_artificial           gold=True     majority=True     correct=True  stability=0.50 invalid=0/10 votes={'False': 3, 'True': 5, 'Paradox': 2}
+  P05_belief_violating     gold=True     majority=False    correct=False stability=0.90 invalid=0/10 votes={'False': 9, 'Paradox': 1}
+  P05_familiar             gold=True     majority=False    correct=False stability=0.40 invalid=0/10 votes={'False': 4, 'Paradox': 4, 'True': 1, 'Unknown': 1}
+  P06_abstract             gold=Unknown  majority=False    correct=False stability=0.40 invalid=0/10 votes={'False': 4, 'Unknown': 2, 'True': 3, 'Paradox': 1}
+  P06_artificial           gold=Unknown  majority=False    correct=False stability=0.70 invalid=0/10 votes={'False': 7, 'Paradox': 2, 'Unknown': 1}
+  P06_belief_violating     gold=Unknown  majority=False    correct=False stability=0.60 invalid=0/10 votes={'Paradox': 1, 'False': 6, 'True': 2, 'Unknown': 1}
+  P06_familiar             gold=Unknown  majority=False    correct=False stability=0.60 invalid=0/10 votes={'False': 6, 'Paradox': 3, 'True': 1}
+  P07_abstract             gold=Unknown  majority=True     correct=False stability=0.60 invalid=0/10 votes={'True': 6, 'False': 3, 'Unknown': 1}
+  P07_artificial           gold=Unknown  majority=False    correct=False stability=0.40 invalid=0/10 votes={'Paradox': 1, 'Unknown': 3, 'True': 2, 'False': 4}
+  P07_belief_violating     gold=Unknown  majority=False    correct=False stability=0.90 invalid=0/10 votes={'False': 9, 'Unknown': 1}
+  P07_familiar             gold=Unknown  majority=False    correct=False stability=0.50 invalid=0/10 votes={'True': 2, 'Unknown': 3, 'False': 5}
+  P08_abstract             gold=True     majority=Unknown  correct=False stability=0.40 invalid=0/10 votes={'Unknown': 4, 'Paradox': 2, 'False': 2, 'True': 2}
+  P08_artificial           gold=True     majority=True     correct=True  stability=0.70 invalid=0/10 votes={'False': 2, 'True': 7, 'Paradox': 1}
+  P08_belief_violating     gold=True     majority=False    correct=False stability=0.40 invalid=0/10 votes={'True': 2, 'False': 4, 'Unknown': 3, 'Paradox': 1}
+  P08_familiar             gold=True     majority=True     correct=True  stability=0.60 invalid=0/10 votes={'True': 6, 'Unknown': 3, 'False': 1}
+  P09_abstract             gold=Paradox  majority=Paradox  correct=True  stability=0.70 invalid=0/10 votes={'True': 2, 'Paradox': 7, 'False': 1}
+  P09_artificial           gold=Paradox  majority=False    correct=False stability=0.50 invalid=0/10 votes={'True': 1, 'False': 5, 'Paradox': 2, 'Unknown': 2}
+  P09_belief_violating     gold=Paradox  majority=True     correct=False stability=0.80 invalid=0/10 votes={'False': 2, 'True': 8}
+  P09_familiar             gold=Paradox  majority=False    correct=False stability=0.70 invalid=0/10 votes={'False': 7, 'Paradox': 2, 'True': 1}

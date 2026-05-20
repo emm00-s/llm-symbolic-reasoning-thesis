@@ -134,6 +134,17 @@ The analysis reports:
 - cluster bootstrap confidence intervals
 - paired variant deltas
 
+## Reproducibility and final artifacts
+
+The final behavioral CSVs for Qwen-2.5-3B-Instruct and Llama-3.2-3B-Instruct
+are committed under `results/`, the per-model text summaries are
+`results/analysis_qwen3b.txt` and `results/analysis_llama32_3b.txt`, and the
+comparative figures live in `figures/behavioral/`. See
+[`docs/reproducibility.md`](docs/reproducibility.md) for the regeneration
+commands. Re-running the benchmark from scratch is documented in
+`analysis/run_benchmark_colab.py`; note that Llama is gated and requires a
+Hugging Face token.
+
 ## Methodological note
 
 This project is a small controlled diagnostic dataset, not a broad benchmark of logical reasoning.

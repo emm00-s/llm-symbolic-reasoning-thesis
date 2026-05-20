@@ -6,11 +6,17 @@ venv/
 .env
 
 .DS_Store
+.ipynb_checkpoints/
 
 results/*.csv
 results/*.json
 results/*.txt
 !results/.gitkeep
+# Final, versioned behavioral results
+!results/results_qwen3b_T0.7_topP1.0_n10_20260513_114931.csv
+!results/results_llama32_3b_T0.7_topP1.0_n10_20260513_154349.csv
+!results/analysis_qwen3b.txt
+!results/analysis_llama32_3b.txt
 
 .cache/
 *.pt
