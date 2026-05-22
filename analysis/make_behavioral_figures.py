@@ -12,6 +12,7 @@ Usage:
 
 from __future__ import annotations
 
+from collections import Counter
 from pathlib import Path
 
 import pandas as pd
@@ -46,6 +47,23 @@ def to_bool(x) -> bool:
     return str(x).strip().lower() == "true"
 
 
+def modal_label(labels) -> str | None:
+    """Return the modal label with deterministic LABEL_ORDER tie-breaking.
+
+    Mirrors `src.analyze.modal_label`. Empty input returns None.
+    """
+    labels = list(labels)
+    if not labels:
+        return None
+    counts = Counter(labels)
+    max_count = max(counts.values())
+    tied = {label for label, count in counts.items() if count == max_count}
+    for label in LABEL_ORDER:
+        if label in tied:
+            return label
+    return next(iter(tied))
+
+
 def load_data() -> pd.DataFrame:
     qwen = pd.read_csv(QWEN_CSV)
     llama = pd.read_csv(LLAMA_CSV)
@@ -59,6 +77,7 @@ def load_data() -> pd.DataFrame:
     df["model_short"] = df["model_name"].apply(short_model_name)
     df["correct_sampled"] = df["correct_sampled"].apply(to_bool)
     df["correct_argmax"] = df["correct_argmax"].apply(to_bool)
+    df["is_invalid"] = df["is_invalid"].apply(to_bool)
     df["argmax_correctness"] = df["correct_argmax"].map({True: "Correct", False: "Incorrect"})
     return df
 
@@ -463,27 +482,32 @@ def fig_letter_bias(df: pd.DataFrame) -> None:
 
 
 def fig_cross_variant_majority(df: pd.DataFrame) -> None:
+    """Per-(model, template, variant) majority over sampled labels.
+
+    Matches `src.analyze`: filters out invalid rows before voting, votes
+    over `sampled_label` (not `argmax_label`), and breaks ties
+    deterministically using LABEL_ORDER via `modal_label`.
+    """
     template_order = sorted(df["template_id"].unique())
 
-    def majority_label(series):
-        return series.value_counts().index[0]
+    valid = df[~df["is_invalid"]]
 
     majority = (
-        df.groupby(["model_short", "template_id", "variant_type"])
-          .agg(majority_argmax_label=("argmax_label", majority_label),
-               gold_label=("gold_label", "first"),
-               n=("argmax_label", "size"))
-          .reset_index()
+        valid.groupby(["model_short", "template_id", "variant_type"])
+             .agg(majority_label=("sampled_label", modal_label),
+                  gold_label=("gold_label", "first"),
+                  n_valid=("sampled_label", "size"))
+             .reset_index()
     )
-    majority["majority_correct"] = majority["majority_argmax_label"] == majority["gold_label"]
+    majority["majority_correct"] = majority["majority_label"] == majority["gold_label"]
 
     consistency = (
         majority.groupby(["model_short", "template_id"])
-          .agg(n_unique_predictions=("majority_argmax_label", "nunique"),
-               predictions=("majority_argmax_label", lambda x: " | ".join(x)),
-               all_variants_same=("majority_argmax_label", lambda x: x.nunique() == 1),
-               gold_label=("gold_label", "first"))
-          .reset_index()
+                .agg(n_unique_predictions=("majority_label", "nunique"),
+                     predictions=("majority_label", lambda x: " | ".join(x)),
+                     all_variants_same=("majority_label", lambda x: x.nunique() == 1),
+                     gold_label=("gold_label", "first"))
+                .reset_index()
     )
     consistency["status"] = consistency["all_variants_same"].map(
         {True: "consistent", False: "variant-sensitive"}
@@ -502,27 +526,28 @@ def fig_cross_variant_majority(df: pd.DataFrame) -> None:
     for model, fname in [("Qwen-2.5-3B", "fig_10a_qwen_cross_variant_majority_prediction"),
                          ("Llama-3.2-3B", "fig_10b_llama_cross_variant_majority_prediction")]:
         model_data = majority[majority["model_short"] == model].copy()
-        model_data["label_code"] = model_data["majority_argmax_label"].map(label_to_code)
+        model_data["label_code"] = model_data["majority_label"].map(label_to_code)
 
         pivot_code = model_data.pivot(index="template_id", columns="variant_type",
                                       values="label_code") \
                                .reindex(index=template_order, columns=VARIANT_ORDER)
         pivot_text = model_data.pivot(index="template_id", columns="variant_type",
-                                      values="majority_argmax_label") \
+                                      values="majority_label") \
                                .reindex(index=template_order, columns=VARIANT_ORDER)
 
+        title = f"{model}: majority sampled-label prediction across variants"
         fig = px.imshow(
             pivot_code, text_auto=False, color_continuous_scale=color_scale,
             zmin=0, zmax=3,
             labels=dict(x="Narrative variant", y="Template", color="Majority label"),
-            title=f"{model}: majority argmax prediction across variants",
+            title=title,
             template="plotly_white", aspect="auto",
         )
         fig.update_traces(text=pivot_text.values, texttemplate="%{text}",
                           textfont={"size": 13})
         fig.update_layout(
             width=980, height=620,
-            title={"text": f"{model}: majority argmax prediction across variants",
+            title={"text": title,
                    "x": 0.5, "xanchor": "center", "font": {"size": 22}},
             font={"size": 14}, xaxis=dict(side="bottom"),
             coloraxis_colorbar=dict(title="Label", tickvals=[0, 1, 2, 3],

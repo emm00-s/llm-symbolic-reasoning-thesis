@@ -35,6 +35,6 @@ Requires `pandas`, `plotly`, and `kaleido==0.2.1` (see `requirements.txt`).
 | `fig_08b_entropy_violin.png` | Violin version of the same comparison. |
 | `fig_09_mean_probability_by_answer_letter.png` | Mean probability assigned to each option letter A/B/C/D. |
 | `fig_09b_argmax_letter_distribution.png` | Distribution of argmax letters (positional bias check). |
-| `fig_10a_qwen_cross_variant_majority_prediction.png` | Qwen majority argmax prediction across narrative variants per template. |
-| `fig_10b_llama_cross_variant_majority_prediction.png` | Llama majority argmax prediction across narrative variants per template. |
-| `table_10_cross_variant_consistency.csv` | Per-template cross-variant consistency status (consistent vs variant-sensitive). |
+| `fig_10a_qwen_cross_variant_majority_prediction.png` | Qwen majority sampled-label prediction per (template, narrative variant). Invalid rows excluded; ties broken in LABEL_ORDER. |
+| `fig_10b_llama_cross_variant_majority_prediction.png` | Llama majority sampled-label prediction per (template, narrative variant). Same conventions. |
+| `table_10_cross_variant_consistency.csv` | Per-template cross-variant consistency status (consistent vs variant-sensitive), computed on the majority sampled labels. |

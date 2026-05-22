@@ -1,10 +1,10 @@
 model_short,template_id,gold_label,predictions,status
 Llama-3.2-3B,P01,False,Unknown | False | True | False,variant-sensitive
-Llama-3.2-3B,P02,False,Unknown | True | True | False,variant-sensitive
-Llama-3.2-3B,P03,True,True | False | False | True,variant-sensitive
+Llama-3.2-3B,P02,False,Unknown | True | True | Unknown,variant-sensitive
+Llama-3.2-3B,P03,True,True | False | False | False,variant-sensitive
 Llama-3.2-3B,P04,True,Unknown | False | False | False,variant-sensitive
-Llama-3.2-3B,P05,True,Paradox | True | False | Paradox,variant-sensitive
-Llama-3.2-3B,P06,Unknown,Paradox | False | False | False,variant-sensitive
+Llama-3.2-3B,P05,True,Unknown | True | False | False,variant-sensitive
+Llama-3.2-3B,P06,Unknown,False | False | False | False,consistent
 Llama-3.2-3B,P07,Unknown,True | False | False | False,variant-sensitive
 Llama-3.2-3B,P08,True,Unknown | True | False | True,variant-sensitive
 Llama-3.2-3B,P09,Paradox,Paradox | False | True | False,variant-sensitive
@@ -14,6 +14,6 @@ Qwen-2.5-3B,P03,True,True | True | False | Unknown,variant-sensitive
 Qwen-2.5-3B,P04,True,False | False | False | False,consistent
 Qwen-2.5-3B,P05,True,Paradox | Paradox | Paradox | Paradox,consistent
 Qwen-2.5-3B,P06,Unknown,Unknown | False | False | False,variant-sensitive
-Qwen-2.5-3B,P07,Unknown,Unknown | Unknown | Unknown | Unknown,consistent
+Qwen-2.5-3B,P07,Unknown,Unknown | False | Unknown | Unknown,variant-sensitive
 Qwen-2.5-3B,P08,True,Unknown | Unknown | Unknown | Unknown,consistent
 Qwen-2.5-3B,P09,Paradox,Unknown | Paradox | False | Unknown,variant-sensitive
